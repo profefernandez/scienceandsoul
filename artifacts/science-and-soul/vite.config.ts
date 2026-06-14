@@ -1,6 +1,5 @@
-import { defineConfig } from "vite";
+import { defineConfig, Plugin } from "vite";
 import react from "@vitejs/plugin-react";
-import tailwindcss from "@tailwindcss/vite";
 import path from "path";
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 
@@ -26,11 +25,57 @@ if (!basePath) {
   );
 }
 
-export default defineConfig({
+function cspPlugin(mode: string): Plugin {
+  const isProd = mode === "production";
+
+  // In development, Vite and @vitejs/plugin-react inject inline scripts for HMR
+  // and React Fast Refresh — these require 'unsafe-inline'. Production builds
+  // output no inline scripts, so we enforce a strict 'self'-only policy there.
+  const scriptSrc = isProd ? "script-src 'self'" : "script-src 'self' 'unsafe-inline'";
+
+  const csp = [
+    "default-src 'self'",
+    scriptSrc,
+    // 'unsafe-inline' for styles: Vite dev server injects <style> tags for HMR.
+    // React inline style={} props are applied via JS (DOM API) and do not require this.
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+    "font-src 'self' https://fonts.gstatic.com",
+    "img-src 'self' https://user-gen-media-assets.s3.amazonaws.com data: blob:",
+    "connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com",
+  ].join("; ");
+
+  return {
+    name: "csp-meta",
+    transformIndexHtml() {
+      return [
+        {
+          tag: "meta",
+          attrs: { "http-equiv": "Content-Security-Policy", content: csp },
+          injectTo: "head-prepend" as const,
+        },
+        {
+          tag: "meta",
+          attrs: { "http-equiv": "X-Content-Type-Options", content: "nosniff" },
+          injectTo: "head-prepend" as const,
+        },
+        {
+          tag: "meta",
+          attrs: {
+            "http-equiv": "Referrer-Policy",
+            content: "strict-origin-when-cross-origin",
+          },
+          injectTo: "head-prepend" as const,
+        },
+      ];
+    },
+  };
+}
+
+export default defineConfig(async ({ mode }) => ({
   base: basePath,
   plugins: [
     react(),
-    tailwindcss(),
+    cspPlugin(mode),
     runtimeErrorOverlay(),
     ...(process.env.NODE_ENV !== "production" &&
     process.env.REPL_ID !== undefined
@@ -72,4 +117,4 @@ export default defineConfig({
     host: "0.0.0.0",
     allowedHosts: true,
   },
-});
+}));

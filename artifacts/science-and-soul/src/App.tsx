@@ -15,15 +15,6 @@ import { CTABand } from "./components/CTABand";
 import { Contact } from "./components/Contact";
 import { Footer } from "./components/Footer";
 
-const CSP = [
-  "default-src 'self'",
-  "script-src 'self'",
-  "style-src 'self' https://fonts.googleapis.com",
-  "font-src 'self' https://fonts.gstatic.com",
-  "img-src 'self' https://user-gen-media-assets.s3.amazonaws.com data: blob:",
-  "connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com",
-].join("; ");
-
 export default function App() {
   const { theme, toggle } = useDarkMode();
 
@@ -43,9 +34,6 @@ export default function App() {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Science and Soul Counseling & Wellness | Kelly Nelson, LCSW" />
         <meta name="twitter:description" content="Where evidence-based therapy meets spiritual healing. Kelly Nelson, LCSW, Houston, TX." />
-        <meta httpEquiv="Content-Security-Policy" content={CSP} />
-        <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
-        <meta httpEquiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
       </Helmet>
 
       <Announcement />
