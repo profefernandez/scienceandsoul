@@ -1,4 +1,4 @@
-import { useState, useRef, FormEvent, ChangeEvent } from "react";
+import { useState, useRef, useEffect, FormEvent, ChangeEvent } from "react";
 
 interface FormFields {
   firstName: string;
@@ -45,8 +45,43 @@ export function ContactForm() {
   });
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitted, setSubmitted] = useState(false);
-  const [rateLimited, setRateLimited] = useState(false);
+  const [cooldownSecs, setCooldownSecs] = useState(0);
   const submissionTimes = useRef<number[]>([]);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, []);
+
+  function startCooldown(remainingMs: number) {
+    setCooldownSecs(Math.ceil(remainingMs / 1000));
+    if (timerRef.current) clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => {
+      setCooldownSecs((prev) => {
+        if (prev <= 1) {
+          if (timerRef.current) clearInterval(timerRef.current);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+  }
+
+  function checkRateLimit(): boolean {
+    const now = Date.now();
+    const windowStart = now - RATE_WINDOW_MS;
+    submissionTimes.current = submissionTimes.current.filter((t) => t > windowStart);
+    if (submissionTimes.current.length >= RATE_LIMIT) {
+      const oldestInWindow = submissionTimes.current[0];
+      const msUntilFree = oldestInWindow + RATE_WINDOW_MS - now;
+      startCooldown(msUntilFree);
+      return false;
+    }
+    submissionTimes.current.push(now);
+    return true;
+  }
 
   function handleChange(e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
     const { name, value } = e.target;
@@ -56,23 +91,11 @@ export function ContactForm() {
     }
   }
 
-  function checkRateLimit(): boolean {
-    const now = Date.now();
-    const windowStart = now - RATE_WINDOW_MS;
-    submissionTimes.current = submissionTimes.current.filter((t) => t > windowStart);
-    if (submissionTimes.current.length >= RATE_LIMIT) return false;
-    submissionTimes.current.push(now);
-    return true;
-  }
-
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
+    if (cooldownSecs > 0) return;
 
-    if (!checkRateLimit()) {
-      setRateLimited(true);
-      return;
-    }
-    setRateLimited(false);
+    if (!checkRateLimit()) return;
 
     const validationErrors = validate(fields);
     if (Object.keys(validationErrors).length > 0) {
@@ -92,6 +115,8 @@ export function ContactForm() {
     console.info("Form submission (sanitized):", safe);
     setSubmitted(true);
   }
+
+  const isThrottled = cooldownSecs > 0;
 
   if (submitted) {
     return (
@@ -195,17 +220,25 @@ export function ContactForm() {
         {errors.message && <div className="ferr">{errors.message}</div>}
       </div>
       <p className="fnote">🔒 Your privacy is sacred. All information is fully confidential and HIPAA-protected.</p>
-      {rateLimited && (
+      {isThrottled && (
         <p className="ferr" style={{ marginTop: "var(--sp3)", textAlign: "center" }}>
-          Too many submissions. Please wait a moment before trying again.
+          Too many submissions — please wait {cooldownSecs}s before trying again.
         </p>
       )}
       <button
         type="submit"
         className="btn btnp btnlg"
-        style={{ width: "100%", marginTop: "var(--sp4)", justifyContent: "center" }}
+        disabled={isThrottled}
+        aria-disabled={isThrottled}
+        style={{
+          width: "100%",
+          marginTop: "var(--sp4)",
+          justifyContent: "center",
+          opacity: isThrottled ? 0.5 : 1,
+          cursor: isThrottled ? "not-allowed" : "pointer",
+        }}
       >
-        Send My Message ✦
+        {isThrottled ? `Please wait ${cooldownSecs}s…` : "Send My Message ✦"}
       </button>
     </form>
   );
