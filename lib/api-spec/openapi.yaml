@@ -12,6 +12,8 @@ tags:
     description: Health operations
   - name: orb
     description: Chakra Orb AI guide operations
+  - name: coloring
+    description: AI coloring page studio operations
 paths:
   /healthz:
     get:
@@ -45,6 +47,25 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/OrbChatReply"
+  /coloring/generate:
+    post:
+      operationId: generateColoringPage
+      tags: [coloring]
+      summary: Generate a black-and-white line-art coloring page
+      description: Takes a feeling or theme and returns an AI-generated line-art coloring page as a PNG data URL.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ColoringGenerateInput"
+      responses:
+        "200":
+          description: Generated coloring page
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ColoringGenerateReply"
   /inquiries:
     post:
       operationId: createInquiry
@@ -94,6 +115,22 @@ components:
           type: string
         conversationId:
           type: ["string", "null"]
+    ColoringGenerateInput:
+      type: object
+      required:
+        - prompt
+      properties:
+        prompt:
+          type: string
+          minLength: 1
+          maxLength: 300
+    ColoringGenerateReply:
+      type: object
+      required:
+        - imageDataUrl
+      properties:
+        imageDataUrl:
+          type: string
     InquiryInput:
       type: object
       required:
@@ -113,6 +150,8 @@ components:
         source:
           type: string
         conversationId:
+          type: ["string", "null"]
+        imageDataUrl:
           type: ["string", "null"]
     Inquiry:
       type: object
@@ -135,6 +174,8 @@ components:
         source:
           type: string
         conversationId:
+          type: ["string", "null"]
+        imageDataUrl:
           type: ["string", "null"]
         createdAt:
           type: string

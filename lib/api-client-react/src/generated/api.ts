@@ -20,6 +20,8 @@ import type {
 } from '@tanstack/react-query';
 
 import type {
+  ColoringGenerateInput,
+  ColoringGenerateReply,
   HealthStatus,
   Inquiry,
   InquiryInput,
@@ -187,6 +189,78 @@ export const useOrbChat = <TError = ErrorType<unknown>,
         TContext
       > => {
       return useMutation(getOrbChatMutationOptions(options));
+    }
+
+export const getGenerateColoringPageUrl = () => {
+
+
+
+
+  return `/api/coloring/generate`
+}
+
+/**
+ * Takes a feeling or theme and returns an AI-generated line-art coloring page as a PNG data URL.
+ * @summary Generate a black-and-white line-art coloring page
+ */
+export const generateColoringPage = async (coloringGenerateInput: ColoringGenerateInput, options?: RequestInit): Promise<ColoringGenerateReply> => {
+
+  return customFetch<ColoringGenerateReply>(getGenerateColoringPageUrl(),
+  {
+    ...options,
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(
+      coloringGenerateInput,)
+  }
+);}
+
+
+
+
+export const getGenerateColoringPageMutationOptions = <TError = ErrorType<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof generateColoringPage>>, TError,{data: BodyType<ColoringGenerateInput>}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof generateColoringPage>>, TError,{data: BodyType<ColoringGenerateInput>}, TContext> => {
+
+const mutationKey = ['generateColoringPage'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof generateColoringPage>>, {data: BodyType<ColoringGenerateInput>}> = (props) => {
+          const {data} = props ?? {};
+
+          return  generateColoringPage(data,requestOptions)
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type GenerateColoringPageMutationResult = NonNullable<Awaited<ReturnType<typeof generateColoringPage>>>
+    export type GenerateColoringPageMutationBody = BodyType<ColoringGenerateInput>
+    export type GenerateColoringPageMutationError = ErrorType<unknown>
+
+    /**
+ * @summary Generate a black-and-white line-art coloring page
+ */
+export const useGenerateColoringPage = <TError = ErrorType<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof generateColoringPage>>, TError,{data: BodyType<ColoringGenerateInput>}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof generateColoringPage>>,
+        TError,
+        {data: BodyType<ColoringGenerateInput>},
+        TContext
+      > => {
+      return useMutation(getGenerateColoringPageMutationOptions(options));
     }
 
 export const getCreateInquiryUrl = () => {

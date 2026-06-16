@@ -16,4 +16,6 @@ export interface InquiryInput {
   source?: string;
   /** @nullable */
   conversationId?: string | null;
+  /** @nullable */
+  imageDataUrl?: string | null;
 }

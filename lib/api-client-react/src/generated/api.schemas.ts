@@ -24,6 +24,18 @@ export interface OrbChatReply {
   conversationId?: string | null;
 }
 
+export interface ColoringGenerateInput {
+  /**
+     * @minLength 1
+     * @maxLength 300
+     */
+  prompt: string;
+}
+
+export interface ColoringGenerateReply {
+  imageDataUrl: string;
+}
+
 export interface InquiryInput {
   /** @minLength 1 */
   name: string;
@@ -34,6 +46,8 @@ export interface InquiryInput {
   source?: string;
   /** @nullable */
   conversationId?: string | null;
+  /** @nullable */
+  imageDataUrl?: string | null;
 }
 
 export interface Inquiry {
@@ -44,6 +58,8 @@ export interface Inquiry {
   source: string;
   /** @nullable */
   conversationId?: string | null;
+  /** @nullable */
+  imageDataUrl?: string | null;
   createdAt: string;
 }
 

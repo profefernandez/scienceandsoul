@@ -20,6 +20,7 @@ router.post("/inquiries", async (req, res): Promise<void> => {
       message: parsed.data.message,
       source: parsed.data.source ?? "orb",
       conversationId: parsed.data.conversationId ?? null,
+      imageDataUrl: parsed.data.imageDataUrl ?? null,
     })
     .returning();
 

@@ -14,5 +14,7 @@ export interface Inquiry {
   source: string;
   /** @nullable */
   conversationId?: string | null;
+  /** @nullable */
+  imageDataUrl?: string | null;
   createdAt: Date;
 }
