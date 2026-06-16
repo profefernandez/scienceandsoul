@@ -3,8 +3,8 @@ import { logger } from "./logger";
 const DEFAULT_BASE_URL = "https://sip.launchlemonade.app";
 const DEFAULT_ASSISTANT_ID = "1781573959703x853787355355545600";
 const REQUEST_TIMEOUT_MS = 90_000;
-const POLL_INTERVAL_MS = 2_000;
-const POLL_DEADLINE_MS = 85_000;
+const POLL_INTERVAL_MS = 10_000;
+const POLL_DEADLINE_MS = 70_000;
 
 export interface LemonadeChatResult {
   reply: string;
