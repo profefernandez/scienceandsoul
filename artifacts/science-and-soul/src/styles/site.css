@@ -43,10 +43,13 @@
 html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;scroll-behavior:smooth;scroll-padding-top:5rem}
 body{min-height:100dvh;line-height:1.7;font-family:var(--fb);font-size:var(--tx-base);color:var(--ink);background:var(--bg);overflow-x:hidden}
 img,svg{display:block;max-width:100%;height:auto}
-@media(hover:hover){
-.hframe img,.philos-img img,.scard-img,.apprimg img,.aboutframe img{filter:grayscale(1);transition:filter 600ms ease}
-.hero:hover .hframe img,.philos:hover .philos-img img,.scard:hover .scard-img,#approach:hover .apprimg img,#about:hover .aboutframe img{filter:grayscale(0)}
-}
+.colimg{position:relative;overflow:hidden;display:block;line-height:0}
+.colimg-base{display:block;width:100%;height:auto;filter:grayscale(1)}
+.colimg-canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.colimg-full{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 800ms ease;pointer-events:none}
+.colimg.is-revealed .colimg-full{opacity:1}
+.colimg-fit{width:100%;height:100%}
+.colimg-fit .colimg-base{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 h1,h2,h3,h4{text-wrap:balance;line-height:1.2}
 p,li{text-wrap:pretty;max-width:72ch}
 button{cursor:pointer;background:none;border:none}
@@ -110,6 +113,7 @@ section{padding:clamp(3rem,8vw,6rem) 0}
 .hacts{display:flex;gap:var(--sp4);flex-wrap:wrap}
 .hframe{position:relative;border-radius:var(--r2xl);overflow:hidden;box-shadow:var(--shlg);border:3px solid var(--dv)}
 .hframe img{width:100%;display:block}
+.hframe .colimg{width:100%}
 .hframe::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 31px,color-mix(in oklch,var(--dv) 30%,transparent) 31px,color-mix(in oklch,var(--dv) 30%,transparent) 32px);pointer-events:none;opacity:.2}
 .hbadge{position:absolute;bottom:-16px;right:-16px;background:var(--sf);border:2px solid var(--dv);border-radius:var(--rxl);padding:var(--sp3) var(--sp4);box-shadow:var(--shmd);display:flex;align-items:center;gap:var(--sp2)}
 .slabel{display:inline-flex;align-items:center;gap:var(--sp2);font-family:var(--fh);font-size:var(--tx-base);color:var(--inkm);margin-bottom:var(--sp3)}
@@ -125,7 +129,7 @@ section{padding:clamp(3rem,8vw,6rem) 0}
 .cielem{font-size:var(--tx-xs);color:var(--inkf);text-align:center}
 .philos{background:var(--sf2);border-top:1.5px solid var(--dv);border-bottom:1.5px solid var(--dv)}
 .philos-inner{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
-.philos-img img{width:100%;border-radius:var(--r2xl);box-shadow:var(--shlg);border:3px solid var(--dv)}
+.philos-img .colimg{border-radius:var(--r2xl);box-shadow:var(--shlg);border:3px solid var(--dv)}
 .pquote{font-family:var(--fd);font-style:italic;font-size:var(--tx-xl);color:var(--teal);line-height:1.5;margin-bottom:var(--sp6);padding-left:var(--sp6);border-left:4px solid var(--teal)}
 .ptext{font-size:var(--tx-base);color:var(--inkm);line-height:1.85;margin-bottom:var(--sp4)}
 .ppills{display:flex;flex-wrap:wrap;gap:var(--sp2);margin-top:var(--sp4)}
@@ -147,7 +151,7 @@ section{padding:clamp(3rem,8vw,6rem) 0}
 .sc-sage{border-top:4px solid var(--sage)}
 .sc-amb{border-top:4px solid var(--amb)}
 .apprgrid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
-.apprimg img{width:100%;border-radius:var(--r2xl);box-shadow:var(--shlg);border:3px solid var(--dv)}
+.apprimg .colimg{border-radius:var(--r2xl);box-shadow:var(--shlg);border:3px solid var(--dv)}
 .apprlist{list-style:none;padding:0;display:flex;flex-direction:column;gap:var(--sp5)}
 .appritem{display:flex;gap:var(--sp4);align-items:flex-start}
 .appricon{width:48px;height:48px;border-radius:var(--rxl);display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0}
@@ -168,6 +172,7 @@ section{padding:clamp(3rem,8vw,6rem) 0}
 .aboutportrait{position:relative}
 .aboutframe{border-radius:var(--r2xl);overflow:hidden;border:3px solid var(--dv);box-shadow:var(--shlg);aspect-ratio:3/4;background:var(--sf2)}
 .aboutframe img{width:100%;height:100%;object-fit:cover}
+.aboutframe .colimg{width:100%;height:100%}
 .aboutcred{position:absolute;bottom:var(--sp4);left:var(--sp4);right:var(--sp4);background:color-mix(in oklch,var(--sf) 95%,transparent);backdrop-filter:blur(8px);border:1.5px solid var(--dv);border-radius:var(--rxl);padding:var(--sp3) var(--sp4)}
 .aboutcname{font-family:var(--fd);font-weight:700;font-size:var(--tx-base);color:var(--ink)}
 .aboutctitle{font-size:var(--tx-xs);color:var(--inkm);font-weight:600;letter-spacing:.04em}

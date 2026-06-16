@@ -1,3 +1,5 @@
+import { ColoringImage } from "./ColoringImage";
+
 const steps = [
   {
     iconStyle: { background: "var(--teall)", color: "var(--teal)" },
@@ -51,12 +53,11 @@ export function Approach() {
             </ul>
           </div>
           <div className="apprimg fi">
-            <img
+            <ColoringImage
               src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/7cd4a7d9-e8ec-4f7a-88ed-74fc2d48b0f3.png"
               alt="Black woman sound healing illustration in coloring-book style"
               width={540}
               height={540}
-              loading="lazy"
             />
           </div>
         </div>

@@ -1,3 +1,5 @@
+import { ColoringImage } from "./ColoringImage";
+
 const services = [
   {
     accent: "sc-lav",
@@ -49,13 +51,13 @@ export function Services() {
         <div className="svcgrid">
           {services.map((s) => (
             <div className={`scard ${s.accent} fi`} key={s.title}>
-              <img
+              <ColoringImage
                 className="scard-img"
                 src={s.img}
                 alt={s.imgAlt}
                 width={600}
                 height={450}
-                loading="lazy"
+                fit
               />
               <div className="scard-body">
                 <span className={s.pill.cls}>{s.pill.label}</span>

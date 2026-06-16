@@ -1,3 +1,5 @@
+import { ColoringImage } from "./ColoringImage";
+
 export function Hero() {
   return (
     <section className="hero" id="home">
@@ -28,7 +30,7 @@ export function Hero() {
           </div>
           <div className="himgwrap fi">
             <div className="hframe" style={{ position: "relative" }}>
-              <img
+              <ColoringImage
                 src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/e4bd94ce-72e8-490a-9d84-147dae6c3020.png"
                 alt="Coloring-book style illustration of a Black woman meditating with chakra alignment"
                 width={600}

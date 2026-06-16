@@ -1,0 +1,1 @@
+- [Science & Soul CSS class names](science-soul-css-classnames.md) — site.css uses ultra-terse 2-3 char global class names; namespace any new component classes to avoid silent collisions.

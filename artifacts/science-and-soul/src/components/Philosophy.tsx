@@ -1,15 +1,16 @@
+import { ColoringImage } from "./ColoringImage";
+
 export function Philosophy() {
   return (
     <section className="philos" id="philosophy">
       <div className="ww">
         <div className="philos-inner">
           <div className="philos-img fi">
-            <img
+            <ColoringImage
               src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/1d80a0ab-3752-4880-bc0a-df1780b022eb.png"
               alt="Black woman therapist with Black woman client in a soulful therapy setting"
               width={520}
               height={520}
-              loading="lazy"
             />
           </div>
           <div className="fi">
