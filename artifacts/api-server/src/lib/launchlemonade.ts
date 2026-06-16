@@ -1,8 +1,10 @@
 import { logger } from "./logger";
 
-const DEFAULT_LEMONADE_CHAT_URL = "https://api.launchlemonade.app/v1/chat";
-const DEFAULT_LEMONADE_ID = "1781573959703x853787355355545600";
+const DEFAULT_BASE_URL = "https://sip.launchlemonade.app";
+const DEFAULT_ASSISTANT_ID = "1781573959703x853787355355545600";
 const REQUEST_TIMEOUT_MS = 90_000;
+const POLL_INTERVAL_MS = 2_000;
+const POLL_DEADLINE_MS = 85_000;
 
 export interface LemonadeChatResult {
   reply: string;
@@ -12,42 +14,42 @@ export interface LemonadeChatResult {
 export class LemonadeConfigError extends Error {}
 export class LemonadeUpstreamError extends Error {}
 
-interface LemonadeChatResponse {
-  response?: string;
-  reply?: string;
-  message?: string;
-  conversation_id?: string | null;
-  conversationId?: string | null;
+interface RunAssistantResponse {
+  Conversation_ID?: string;
+  Response_ID?: string;
+  Response?: string;
+  Error?: string;
+  Error_Reason?: string;
 }
 
-export async function sendLemonadeChat(
-  message: string,
-  conversationId?: string | null,
-): Promise<LemonadeChatResult> {
+interface GetRunAssistantResponse {
+  Response?: string;
+}
+
+function getConfig(): { apiKey: string; baseUrl: string; assistantId: string } {
   const apiKey = process.env["LAUNCHLEMONADE_API_KEY"];
   if (!apiKey) {
     throw new LemonadeConfigError("LAUNCHLEMONADE_API_KEY is not configured");
   }
+  const baseUrl = (
+    process.env["LAUNCHLEMONADE_BASE_URL"] ?? DEFAULT_BASE_URL
+  ).replace(/\/+$/, "");
+  const assistantId =
+    process.env["LAUNCHLEMONADE_ASSISTANT_ID"] ?? DEFAULT_ASSISTANT_ID;
+  return { apiKey, baseUrl, assistantId };
+}
 
-  const lemonadeId =
-    process.env["LAUNCHLEMONADE_LEMONADE_ID"] ?? DEFAULT_LEMONADE_ID;
-  const chatUrl =
-    process.env["LAUNCHLEMONADE_CHAT_URL"] ?? DEFAULT_LEMONADE_CHAT_URL;
-
-  const body: Record<string, unknown> = {
-    lemonade_id: lemonadeId,
-    message,
-  };
-  if (conversationId) {
-    body["conversation_id"] = conversationId;
-  }
-
+async function postJson<T>(
+  url: string,
+  apiKey: string,
+  body: unknown,
+  timeoutMs: number,
+): Promise<T> {
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
-
+  const timeout = setTimeout(() => controller.abort(), timeoutMs);
   let res: globalThis.Response;
   try {
-    res = await fetch(chatUrl, {
+    res = await fetch(url, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${apiKey}`,
@@ -69,14 +71,76 @@ export async function sendLemonadeChat(
   if (!res.ok) {
     const text = await res.text().catch(() => "");
     logger.error(
-      { status: res.status, body: text.slice(0, 500) },
+      { url, status: res.status, body: text.slice(0, 500) },
       "Launch Lemonade request failed",
     );
     throw new LemonadeUpstreamError("The AI guide returned an error");
   }
 
-  const data = (await res.json().catch(() => ({}))) as LemonadeChatResponse;
-  const reply = data.response ?? data.reply ?? data.message;
+  return (await res.json().catch(() => ({}))) as T;
+}
+
+async function pollForResponse(
+  baseUrl: string,
+  apiKey: string,
+  responseId: string,
+): Promise<string> {
+  const deadline = Date.now() + POLL_DEADLINE_MS;
+  const url = `${baseUrl}/api/1.1/wf/get_run_assistant`;
+
+  while (Date.now() < deadline) {
+    await new Promise((resolve) => setTimeout(resolve, POLL_INTERVAL_MS));
+    const data = await postJson<GetRunAssistantResponse>(
+      url,
+      apiKey,
+      { response_id: responseId },
+      30_000,
+    );
+    const reply = data.Response;
+    if (typeof reply === "string" && reply.trim() !== "") {
+      return reply;
+    }
+  }
+
+  throw new LemonadeUpstreamError("The AI guide took too long to respond");
+}
+
+export async function sendLemonadeChat(
+  message: string,
+  conversationId?: string | null,
+): Promise<LemonadeChatResult> {
+  const { apiKey, baseUrl, assistantId } = getConfig();
+
+  const data = await postJson<RunAssistantResponse>(
+    `${baseUrl}/api/1.1/wf/run_assistant`,
+    apiKey,
+    {
+      assistant_id: assistantId,
+      conversation_id: conversationId ?? "",
+      input: message,
+    },
+    REQUEST_TIMEOUT_MS,
+  );
+
+  if (data.Error === "Yes") {
+    logger.error(
+      { reason: data.Error_Reason },
+      "Launch Lemonade returned an error",
+    );
+    throw new LemonadeUpstreamError(
+      data.Error_Reason && data.Error_Reason.trim() !== ""
+        ? data.Error_Reason
+        : "The AI guide returned an error",
+    );
+  }
+
+  const newConversationId = data.Conversation_ID ?? conversationId ?? null;
+
+  let reply = data.Response;
+
+  if ((typeof reply !== "string" || reply.trim() === "") && data.Response_ID) {
+    reply = await pollForResponse(baseUrl, apiKey, data.Response_ID);
+  }
 
   if (typeof reply !== "string" || reply.trim() === "") {
     logger.error({ data }, "Launch Lemonade returned an empty reply");
@@ -85,6 +149,6 @@ export async function sendLemonadeChat(
 
   return {
     reply,
-    conversationId: data.conversation_id ?? data.conversationId ?? null,
+    conversationId: newConversationId,
   };
 }
