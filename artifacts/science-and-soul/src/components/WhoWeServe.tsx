@@ -1,32 +1,32 @@
 const groups = [
   {
     emoji: "🌱",
-    title: "Teens & Adolescents",
-    desc: "Navigating identity, peer relationships, depression, self-harm, and the transition into adulthood — with compassion that meets them exactly where they are.",
+    title: "Teens & Adults",
+    desc: "Kelly works primarily with teens and adults dealing with trauma, depression, self-harm, mood disorders, grief, and attachment issues — meeting each person exactly where they are.",
     tags: [
-      { cls: "pill ps", label: "Self-Harm" },
-      { cls: "pill ps", label: "Identity" },
-      { cls: "pill ps", label: "Anxiety" },
-    ],
-  },
-  {
-    emoji: "🌸",
-    title: "Adults",
-    desc: "Trauma survivors, those managing mood disorders, life transitions, grief, relationship challenges, and anyone seeking deeper self-understanding and spiritual alignment.",
-    tags: [
-      { cls: "pill pt", label: "Trauma" },
-      { cls: "pill pt", label: "Grief" },
-      { cls: "pill pt", label: "Life Transitions" },
+      { cls: "pill ps", label: "Trauma" },
+      { cls: "pill ps", label: "Depression" },
+      { cls: "pill ps", label: "Grief" },
     ],
   },
   {
     emoji: "🌈",
     title: "LGBTQIA+ Community",
-    desc: "A genuinely affirming space — not just as policy, but as lived practice. Supporting gender identity, sexual orientation, and the full spectrum of human expression.",
+    desc: "Kelly specifically serves the LGBTQIA+ community — providing a genuinely affirming space for gender identity, sexual orientation, and the full spectrum of human expression.",
     tags: [
       { cls: "pill pl", label: "Affirming" },
-      { cls: "pill pl", label: "Gender" },
       { cls: "pill pl", label: "Identity" },
+      { cls: "pill pl", label: "Safe Space" },
+    ],
+  },
+  {
+    emoji: "🌸",
+    title: "People Seeking Depth",
+    desc: "The therapy here is intentionally deeper than symptom management — emphasizing insight, safety, strengths, and self-understanding for those ready to go beyond the surface.",
+    tags: [
+      { cls: "pill pt", label: "Insight" },
+      { cls: "pill pt", label: "Spiritual" },
+      { cls: "pill pt", label: "Whole-Person" },
     ],
   },
 ];
@@ -38,7 +38,7 @@ export function WhoWeServe() {
         <div style={{ textAlign: "center", marginBottom: "var(--sp10)" }}>
           <div className="slabel" style={{ justifyContent: "center" }}>Who We Welcome</div>
           <h2 className="stitle" style={{ marginInline: "auto" }}>
-            A Space for <em>Every Soul</em>
+            Inclusive, affirming, and <em>identity-safe care</em>
           </h2>
         </div>
         <div className="servegrid">

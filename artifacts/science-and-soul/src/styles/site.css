@@ -125,6 +125,9 @@ section{padding:clamp(3rem,8vw,6rem) 0}
 .pquote{font-family:var(--fd);font-style:italic;font-size:var(--tx-xl);color:var(--teal);line-height:1.5;margin-bottom:var(--sp6);padding-left:var(--sp6);border-left:4px solid var(--teal)}
 .ptext{font-size:var(--tx-base);color:var(--inkm);line-height:1.85;margin-bottom:var(--sp4)}
 .ppills{display:flex;flex-wrap:wrap;gap:var(--sp2);margin-top:var(--sp4)}
+.ppillars{display:flex;flex-direction:column;gap:var(--sp4);margin:var(--sp6) 0}
+.ppillar{display:grid;grid-template-columns:14px 1fr;gap:var(--sp4);align-items:start;font-size:var(--tx-base);color:var(--inkm);line-height:1.75}
+.pdot{width:14px;height:14px;border-radius:50%;margin-top:.35rem;flex-shrink:0}
 .svcgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem}
 .scard{background:var(--sf);border:1.5px solid var(--dv);border-radius:var(--r2xl);overflow:hidden;transition:all var(--tr)}
 .scard:hover{transform:translateY(-4px);box-shadow:var(--shlg)}

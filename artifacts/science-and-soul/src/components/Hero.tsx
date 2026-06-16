@@ -14,23 +14,23 @@ export function Hero() {
       <div className="ww">
         <div className="hgrid">
           <div className="fi">
-            <div className="heyebrow">✦ Where Science Meets Soul</div>
+            <div className="heyebrow">Houston, Texas · Holistic Therapy</div>
             <h1 className="htitle">
-              Healing Beyond<br />the <em>Diagnosis</em>
+              Healing beyond<br />the <em>diagnosis</em>
             </h1>
             <p className="hdesc">
-              Evidence-based therapy woven with chakra alignment, sound bowl healing, and Reiki &mdash; restoring wholeness at the level of identity and essence. You are more than your diagnosis.
+              Evidence-based counseling woven with spiritual healing, identity work, and whole-person care &mdash; restoring wholeness at the level of the self. You are more than your diagnosis.
             </p>
             <div className="hacts">
-              <a href="#contact" className="btn btnp btnlg">Book a Free Consult</a>
+              <a href="#contact" className="btn btnp btnlg">Start Your Healing</a>
               <a href="#services" className="btn btno btnlg">Explore Services</a>
             </div>
           </div>
           <div className="himgwrap fi">
             <div className="hframe" style={{ position: "relative" }}>
               <img
-                src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/0aac1017-e6de-46ee-9995-5ccac1fbe9ee.png"
-                alt="Coloring book illustration of a meditating woman with chakra symbols and botanical elements"
+                src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/e4bd94ce-72e8-490a-9d84-147dae6c3020.png"
+                alt="Coloring-book style illustration of a Black woman meditating with chakra alignment"
                 width={600}
                 height={600}
                 loading="eager"

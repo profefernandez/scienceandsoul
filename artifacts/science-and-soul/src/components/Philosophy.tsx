@@ -5,8 +5,8 @@ export function Philosophy() {
         <div className="philos-inner">
           <div className="philos-img fi">
             <img
-              src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/ecd74d8b-5ea8-4d22-a4e0-d2d1f8a55eee.png"
-              alt="Lotus flower coloring book illustration — union of science and spiritual wisdom"
+              src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/1d80a0ab-3752-4880-bc0a-df1780b022eb.png"
+              alt="Black woman therapist with Black woman client in a soulful therapy setting"
               width={520}
               height={520}
               loading="lazy"
@@ -15,17 +15,25 @@ export function Philosophy() {
           <div className="fi">
             <div className="slabel">Our Philosophy</div>
             <h2 className="stitle">
-              Evidence-Based Healing<br />for the <em>Whole Person</em>
+              Where evidence-based care<br />meets <em>inner spiritual restoration</em>
             </h2>
-            <blockquote className="pquote">
-              &ldquo;Science reveals the map. Soul is the territory.&rdquo;
-            </blockquote>
             <p className="ptext">
-              At Science and Soul, we believe true healing extends far beyond symptom management. <strong>Science</strong> represents rigorous, evidence-based clinical practices. <strong>Soul</strong> represents the deeper dimension: your spiritual identity, your essential self, your energy body.
+              Kelly Nelson is a Licensed Clinical Social Worker serving teens, adults, and the LGBTQIA+ community. She uses a holistic, eclectic approach that includes psychodynamic work, attachment theory, person-centered therapy, mindfulness, CBT, DBT, and spirituality.
             </p>
-            <p className="ptext">
-              We don&rsquo;t treat diagnoses &mdash; we honor the individual. Your healing happens at the level of <em>identity and essence</em>, reaching beyond surface symptoms into the core of who you are.
-            </p>
+            <div className="ppillars">
+              <div className="ppillar">
+                <div className="pdot" style={{ background: "var(--teal)" }} />
+                <div><strong>Evidence-based foundation.</strong> Science forms the grounded clinical base for treatment, including CBT, DBT, trauma-focused care, and insight-oriented therapy.</div>
+              </div>
+              <div className="ppillar">
+                <div className="pdot" style={{ background: "var(--lav)" }} />
+                <div><strong>Spiritual integration.</strong> The clinical foundation extends into chakra alignment, Reiki, sound healing, and deeper work around identity and essence.</div>
+              </div>
+              <div className="ppillar">
+                <div className="pdot" style={{ background: "var(--amb)" }} />
+                <div><strong>Whole-person healing.</strong> Kelly emphasizes compassion, non-judgment, insight, and helping clients use their strengths rather than reducing them to a diagnosis.</div>
+              </div>
+            </div>
             <div className="ppills">
               <span className="pill pt">Holistic</span>
               <span className="pill pl">Trauma-Informed</span>

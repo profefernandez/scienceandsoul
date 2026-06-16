@@ -2,26 +2,26 @@ const steps = [
   {
     iconStyle: { background: "var(--teall)", color: "var(--teal)" },
     emoji: "🔬",
-    title: "Science as Foundation",
-    desc: "Evidence-based modalities (CBT, DBT, psychodynamic, trauma-focused) provide the clinical backbone of every treatment plan.",
+    title: "See the full story",
+    desc: "Clients are framed as whole people with identity, history, and spirit — not only diagnoses. Healing begins by honoring the complete human being.",
   },
   {
     iconStyle: { background: "var(--lavl)", color: "var(--lav)" },
     emoji: "✨",
-    title: "Soul as Destination",
-    desc: "We seek deep inner spiritual healing — identity, essence, purpose. You are not reducible to your diagnosis; you are a whole, sacred being.",
+    title: "Use clinical tools",
+    desc: "A holistic and eclectic mix of recognized therapy approaches — CBT, DBT, psychodynamic, attachment, mindfulness — shaped precisely to each person's needs.",
   },
   {
     iconStyle: { background: "var(--sagel)", color: "var(--sage)" },
     emoji: "🌿",
-    title: "Non-Judgmental Space",
-    desc: "A safe, affirming environment for full self-expression — LGBTQIA+ affirming, culturally sensitive, and radically compassionate.",
+    title: "Invite spiritual healing",
+    desc: "The care model expands into spirituality, energy work, and healing beyond surface symptoms — reaching the deeper dimensions of self, identity, and essence.",
   },
   {
     iconStyle: { background: "var(--ambl)", color: "var(--amb)" },
     emoji: "⚡",
-    title: "Energy Psychology Integration",
-    desc: "Chakra work, Reiki, and sound healing are integrated alongside clinical modalities for complete body-mind-spirit alignment.",
+    title: "Reconnect with essence",
+    desc: "The healing journey centers restoration of self, insight, safety, and deeper identity-level work — helping clients return to who they truly are.",
   },
 ];
 
@@ -33,10 +33,10 @@ export function Approach() {
           <div className="fi">
             <div className="slabel">How We Heal</div>
             <h2 className="stitle">
-              More Than a Diagnosis &mdash;<br /><em>The Whole Individual</em>
+              Healing that sees<br /><em>the whole individual</em>
             </h2>
             <p style={{ fontSize: "var(--tx-base)", color: "var(--inkm)", lineHeight: 1.8, marginBottom: "2rem", maxWidth: "52ch" }}>
-              Our approach is eclectic, integrative, and deeply personalized. We start with who you are &mdash; not what you&rsquo;ve been labeled. Healing happens at the level of identity, energy, and spiritual essence.
+              The approach is eclectic, integrative, and deeply personalized — philosophy first, then clinical tools, then spiritual care. Healing happens at the level of identity, energy, and spiritual essence.
             </p>
             <ul className="apprlist" role="list">
               {steps.map((s) => (
@@ -52,8 +52,8 @@ export function Approach() {
           </div>
           <div className="apprimg fi">
             <img
-              src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/91a56b49-99a2-433d-b3a2-21c0debedf75.png"
-              alt="Sound bowl crystal healing coloring book illustration"
+              src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/7cd4a7d9-e8ec-4f7a-88ed-74fc2d48b0f3.png"
+              alt="Black woman sound healing illustration in coloring-book style"
               width={540}
               height={540}
               loading="lazy"

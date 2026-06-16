@@ -6,10 +6,10 @@ export function Contact() {
       <div className="ww">
         <div className="cgrid">
           <div className="fi">
-            <div className="slabel">Reach Out</div>
-            <h2 className="stitle">Start <em>Your Healing</em></h2>
+            <div className="slabel">Contact</div>
+            <h2 className="stitle">Begin the <em>healing journey</em></h2>
             <p className="sdesc">
-              Reach out today for your free 15-minute consultation. Whether you&rsquo;re ready to begin or just curious, we&rsquo;re here &mdash; without judgment, without pressure.
+              Science and Soul Counseling &amp; Wellness, PLLC offers a free 15-minute consultation. Reach out today &mdash; without judgment, without pressure.
             </p>
             <div className="ciitem">
               <div className="ciicon">📍</div>
@@ -49,8 +49,8 @@ export function Contact() {
               <div>
                 <div className="cilabel">Hours</div>
                 <div className="civalue">
-                  Late Evening Appointments Available<br />
-                  <span style={{ fontSize: "var(--tx-sm)", color: "var(--inkm)" }}>Contact for current availability</span>
+                  Late-night appointments available<br />
+                  <span style={{ fontSize: "var(--tx-sm)", color: "var(--inkm)" }}>Serving clients with busy schedules</span>
                 </div>
               </div>
             </div>
@@ -58,7 +58,7 @@ export function Contact() {
           <div className="fi">
             <div className="fwrap">
               <h3 style={{ fontFamily: "var(--fd)", fontSize: "var(--tx-xl)", marginBottom: "var(--sp6)" }}>
-                Request a Consultation
+                Send a Message
               </h3>
               <ContactForm />
             </div>

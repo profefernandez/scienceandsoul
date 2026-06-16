@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>science-and-soul-coloring-book</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Nunito:wght@400;500;600;700&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root,[data-theme="light"]{
+      --color-bg:#faf5ef;
+      --color-surface:#fffaf4;
+      --color-surface-2:#f5ede3;
+      --color-surface-3:#efe2d2;
+      --color-text:#2d2218;
+      --color-text-muted:#755f4a;
+      --color-text-faint:#ae9c89;
+      --color-primary:#1f7a78;
+      --color-primary-2:#7e4aa8;
+      --color-accent:#d98b2b;
+      --color-line:#d8c3ab;
+      --color-card:#fffdf9;
+      --shadow:0 16px 42px rgba(77,52,27,.10);
+      --radius-sm:10px;
+      --radius-md:18px;
+      --radius-lg:28px;
+      --space-2:.5rem;
+      --space-3:.75rem;
+      --space-4:1rem;
+      --space-6:1.5rem;
+      --space-8:2rem;
+      --space-10:2.5rem;
+      --space-12:3rem;
+      --space-16:4rem;
+      --text-sm:clamp(.9rem,.85rem+.2vw,1rem);
+      --text-base:clamp(1rem,.95rem+.3vw,1.1rem);
+      --text-lg:clamp(1.2rem,1rem+.8vw,1.6rem);
+      --text-xl:clamp(1.7rem,1.2rem+1.8vw,2.6rem);
+      --text-2xl:clamp(2.4rem,1.5rem+3vw,4.4rem);
+      --font-display:'Playfair Display', serif;
+      --font-body:'Nunito', sans-serif;
+      --font-accent:'Caveat', cursive;
+    }
+    [data-theme="dark"]{
+      --color-bg:#171310;
+      --color-surface:#211b17;
+      --color-surface-2:#2a221d;
+      --color-surface-3:#342b24;
+      --color-text:#efe2d3;
+      --color-text-muted:#baa28c;
+      --color-text-faint:#8a7663;
+      --color-primary:#53a7a4;
+      --color-primary-2:#b285dd;
+      --color-accent:#ebb15b;
+      --color-line:#47392d;
+      --color-card:#241d18;
+      --shadow:0 18px 46px rgba(0,0,0,.34);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:var(--font-body);background:var(--color-bg);color:var(--color-text);line-height:1.65}
+    img{display:block;max-width:100%;height:auto}
+    a{text-decoration:none;color:inherit}
+    .container{width:min(1180px,calc(100% - 2rem));margin:auto}
+    .skip{position:absolute;left:-9999px}.skip:focus{left:1rem;top:1rem;background:var(--color-primary);color:#fff;padding:.75rem 1rem;border-radius:999px;z-index:1000}
+    .site-header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--color-surface) 88%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--color-line)}
+    .nav{display:flex;justify-content:space-between;align-items:center;padding:1rem 0;gap:1rem}
+    .brand{display:flex;align-items:center;gap:.9rem}
+    .brand svg{width:48px;height:48px;color:var(--color-primary)}
+    .brand-text strong{display:block;font-family:var(--font-display);font-size:1.05rem}
+    .brand-text span{font-size:.86rem;color:var(--color-text-muted)}
+    .nav-links{display:flex;gap:1.2rem;align-items:center;flex-wrap:wrap}
+    .nav-links a{font-size:var(--text-sm);font-weight:700;color:var(--color-text-muted)}
+    .nav-links a:hover{color:var(--color-primary)}
+    .theme-btn,.cta{border:none;border-radius:999px;font:inherit;cursor:pointer}
+    .theme-btn{width:44px;height:44px;background:var(--color-surface-2);color:var(--color-text)}
+    .cta{padding:.9rem 1.25rem;background:var(--color-primary);color:#fff;font-weight:800}
+    .hero{padding:4rem 0 2rem}
+    .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:2rem;align-items:center}
+    .eyebrow{display:inline-block;padding:.45rem .9rem;border-radius:999px;background:rgba(31,122,120,.12);color:var(--color-primary);font-size:.78rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+    h1,h2,h3{font-family:var(--font-display);line-height:1.1;margin:0 0 1rem}
+    h1{font-size:var(--text-2xl)}
+    h2{font-size:var(--text-xl)}
+    .script{font-family:var(--font-accent);font-size:1.5em;color:var(--color-primary-2);font-weight:700}
+    .lead{font-size:var(--text-lg);color:var(--color-text-muted);max-width:58ch}
+    .hero-actions{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem}
+    .ghost{background:transparent;color:var(--color-primary);border:2px solid color-mix(in srgb,var(--color-primary) 50%, white)}
+    .hero-card{background:var(--color-card);border:2px solid var(--color-line);border-radius:32px;padding:1rem;box-shadow:var(--shadow);position:relative}
+    .hero-card:before{content:"";position:absolute;inset:14px;border:1.5px dashed color-mix(in srgb,var(--color-primary-2) 40%, var(--color-line));border-radius:24px;pointer-events:none}
+    .hero-card img{border-radius:24px;aspect-ratio:1/1;object-fit:cover}
+    .chakra-strip{padding:1rem 0 2.5rem}
+    .chakra-row{display:grid;grid-template-columns:repeat(7,1fr);gap:.75rem}
+    .chakra{padding:1rem .5rem;border-radius:22px;color:#fff;text-align:center;font-size:.78rem;font-weight:800;box-shadow:var(--shadow)}
+    .chakra span{display:block;font-family:var(--font-accent);font-size:1.25rem}
+    .section{padding:4rem 0}
+    .two-col{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem;align-items:center}
+    .art-frame{background:var(--color-card);border:2px solid var(--color-line);border-radius:30px;padding:1rem;box-shadow:var(--shadow)}
+    .art-frame img{border-radius:22px;aspect-ratio:1/1;object-fit:cover}
+    .pillars{display:grid;gap:1rem;margin-top:1.5rem}
+    .pillar{display:grid;grid-template-columns:18px 1fr;gap:1rem;align-items:start}
+    .dot{width:14px;height:14px;border-radius:50%;margin-top:.4rem}
+    .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;margin-top:2rem}
+    .card{background:var(--color-card);border:2px solid var(--color-line);border-radius:28px;overflow:hidden;box-shadow:var(--shadow)}
+    .card img{aspect-ratio:4/3;object-fit:cover;width:100%}
+    .card-body{padding:1.25rem}
+    .kicker{font-size:.8rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--color-primary)}
+    .card p,.muted{color:var(--color-text-muted)}
+    .approach-grid,.welcome-grid,.testimonial-grid{display:grid;gap:1.25rem;margin-top:2rem}
+    .approach-grid{grid-template-columns:repeat(4,1fr)}
+    .approach-card,.welcome-card,.testimonial{background:var(--color-card);border:2px solid var(--color-line);border-radius:26px;padding:1.25rem;box-shadow:var(--shadow)}
+    .num{font-family:var(--font-accent);font-size:2rem;color:var(--color-primary)}
+    .welcome-grid{grid-template-columns:repeat(3,1fr)}
+    .testimonial-grid{grid-template-columns:repeat(3,1fr)}
+    .about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:2rem;align-items:start}
+    .stats{display:flex;gap:1rem;flex-wrap:wrap;margin:1.5rem 0}
+    .stat{background:var(--color-surface);border:1px solid var(--color-line);border-radius:20px;padding:1rem 1.25rem;min-width:120px}
+    .stat strong{display:block;font-family:var(--font-display);font-size:1.5rem;color:var(--color-primary)}
+    .chips{display:flex;gap:.6rem;flex-wrap:wrap}
+    .chip{padding:.5rem .9rem;border-radius:999px;background:var(--color-surface);border:1px solid var(--color-line);font-size:.86rem;color:var(--color-text-muted);font-weight:700}
+    .fees-wrap{background:var(--color-card);border:2px solid var(--color-line);border-radius:28px;overflow:hidden;box-shadow:var(--shadow);margin-top:1.5rem}
+    table{width:100%;border-collapse:collapse}
+    th,td{padding:1rem 1.1rem;text-align:left;vertical-align:top}
+    th{background:var(--color-primary);color:#fff}
+    tr:nth-child(even) td{background:color-mix(in srgb,var(--color-surface-2) 70%, white)}
+    .contact-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:2rem;align-items:start}
+    .contact-card,.form-card{background:var(--color-card);border:2px solid var(--color-line);border-radius:28px;padding:1.5rem;box-shadow:var(--shadow)}
+    .contact-item{margin-bottom:1rem;color:var(--color-text-muted)}
+    label{display:block;margin:.85rem 0 .35rem;font-weight:700}
+    input,textarea,select{width:100%;padding:1rem;border-radius:16px;border:1.5px solid var(--color-line);background:var(--color-surface);font:inherit;color:var(--color-text)}
+    textarea{min-height:130px;resize:vertical}
+    footer{padding:2rem 0 3rem;border-top:1px solid var(--color-line);margin-top:2rem}
+    .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:1.5rem}
+    .small{font-size:.88rem;color:var(--color-text-muted)}
+    @media (max-width: 1024px){
+      .cards,.approach-grid{grid-template-columns:repeat(2,1fr)}
+      .chakra-row{grid-template-columns:repeat(4,1fr)}
+    }
+    @media (max-width: 760px){
+      .nav{flex-wrap:wrap}
+      .nav-links{width:100%;justify-content:center}
+      .hero-grid,.two-col,.about-grid,.contact-grid,.footer-grid{grid-template-columns:1fr}
+      .cards,.approach-grid,.welcome-grid,.testimonial-grid,.chakra-row{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="Science and Soul home">
+        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <circle cx="32" cy="32" r="29"></circle>
+          <path d="M32 48c-7-3-15-10-15-17 0-6 4-10 9-10 3 0 5 1 6 3 1-2 3-3 6-3 5 0 9 4 9 10 0 7-8 14-15 17Z"></path>
+          <circle cx="32" cy="31" r="4" fill="currentColor" stroke="none"></circle>
+        </svg>
+        <div class="brand-text">
+          <strong>Science & Soul</strong>
+          <span>Counseling & Wellness, PLLC</span>
+        </div>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#philosophy">Philosophy</a>
+        <a href="#services">Services</a>
+        <a href="#approach">Approach</a>
+        <a href="#about">About Kelly</a>
+        <a href="#contact">Contact</a>
+        <button class="theme-btn" data-theme-toggle aria-label="Toggle dark mode">☾</button>
+        <a class="cta" href="#contact">Book Consultation</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero container" id="top">
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow">Houston, Texas · Holistic therapy</div>
+          <h1>Healing beyond the diagnosis with <span class="script">science + soul</span></h1>
+          <p class="lead">This website keeps the same coloring-book therapy flow while centering Black women in the visual story. The brand message combines evidence-based counseling with spiritual healing, identity work, and whole-person care.[page:1]</p>
+          <div class="hero-actions">
+            <a class="cta" href="#contact">Start Your Healing</a>
+            <a class="cta ghost" href="#services">Explore Services</a>
+          </div>
+        </div>
+        <div class="hero-card">
+          <img src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/e4bd94ce-72e8-490a-9d84-147dae6c3020.png" alt="Coloring-book style Black woman meditating with chakra alignment" width="900" height="900" loading="eager">
+        </div>
+      </div>
+    </section>
+
+    <section class="chakra-strip container" aria-label="Chakra themes">
+      <div class="chakra-row">
+        <div class="chakra" style="background:#b83a36"><span>Mūlādhāra</span>Root</div>
+        <div class="chakra" style="background:#d97523"><span>Svādhiṣṭhāna</span>Sacral</div>
+        <div class="chakra" style="background:#d4a11d"><span>Maṇipūra</span>Solar</div>
+        <div class="chakra" style="background:#3f8e55"><span>Anāhata</span>Heart</div>
+        <div class="chakra" style="background:#2a7ab8"><span>Viśuddha</span>Throat</div>
+        <div class="chakra" style="background:#7056a9"><span>Ājñā</span>Third Eye</div>
+        <div class="chakra" style="background:#5d3b8d"><span>Sahasrāra</span>Crown</div>
+      </div>
+    </section>
+
+    <section class="section container" id="philosophy">
+      <div class="two-col">
+        <div class="art-frame">
+          <img src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/1d80a0ab-3752-4880-bc0a-df1780b022eb.png" alt="Black woman therapist with Black woman client in a soulful therapy setting" width="900" height="900" loading="lazy">
+        </div>
+        <div>
+          <div class="eyebrow">Our Philosophy</div>
+          <h2>Where evidence-based care meets inner spiritual restoration</h2>
+          <p class="muted">Kelly Nelson’s Psychology Today profile says she is an LCSW serving teens, adults, and the LGBTQIA+ community, and that she uses a holistic, eclectic approach that includes psychodynamic work, attachment theory, person-centered therapy, mindfulness, CBT, DBT, and spirituality.[page:1]</p>
+          <div class="pillars">
+            <div class="pillar"><div class="dot" style="background:var(--color-primary)"></div><div><strong>Evidence-based foundation.</strong> The site frames science as the grounded clinical base for treatment, including CBT, DBT, trauma-focused care, and insight-oriented therapy.[page:1]</div></div>
+            <div class="pillar"><div class="dot" style="background:var(--color-primary-2)"></div><div><strong>Spiritual integration.</strong> The branding extends that clinical foundation into chakra alignment, Reiki, sound healing, and deeper work around identity and essence.[page:1]</div></div>
+            <div class="pillar"><div class="dot" style="background:var(--color-accent)"></div><div><strong>Whole-person healing.</strong> Her public profile emphasizes compassion, non-judgment, insight, and helping clients use their strengths rather than reducing them to a diagnosis.[page:1]</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container" id="services">
+      <div class="eyebrow">Healing Modalities</div>
+      <h2>The same card-based flow, now centered on Black women imagery</h2>
+      <p class="muted">The service mix reflects the integrated healing story you described: therapy, chakra alignment, sound bowl work, Reiki, and identity-deep restoration.[page:1]</p>
+      <div class="cards">
+        <article class="card">
+          <img src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/e4bd94ce-72e8-490a-9d84-147dae6c3020.png" alt="Black woman meditation and chakra alignment illustration" width="800" height="600" loading="lazy">
+          <div class="card-body">
+            <div class="kicker">Chakra alignment</div>
+            <h3>Restore energetic balance</h3>
+            <p>Visual language and copy present chakra work as part of a broader healing pathway that reaches beyond symptom control.[page:1]</p>
+          </div>
+        </article>
+        <article class="card">
+          <img src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/7cd4a7d9-e8ec-4f7a-88ed-74fc2d48b0f3.png" alt="Black woman with sound bowls in coloring-book style" width="800" height="600" loading="lazy">
+          <div class="card-body">
+            <div class="kicker">Sound bowl healing</div>
+            <h3>Calm the nervous system</h3>
+            <p>Sound healing supports the soul-centered brand by signaling calm, ritual, and meditative restoration within the same visual theme.[page:1]</p>
+          </div>
+        </article>
+        <article class="card">
+          <img src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/db7664bf-57c6-41fe-b725-868539c597b3.png" alt="Black woman receiving Reiki in coloring-book style" width="800" height="600" loading="lazy">
+          <div class="card-body">
+            <div class="kicker">Reiki & energy work</div>
+            <h3>Healing at the level of essence</h3>
+            <p>Reiki is positioned here as part of the spiritual and energetic layer of the Science and Soul brand concept you described.[page:1]</p>
+          </div>
+        </article>
+        <article class="card">
+          <img src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/1d80a0ab-3752-4880-bc0a-df1780b022eb.png" alt="Black woman therapist and client evidence-based therapy illustration" width="800" height="600" loading="lazy">
+          <div class="card-body">
+            <div class="kicker">Evidence-based therapy</div>
+            <h3>Clinical care with depth</h3>
+            <p>Her public profile explicitly lists CBT, DBT, psychodynamic, person-centered, mindfulness, and spirituality among her approaches.[page:1]</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section container" id="approach">
+      <div class="two-col">
+        <div>
+          <div class="eyebrow">Approach</div>
+          <h2>Healing that sees the whole individual</h2>
+          <p class="muted">The site structure keeps your original organization and flow: philosophy first, then services, then a clear approach section translating the brand into a care journey.[page:1]</p>
+          <div class="approach-grid">
+            <div class="approach-card"><div class="num">01</div><h3>See the full story</h3><p>The design frames clients as whole people with identity, history, and spirit, not only diagnoses.[page:1]</p></div>
+            <div class="approach-card"><div class="num">02</div><h3>Use clinical tools</h3><p>Kelly’s profile describes a holistic and eclectic mix of recognized therapy approaches shaped to each person’s needs.[page:1]</p></div>
+            <div class="approach-card"><div class="num">03</div><h3>Invite spiritual healing</h3><p>The brand story expands care into spirituality, energy work, and healing beyond surface symptoms.[page:1]</p></div>
+            <div class="approach-card"><div class="num">04</div><h3>Reconnect with essence</h3><p>The website language centers restoration of self, insight, safety, and deeper identity-level healing.[page:1]</p></div>
+          </div>
+        </div>
+        <div class="art-frame">
+          <img src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/7cd4a7d9-e8ec-4f7a-88ed-74fc2d48b0f3.png" alt="Black woman sound healing illustration" width="900" height="900" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <section class="section container">
+      <div class="eyebrow">Who We Welcome</div>
+      <h2>Inclusive, affirming, and identity-safe care</h2>
+      <div class="welcome-grid">
+        <div class="welcome-card"><h3>Teens & adults</h3><p>Kelly’s public profile says she works primarily with teens and adults dealing with trauma, depression, self-harm, mood disorders, grief, and attachment issues.[page:1]</p></div>
+        <div class="welcome-card"><h3>LGBTQIA+ community</h3><p>Her profile specifically names the LGBTQIA+ community among the clients she serves.[page:1]</p></div>
+        <div class="welcome-card"><h3>People seeking depth</h3><p>The therapy positioning here is intentionally deeper than symptom management and emphasizes insight, safety, strengths, and self-understanding.[page:1]</p></div>
+      </div>
+    </section>
+
+    <section class="section container" id="about">
+      <div class="about-grid">
+        <div class="art-frame">
+          <img src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/db7664bf-57c6-41fe-b725-868539c597b3.png" alt="Black woman healing illustration used in the about section" width="900" height="900" loading="lazy">
+        </div>
+        <div>
+          <div class="eyebrow">About Kelly</div>
+          <h2>Kelly Nelson, LCSW</h2>
+          <p class="muted">Psychology Today lists Kelly Nelson as a verified LCSW in Houston, Texas, licensed by the State of Texas, in practice for 7 years, and a Simmons University graduate from 2018.[page:1]</p>
+          <div class="stats">
+            <div class="stat"><strong>7</strong><span>Years in practice[page:1]</span></div>
+            <div class="stat"><strong>2018</strong><span>Simmons University master’s[page:1]</span></div>
+            <div class="stat"><strong>77070</strong><span>Houston office ZIP[page:1]</span></div>
+          </div>
+          <div class="chips">
+            <span class="chip">CBT [page:1]</span>
+            <span class="chip">DBT [page:1]</span>
+            <span class="chip">Psychodynamic [page:1]</span>
+            <span class="chip">Mindfulness [page:1]</span>
+            <span class="chip">Person-Centered [page:1]</span>
+            <span class="chip">Spirituality [page:1]</span>
+            <span class="chip">Trauma Focused [page:1]</span>
+            <span class="chip">Energy Psychology [page:1]</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container">
+      <div class="eyebrow">Fees & Insurance</div>
+      <h2>Transparent pricing structure</h2>
+      <div class="fees-wrap">
+        <table>
+          <thead>
+            <tr><th>Service</th><th>Rate</th><th>Notes</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Individual sessions</td><td>$150</td><td>Listed on Psychology Today.[page:1]</td></tr>
+            <tr><td>Couple sessions</td><td>$200</td><td>Listed on Psychology Today.[page:1]</td></tr>
+            <tr><td>Insurance</td><td>Aetna, Blue Cross, Blue Shield, Cigna and Evernorth, Oscar Health, Oxford, UnitedHealthcare</td><td>Accepted plans listed publicly.[page:1]</td></tr>
+            <tr><td>Consultation</td><td>Free 15 minutes</td><td>Public listing invites clients to call for a free consultation.[page:1]</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section container">
+      <div class="eyebrow">Reflections</div>
+      <h2>Brand-fit testimonials section</h2>
+      <div class="testimonial-grid">
+        <div class="testimonial"><p>“I wanted a site that felt safe, beautiful, and spiritually grounded. This coloring-book direction gives the brand that softness without losing professionalism.”</p></div>
+        <div class="testimonial"><p>“The Black women imagery changes the emotional center of the site. It makes the visual story feel specific, affirming, and intentional.”</p></div>
+        <div class="testimonial"><p>“The flow still feels like a therapy website, but the art direction makes it memorable instead of generic.”</p></div>
+      </div>
+    </section>
+
+    <section class="section container" id="contact">
+      <div class="contact-grid">
+        <div class="contact-card">
+          <div class="eyebrow">Contact</div>
+          <h2>Begin the healing journey</h2>
+          <p class="contact-item">Science and Soul Counseling & Wellness, PLLC is listed at 9950 Cypresswood Drive, Houston, TX 77070.[page:1]</p>
+          <p class="contact-item">The public listing includes a free 15 minute consultation and the phone number (832) 501-1687.[page:1]</p>
+          <p class="contact-item">The profile also notes availability for people with busy schedules as a late-night therapist.[page:1]</p>
+        </div>
+        <div class="form-card">
+          <h3>Send a message</h3>
+          <label for="name">Name</label>
+          <input id="name" type="text" placeholder="Your name">
+          <label for="email">Email</label>
+          <input id="email" type="email" placeholder="you@example.com">
+          <label for="service">Service interest</label>
+          <select id="service">
+            <option>Individual therapy</option>
+            <option>Chakra alignment</option>
+            <option>Sound bowl healing</option>
+            <option>Reiki</option>
+            <option>Integrative care</option>
+          </select>
+          <label for="message">Message</label>
+          <textarea id="message" placeholder="Share what brings you here."></textarea>
+          <div style="margin-top:1rem"><button class="cta" type="button">Request Consultation</button></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <h3>Science & Soul Counseling & Wellness, PLLC</h3>
+        <p class="small">A coloring-book inspired therapy website concept built around whole-person healing, Black women-centered imagery, and a balance of clinical depth and spiritual care.[page:1]</p>
+      </div>
+      <div>
+        <h3>Explore</h3>
+        <p class="small">Philosophy</p>
+        <p class="small">Services</p>
+        <p class="small">Approach</p>
+      </div>
+      <div>
+        <h3>Connect</h3>
+        <p class="small">Houston, TX 77070[page:1]</p>
+        <p class="small">Free 15-minute consultation[page:1]</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      const btn=document.querySelector('[data-theme-toggle]');
+      const root=document.documentElement;
+      let theme=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
+      root.setAttribute('data-theme',theme);
+      btn.textContent=theme==='dark'?'☀':'☾';
+      btn.addEventListener('click',()=>{
+        theme=theme==='dark'?'light':'dark';
+        root.setAttribute('data-theme',theme);
+        btn.textContent=theme==='dark'?'☀':'☾';
+      });
+    })();
+  </script>
+</body>
+</html>
