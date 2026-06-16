@@ -5,7 +5,6 @@ import {
   LemonadeConfigError,
   LemonadeUpstreamError,
 } from "../lib/launchlemonade";
-import { buildOrbPrompt } from "../lib/orbPrompt";
 
 const router: IRouter = Router();
 
@@ -19,9 +18,10 @@ router.post("/orb/chat", async (req, res): Promise<void> => {
 
   try {
     const conversationId = parsed.data.conversationId;
-    const input = conversationId
-      ? parsed.data.message
-      : buildOrbPrompt(parsed.data.message, parsed.data.chakra);
+    const chakra = parsed.data.chakra?.trim();
+    const input = chakra
+      ? `[Chakra: ${chakra}]\n\n${parsed.data.message}`
+      : parsed.data.message;
     const result = await sendLemonadeChat(input, conversationId);
     res.json({
       reply: result.reply,
