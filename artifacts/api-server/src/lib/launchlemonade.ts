@@ -1,6 +1,6 @@
 import { logger } from "./logger";
 
-const LEMONADE_CHAT_URL = "https://api.launchlemonade.app/v1/chat";
+const DEFAULT_LEMONADE_CHAT_URL = "https://api.launchlemonade.app/v1/chat";
 const DEFAULT_LEMONADE_ID = "1781573959703x853787355355545600";
 const REQUEST_TIMEOUT_MS = 90_000;
 
@@ -31,6 +31,8 @@ export async function sendLemonadeChat(
 
   const lemonadeId =
     process.env["LAUNCHLEMONADE_LEMONADE_ID"] ?? DEFAULT_LEMONADE_ID;
+  const chatUrl =
+    process.env["LAUNCHLEMONADE_CHAT_URL"] ?? DEFAULT_LEMONADE_CHAT_URL;
 
   const body: Record<string, unknown> = {
     lemonade_id: lemonadeId,
@@ -45,7 +47,7 @@ export async function sendLemonadeChat(
 
   let res: globalThis.Response;
   try {
-    res = await fetch(LEMONADE_CHAT_URL, {
+    res = await fetch(chatUrl, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${apiKey}`,
