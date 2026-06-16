@@ -14,6 +14,7 @@ import { Fees } from "./components/Fees";
 import { CTABand } from "./components/CTABand";
 import { Contact } from "./components/Contact";
 import { Footer } from "./components/Footer";
+import { ChakraOrb } from "./components/ChakraOrb";
 
 export default function App() {
   const { theme, toggle } = useDarkMode();
@@ -52,6 +53,7 @@ export default function App() {
         <Contact />
       </main>
       <Footer />
+      <ChakraOrb />
     </HelmetProvider>
   );
 }

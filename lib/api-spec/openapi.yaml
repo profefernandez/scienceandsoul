@@ -10,6 +10,8 @@ servers:
 tags:
   - name: health
     description: Health operations
+  - name: orb
+    description: Chakra Orb AI guide operations
 paths:
   /healthz:
     get:
@@ -24,6 +26,44 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+  /orb/chat:
+    post:
+      operationId: orbChat
+      tags: [orb]
+      summary: Send a message to the Chakra Orb AI guide
+      description: Proxies a visitor message to the AI guide and returns its reply.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/OrbChatInput"
+      responses:
+        "200":
+          description: Reply from the AI guide
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OrbChatReply"
+  /inquiries:
+    post:
+      operationId: createInquiry
+      tags: [orb]
+      summary: Submit a contact inquiry
+      description: Stores a visitor inquiry (name, email, message) for Kelly.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/InquiryInput"
+      responses:
+        "201":
+          description: Inquiry stored
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Inquiry"
 components:
   schemas:
     HealthStatus:
@@ -33,4 +73,70 @@ components:
           type: string
       required:
         - status
+    OrbChatInput:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
+          minLength: 1
+        conversationId:
+          type: ["string", "null"]
+        chakra:
+          type: ["string", "null"]
+    OrbChatReply:
+      type: object
+      required:
+        - reply
+      properties:
+        reply:
+          type: string
+        conversationId:
+          type: ["string", "null"]
+    InquiryInput:
+      type: object
+      required:
+        - name
+        - email
+        - message
+      properties:
+        name:
+          type: string
+          minLength: 1
+        email:
+          type: string
+          minLength: 3
+        message:
+          type: string
+          minLength: 1
+        source:
+          type: string
+        conversationId:
+          type: ["string", "null"]
+    Inquiry:
+      type: object
+      required:
+        - id
+        - name
+        - email
+        - message
+        - source
+        - createdAt
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        email:
+          type: string
+        message:
+          type: string
+        source:
+          type: string
+        conversationId:
+          type: ["string", "null"]
+        createdAt:
+          type: string
+          format: date-time
 
