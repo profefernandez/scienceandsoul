@@ -12,7 +12,7 @@ const groups = [
   {
     emoji: "🌈",
     title: "LGBTQIA+ community",
-    desc: "Kelly provides affirming care for LGBTQIA+ clients, including work on gender identity, sexual orientation, family dynamics, and the specific stressors that come with navigating those experiences. Affirming in practice, not just in policy.",
+    desc: "Kelly provides affirming care for LGBTQIA+ clients, including work on gender identity, sexual orientation, family dynamics, and the specific stressors that come with navigating those experiences. Her training and clinical focus reflect her commitment to this community.",
     tags: [
       { cls: "pill pl", label: "Affirming" },
       { cls: "pill pl", label: "Gender Identity" },
