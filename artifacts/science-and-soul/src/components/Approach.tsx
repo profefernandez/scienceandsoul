@@ -2,26 +2,26 @@ const steps = [
   {
     iconStyle: { background: "var(--teall)", color: "var(--teal)" },
     emoji: "🔬",
-    title: "See the full story",
-    desc: "Clients are framed as whole people with identity, history, and spirit — not only diagnoses. Healing begins by honoring the complete human being.",
+    title: "Start with the full picture",
+    desc: "Kelly gathers a thorough history — what the client has experienced, what they want to work on, and what tools and strengths they already have. That foundation shapes everything that follows.",
   },
   {
     iconStyle: { background: "var(--lavl)", color: "var(--lav)" },
     emoji: "✨",
-    title: "Use clinical tools",
-    desc: "A holistic and eclectic mix of recognized therapy approaches — CBT, DBT, psychodynamic, attachment, mindfulness — shaped precisely to each person's needs.",
+    title: "Apply clinical methods",
+    desc: "CBT, DBT, psychodynamic therapy, and mindfulness provide the clinical structure for each session. Kelly adapts the method to the individual's pace, goals, and what is actually producing results.",
   },
   {
     iconStyle: { background: "var(--sagel)", color: "var(--sage)" },
     emoji: "🌿",
-    title: "Invite spiritual healing",
-    desc: "The care model expands into spirituality, energy work, and healing beyond surface symptoms — reaching the deeper dimensions of self, identity, and essence.",
+    title: "Add spiritual practices when useful",
+    desc: "Reiki, chakra alignment, and sound bowl healing offer additional pathways for clients whose care benefits from attention to energy, spirituality, and somatic experience.",
   },
   {
     iconStyle: { background: "var(--ambl)", color: "var(--amb)" },
     emoji: "⚡",
-    title: "Reconnect with essence",
-    desc: "The healing journey centers restoration of self, insight, safety, and deeper identity-level work — helping clients return to who they truly are.",
+    title: "Build skills that last",
+    desc: "Treatment develops insight, coping strategies, and self-understanding that clients can draw on independently. The goal is capability and clarity that carries forward after sessions end.",
   },
 ];
 
@@ -31,12 +31,12 @@ export function Approach() {
       <div className="ww">
         <div className="apprgrid">
           <div className="fi">
-            <div className="slabel">How We Heal</div>
+            <div className="slabel">How Kelly Works</div>
             <h2 className="stitle">
-              Healing that sees<br /><em>the whole individual</em>
+              A structured process,<br /><em>tailored to each person</em>
             </h2>
             <p style={{ fontSize: "var(--tx-base)", color: "var(--inkm)", lineHeight: 1.8, marginBottom: "2rem", maxWidth: "52ch" }}>
-              The approach is eclectic, integrative, and deeply personalized — philosophy first, then clinical tools, then spiritual care. Healing happens at the level of identity, energy, and spiritual essence.
+              Each treatment plan starts with a thorough understanding of the client's history, goals, and existing strengths. Kelly selects clinical and integrative methods based on what each person needs at each stage of the work.
             </p>
             <ul className="apprlist" role="list">
               {steps.map((s) => (

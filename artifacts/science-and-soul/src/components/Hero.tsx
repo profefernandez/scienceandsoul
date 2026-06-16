@@ -14,15 +14,15 @@ export function Hero() {
       <div className="ww">
         <div className="hgrid">
           <div className="fi">
-            <div className="heyebrow">Houston, Texas · Holistic Therapy</div>
+            <div className="heyebrow">Houston, Texas · Licensed Clinical Social Worker</div>
             <h1 className="htitle">
-              Healing beyond<br />the <em>diagnosis</em>
+              Therapy for the<br />whole self
             </h1>
             <p className="hdesc">
-              Evidence-based counseling woven with spiritual healing, identity work, and whole-person care &mdash; restoring wholeness at the level of the self. You are more than your diagnosis.
+              Kelly Nelson offers individual and couples therapy in Houston, drawing on CBT, DBT, psychodynamic approaches, and spiritual practices including Reiki, chakra alignment, and sound bowl healing. Serving teens, adults, and the LGBTQIA+ community.
             </p>
             <div className="hacts">
-              <a href="#contact" className="btn btnp btnlg">Start Your Healing</a>
+              <a href="#contact" className="btn btnp btnlg">Book a Free Consult</a>
               <a href="#services" className="btn btno btnlg">Explore Services</a>
             </div>
           </div>

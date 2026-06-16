@@ -26,7 +26,7 @@ export function About() {
             </div>
             <div className="aboutcred">
               <div className="aboutcname">Kelly Nelson, LCSW</div>
-              <div className="aboutctitle">Texas Licensed &middot; Simmons University MSW &middot; 2018</div>
+              <div className="aboutctitle">Texas License #67591 &middot; Simmons University MSW &middot; 2018</div>
             </div>
           </div>
           <div className="fi">
@@ -39,7 +39,7 @@ export function About() {
               </div>
               <div className="stat">
                 <div className="statv">2018</div>
-                <div className="statl">Simmons University master's</div>
+                <div className="statl">Simmons University MSW</div>
               </div>
               <div className="stat">
                 <div className="statv">77070</div>
@@ -47,13 +47,13 @@ export function About() {
               </div>
             </div>
             <p className="aboutbio">
-              Kelly Nelson is a verified Licensed Clinical Social Worker in Houston, Texas, licensed by the State of Texas, in practice for 7 years, and a Simmons University graduate from 2018.
+              Kelly Nelson is a Licensed Clinical Social Worker based in Houston, Texas. She earned her Master of Social Work from Simmons University in 2018 and holds Texas license #67591. She has been in clinical practice for seven years.
             </p>
             <p className="aboutbio">
-              She specializes in working with <strong>teens, adults, and the LGBTQIA+ community</strong> &mdash; individuals navigating trauma, depression, anxiety, mood disorders, self-harm, grief, and attachment challenges.
+              She works with teens, adults, and the LGBTQIA+ community on trauma, depression, anxiety, mood disorders, grief, self-harm, and life transitions. Her clinical methods include CBT, DBT, psychodynamic therapy, person-centered approaches, mindfulness, and attachment-based work.
             </p>
             <p className="aboutbio">
-              Her approach is holistic and eclectic, drawing from psychodynamic theory, attachment, CBT, DBT, mindfulness, energy psychology, and spirituality. She emphasizes compassion, non-judgment, and helping clients use their own strengths. Late-night appointments available for individuals with busy schedules.
+              Kelly also offers Reiki, chakra alignment, and sound bowl healing for clients who want to address emotional and energetic wellbeing alongside clinical therapy. She holds late-evening appointments for clients who need scheduling flexibility.
             </p>
             <div className="modcloud">
               {modalities.map((m) => (

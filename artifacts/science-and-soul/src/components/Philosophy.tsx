@@ -15,23 +15,23 @@ export function Philosophy() {
           <div className="fi">
             <div className="slabel">Our Philosophy</div>
             <h2 className="stitle">
-              Where evidence-based care<br />meets <em>inner spiritual restoration</em>
+              Clinical rigor and spiritual<br />practice, <em>working together</em>
             </h2>
             <p className="ptext">
-              Kelly Nelson is a Licensed Clinical Social Worker serving teens, adults, and the LGBTQIA+ community. She uses a holistic, eclectic approach that includes psychodynamic work, attachment theory, person-centered therapy, mindfulness, CBT, DBT, and spirituality.
+              Kelly Nelson is a Licensed Clinical Social Worker with seven years of practice and an MSW from Simmons University. Her work combines recognized therapy frameworks with integrative spiritual practices, individualized to each client's goals and history.
             </p>
             <div className="ppillars">
               <div className="ppillar">
                 <div className="pdot" style={{ background: "var(--teal)" }} />
-                <div><strong>Evidence-based foundation.</strong> Science forms the grounded clinical base for treatment, including CBT, DBT, trauma-focused care, and insight-oriented therapy.</div>
+                <div><strong>Clinical foundation.</strong> Kelly draws on CBT, DBT, trauma-focused care, and psychodynamic therapy, selecting and adapting methods to fit each client's specific goals.</div>
               </div>
               <div className="ppillar">
                 <div className="pdot" style={{ background: "var(--lav)" }} />
-                <div><strong>Spiritual integration.</strong> The clinical foundation extends into chakra alignment, Reiki, sound healing, and deeper work around identity and essence.</div>
+                <div><strong>Spiritual practice.</strong> Sessions can include chakra alignment, Reiki, and sound bowl healing for clients who want to address emotional and energetic dimensions of their wellbeing.</div>
               </div>
               <div className="ppillar">
                 <div className="pdot" style={{ background: "var(--amb)" }} />
-                <div><strong>Whole-person healing.</strong> Kelly emphasizes compassion, non-judgment, insight, and helping clients use their strengths rather than reducing them to a diagnosis.</div>
+                <div><strong>Client strengths.</strong> Kelly's work builds on the insight, resilience, and capacity for growth that clients already bring, developing skills and understanding that extend well past the therapy room.</div>
               </div>
             </div>
             <div className="ppills">

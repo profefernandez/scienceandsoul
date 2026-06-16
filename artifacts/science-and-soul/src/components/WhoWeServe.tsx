@@ -1,8 +1,8 @@
 const groups = [
   {
     emoji: "🌱",
-    title: "Teens & Adults",
-    desc: "Kelly works primarily with teens and adults dealing with trauma, depression, self-harm, mood disorders, grief, and attachment issues — meeting each person exactly where they are.",
+    title: "Teens & adults",
+    desc: "Kelly works with teenagers and adults on trauma, depression, anxiety, mood disorders, grief, self-harm, and relationship challenges. Sessions are paced to what each person is ready for and built around their specific goals.",
     tags: [
       { cls: "pill ps", label: "Trauma" },
       { cls: "pill ps", label: "Depression" },
@@ -11,22 +11,22 @@ const groups = [
   },
   {
     emoji: "🌈",
-    title: "LGBTQIA+ Community",
-    desc: "Kelly specifically serves the LGBTQIA+ community — providing a genuinely affirming space for gender identity, sexual orientation, and the full spectrum of human expression.",
+    title: "LGBTQIA+ community",
+    desc: "Kelly provides affirming care for LGBTQIA+ clients, including work on gender identity, sexual orientation, family dynamics, and the specific stressors that come with navigating those experiences. Affirming in practice, not just in policy.",
     tags: [
       { cls: "pill pl", label: "Affirming" },
-      { cls: "pill pl", label: "Identity" },
-      { cls: "pill pl", label: "Safe Space" },
+      { cls: "pill pl", label: "Gender Identity" },
+      { cls: "pill pl", label: "LGBTQIA+" },
     ],
   },
   {
     emoji: "🌸",
-    title: "People Seeking Depth",
-    desc: "The therapy here is intentionally deeper than symptom management — emphasizing insight, safety, strengths, and self-understanding for those ready to go beyond the surface.",
+    title: "Clients seeking integrative care",
+    desc: "Kelly works with clients who want evidence-based clinical therapy combined with spiritual practices. Sessions can include talk therapy, Reiki, chakra alignment, sound bowl healing, or any combination that serves the client's goals.",
     tags: [
-      { cls: "pill pt", label: "Insight" },
+      { cls: "pill pt", label: "Integrative" },
       { cls: "pill pt", label: "Spiritual" },
-      { cls: "pill pt", label: "Whole-Person" },
+      { cls: "pill pt", label: "Couples" },
     ],
   },
 ];
@@ -36,9 +36,9 @@ export function WhoWeServe() {
     <section id="serve">
       <div className="ww">
         <div style={{ textAlign: "center", marginBottom: "var(--sp10)" }}>
-          <div className="slabel" style={{ justifyContent: "center" }}>Who We Welcome</div>
+          <div className="slabel" style={{ justifyContent: "center" }}>Who Kelly Works With</div>
           <h2 className="stitle" style={{ marginInline: "auto" }}>
-            Inclusive, affirming, and <em>identity-safe care</em>
+            Teens, adults, and the<br /><em>LGBTQIA+ community</em>
           </h2>
         </div>
         <div className="servegrid">
