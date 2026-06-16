@@ -17,9 +17,6 @@ export function Philosophy() {
             <h2 className="stitle">
               Clinical rigor and spiritual<br />practice, <em>working together</em>
             </h2>
-            <p className="ptext">
-              Kelly Nelson is a Licensed Clinical Social Worker with seven years of practice and an MSW from Simmons University. Her work combines recognized therapy frameworks with integrative spiritual practices, individualized to each client's goals and history.
-            </p>
             <div className="ppillars">
               <div className="ppillar">
                 <div className="pdot" style={{ background: "var(--teal)" }} />
@@ -31,16 +28,8 @@ export function Philosophy() {
               </div>
               <div className="ppillar">
                 <div className="pdot" style={{ background: "var(--amb)" }} />
-                <div><strong>Client strengths.</strong> Kelly's work builds on the insight, resilience, and capacity for growth that clients already bring, developing skills and understanding that extend well past the therapy room.</div>
+                <div><strong>Client strengths.</strong> Kelly's work builds on the insight, resilience, and capacity for growth that clients already bring, developing skills and understanding that carry forward after sessions end.</div>
               </div>
-            </div>
-            <div className="ppills">
-              <span className="pill pt">Holistic</span>
-              <span className="pill pl">Trauma-Informed</span>
-              <span className="pill ps">Person-Centered</span>
-              <span className="pill pa">Spiritually Integrative</span>
-              <span className="pill pb">LGBTQIA+ Affirming</span>
-              <span className="pill pr">Culturally Sensitive</span>
             </div>
           </div>
         </div>
