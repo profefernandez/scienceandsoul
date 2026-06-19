@@ -4,6 +4,7 @@ import { Logo } from "./Logo";
 interface NavProps {
   theme: "light" | "dark";
   onToggleTheme: () => void;
+  linkPrefix?: string;
 }
 
 const navLinks = [
@@ -14,8 +15,9 @@ const navLinks = [
   { href: "#contact", label: "Contact" },
 ];
 
-export function Nav({ theme, onToggleTheme }: NavProps) {
+export function Nav({ theme, onToggleTheme, linkPrefix = "" }: NavProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const homeHref = linkPrefix || "#";
 
   function closeMobile() {
     setMobileOpen(false);
@@ -26,7 +28,7 @@ export function Nav({ theme, onToggleTheme }: NavProps) {
       <nav className="nav" role="navigation" aria-label="Main navigation">
         <div className="ww">
           <div className="navi">
-            <a href="#" className="nlogo" aria-label="Science and Soul Counseling and Wellness">
+            <a href={homeHref} className="nlogo" aria-label="Science and Soul Counseling and Wellness">
               <Logo size={44} />
               <div style={{ display: "flex", flexDirection: "column", lineHeight: 1.1 }}>
                 <span className="ntitle">Science &amp; Soul</span>
@@ -36,7 +38,7 @@ export function Nav({ theme, onToggleTheme }: NavProps) {
             <ul className="nlinks" role="list">
               {navLinks.map((l) => (
                 <li key={l.href}>
-                  <a href={l.href}>{l.label}</a>
+                  <a href={linkPrefix + l.href}>{l.label}</a>
                 </li>
               ))}
             </ul>
@@ -90,7 +92,7 @@ export function Nav({ theme, onToggleTheme }: NavProps) {
         <ul className="mnav-links" role="list">
           {navLinks.map((l) => (
             <li key={l.href}>
-              <a href={l.href} onClick={closeMobile}>{l.label}</a>
+              <a href={linkPrefix + l.href} onClick={closeMobile}>{l.label}</a>
             </li>
           ))}
         </ul>

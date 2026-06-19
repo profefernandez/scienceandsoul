@@ -1,6 +1,11 @@
+import { Link } from "wouter";
 import { Logo } from "./Logo";
 
-export function Footer() {
+interface FooterProps {
+  linkPrefix?: string;
+}
+
+export function Footer({ linkPrefix = "" }: FooterProps) {
   return (
     <footer className="footer">
       <div className="ww">
@@ -23,27 +28,27 @@ export function Footer() {
           <div>
             <div className="fcoltitle">Services</div>
             <ul className="flinks" role="list">
-              <li><a href="#services">Chakra Alignment</a></li>
-              <li><a href="#services">Sound Bowl Healing</a></li>
-              <li><a href="#services">Reiki &amp; Energy Healing</a></li>
-              <li><a href="#services">Evidence-Based Therapy</a></li>
-              <li><a href="#services">Couples Therapy</a></li>
+              <li><a href={`${linkPrefix}#services`}>Chakra Alignment</a></li>
+              <li><a href={`${linkPrefix}#services`}>Sound Bowl Healing</a></li>
+              <li><a href={`${linkPrefix}#services`}>Reiki &amp; Energy Healing</a></li>
+              <li><a href={`${linkPrefix}#services`}>Evidence-Based Therapy</a></li>
+              <li><a href={`${linkPrefix}#services`}>Couples Therapy</a></li>
             </ul>
           </div>
           <div>
             <div className="fcoltitle">Information</div>
             <ul className="flinks" role="list">
-              <li><a href="#about">About Kelly</a></li>
-              <li><a href="#approach">Our Approach</a></li>
-              <li><a href="#fees">Fees &amp; Insurance</a></li>
-              <li><a href="#serve">Who We Serve</a></li>
+              <li><a href={`${linkPrefix}#about`}>About Kelly</a></li>
+              <li><a href={`${linkPrefix}#approach`}>Our Approach</a></li>
+              <li><a href={`${linkPrefix}#fees`}>Fees &amp; Insurance</a></li>
+              <li><a href={`${linkPrefix}#serve`}>Who We Serve</a></li>
             </ul>
           </div>
           <div>
             <div className="fcoltitle">Contact</div>
             <ul className="flinks" role="list">
               <li><a href="tel:8325011687">(832) 501-1687</a></li>
-              <li><a href="#contact">Send a Message</a></li>
+              <li><a href={`${linkPrefix}#contact`}>Send a Message</a></li>
               <li>
                 <a
                   href="https://www.psychologytoday.com/us/therapists/science-and-soul-counseling-wellness-pllc-houston-tx/980955"
@@ -64,8 +69,8 @@ export function Footer() {
             &copy; 2026 Science and Soul Counseling &amp; Wellness, PLLC &middot; Kelly Nelson, LCSW-S &middot; All rights reserved.
           </div>
           <ul className="fbotlinks" role="list">
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">HIPAA Notice</a></li>
+            <li><Link href="/privacy">Privacy Policy</Link></li>
+            <li><Link href="/hipaa">HIPAA Notice</Link></li>
             <li><a href="#">Accessibility</a></li>
           </ul>
         </div>

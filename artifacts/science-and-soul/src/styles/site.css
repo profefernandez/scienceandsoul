@@ -386,3 +386,21 @@ section{padding:clamp(3rem,8vw,6rem) 0}
 .cpssend-btn:disabled{opacity:.6;cursor:not-allowed}
 .cpssent{font-size:var(--tx-base);color:var(--sage);font-weight:600;text-align:center;line-height:1.6}
 @media(max-width:560px){.cpssend-row{grid-template-columns:1fr}}
+
+/* Legal pages (Privacy Policy, HIPAA Notice) */
+.legal{padding:clamp(2.5rem,7vw,5rem) 0}
+.legalhead{margin-bottom:var(--sp10)}
+.legalback{display:inline-block;font-size:var(--tx-sm);font-weight:600;color:var(--teal);margin-bottom:var(--sp6)}
+.legalback:hover{text-decoration:underline}
+.legaltitle{font-family:var(--fd);font-size:var(--tx-2xl);font-weight:700;color:var(--ink);line-height:1.15;margin-bottom:var(--sp4)}
+.legalsub{font-size:var(--tx-base);color:var(--inkm);line-height:1.7;max-width:62ch;margin-bottom:var(--sp5)}
+.legalmeta{font-size:var(--tx-xs);color:var(--inkf);line-height:1.6;margin:0}
+.legalbody{max-width:70ch}
+.legalbody h2{font-family:var(--fd);font-size:var(--tx-xl);font-weight:700;color:var(--ink);line-height:1.2;margin:var(--sp10) 0 var(--sp3)}
+.legalbody p{font-size:var(--tx-base);color:var(--inkm);line-height:1.8;margin-bottom:var(--sp4)}
+.legalbody ul{list-style:disc;padding-left:var(--sp6);margin-bottom:var(--sp4);display:flex;flex-direction:column;gap:var(--sp3)}
+.legalbody li{font-size:var(--tx-base);color:var(--inkm);line-height:1.7}
+.legalbody strong{color:var(--ink);font-weight:700}
+.legalbody a{color:var(--teal);font-weight:600}
+.legalbody a:hover{text-decoration:underline}
+.legalcontact{background:var(--sf2);border:1.5px solid var(--dv);border-radius:var(--rxl);padding:var(--sp5) var(--sp6);font-size:var(--tx-sm);line-height:1.9}
