@@ -1,32 +1,58 @@
-const chakras = [
-  { emoji: "🔴", bg: "#ef9a9a", color: "#b71c1c", border: "#ef9a9a", name: "Root", sanskrit: "Muladhara" },
-  { emoji: "🟠", bg: "#ffcc80", color: "#e65100", border: "#ffb74d", name: "Sacral", sanskrit: "Svadhisthana" },
-  { emoji: "🟡", bg: "#fff59d", color: "#c8971a", border: "#f9a825", name: "Solar Plexus", sanskrit: "Manipura" },
-  { emoji: "💚", bg: "#a5d6a7", color: "#2e7d32", border: "#81c784", name: "Heart", sanskrit: "Anahata" },
-  { emoji: "🔵", bg: "#b2dfdb", color: "#00695c", border: "#80cbc4", name: "Throat", sanskrit: "Vishuddha" },
-  { emoji: "🔷", bg: "#c5cae9", color: "#283593", border: "#9fa8da", name: "Third Eye", sanskrit: "Ajna" },
-  { emoji: "💜", bg: "#e1bee7", color: "#6a1b9a", border: "#ce93d8", name: "Crown", sanskrit: "Sahasrara" },
-];
+import { CHAKRAS } from "../data/chakras";
+import { useChakraGuide } from "../context/ChakraGuideContext";
 
 export function ChakraStrip() {
+  const { chooseChakra, chakra: active } = useChakraGuide();
+
   return (
-    <div className="cstrip">
+    <section className="cstrip" id="guides" aria-label="Choose your chakra guide">
       <div className="ww">
-        <div className="csinner">
-          {chakras.map((c) => (
-            <div className="ci" key={c.name}>
-              <div
+        <div className="cshead">
+          <div className="slabel" style={{ justifyContent: "center" }}>
+            Your AI Companion
+          </div>
+          <h2 className="cstitle">
+            Choose a chakra <em>guide</em>
+          </h2>
+          <p className="cssub">
+            Each chakra represents a different part of your wellbeing. Tap one to
+            open a gentle AI guide that can answer questions about Kelly's
+            practice and help you take the next step.
+          </p>
+        </div>
+
+        <div className="csinner" role="list">
+          {CHAKRAS.map((c) => (
+            <button
+              type="button"
+              role="listitem"
+              className={`ci cibtn${active?.id === c.id ? " is-active" : ""}`}
+              key={c.id}
+              aria-pressed={active?.id === c.id}
+              onClick={() => chooseChakra(c)}
+              aria-label={`Open the ${c.name} guide (${c.sanskrit}) — ${c.meaning}`}
+              style={{ ["--ci-glow" as string]: c.glow }}
+            >
+              <span
                 className="cidot"
-                style={{ background: c.bg, color: c.color, borderColor: c.border }}
+                style={{
+                  background: c.soft,
+                  color: c.ink,
+                  borderColor: c.border,
+                }}
               >
                 {c.emoji}
-              </div>
-              <div className="ciname" style={{ color: c.color }}>{c.name}</div>
-              <div className="cielem">{c.sanskrit}</div>
-            </div>
+              </span>
+              <span className="ciname" style={{ color: c.ink }}>
+                {c.name}
+              </span>
+              <span className="cielem">{c.sanskrit}</span>
+              <span className="cimean">{c.meaning}</span>
+              <span className="cipick">Open guide →</span>
+            </button>
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 }
