@@ -305,9 +305,6 @@ section{padding:clamp(3rem,8vw,6rem) 0}
 .orbtyping span:nth-child(2){animation-delay:.2s}
 .orbtyping span:nth-child(3){animation-delay:.4s}
 @keyframes orbblink{0%,60%,100%{transform:translateY(0);opacity:.35}30%{transform:translateY(-4px);opacity:.9}}
-.orbprompts{display:flex;flex-wrap:wrap;gap:var(--sp2);padding:0 var(--sp5) var(--sp3)}
-.orbprompt{font-size:var(--tx-xs);font-weight:600;color:var(--teal);background:var(--teall);border:1px solid color-mix(in oklch,var(--teal) 30%,transparent);padding:var(--sp2) var(--sp3);border-radius:var(--rfull);transition:all var(--tr);cursor:pointer}
-.orbprompt:hover{background:var(--teal);color:#fff}
 .orbcompose{display:flex;gap:var(--sp2);padding:var(--sp4) var(--sp5);border-top:1.5px solid var(--dv);align-items:center}
 .orbinp{width:100%;padding:var(--sp3) var(--sp4);background:var(--bg);border:1.5px solid var(--bd);border-radius:var(--rlg);font-size:var(--tx-sm);color:var(--ink);transition:border-color var(--tr),box-shadow var(--tr)}
 .orbinp:focus{outline:none;border-color:var(--orb-deep);box-shadow:0 0 0 3px color-mix(in oklch,var(--orb-glow) 20%,transparent)}
@@ -315,8 +312,8 @@ section{padding:clamp(3rem,8vw,6rem) 0}
 .orbsend{flex-shrink:0;width:42px;height:42px;border-radius:var(--rfull);background:var(--orb-deep);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.95rem;transition:all var(--tr);cursor:pointer}
 .orbsend:hover:not(:disabled){filter:brightness(1.12);transform:translateY(-1px)}
 .orbsend:disabled{opacity:.45;cursor:not-allowed}
-.orbleadcta{flex-shrink:0;display:flex;align-items:center;justify-content:center;gap:var(--sp2);margin:0 var(--sp5) var(--sp3);padding:var(--sp3) var(--sp4);border-radius:var(--rlg);font-size:var(--tx-sm);font-weight:700;color:#fff;background:linear-gradient(135deg,var(--orb-glow),var(--orb-deep));box-shadow:0 4px 14px color-mix(in oklch,var(--orb-glow) 35%,transparent);transition:transform var(--tr),box-shadow var(--tr),filter var(--tr);cursor:pointer}
-.orbleadcta:hover{transform:translateY(-1px);filter:brightness(1.07);box-shadow:0 6px 18px color-mix(in oklch,var(--orb-glow) 45%,transparent)}
+.orbleadlink{flex-shrink:0;align-self:center;font-size:var(--tx-xs);font-weight:600;color:var(--inkm);padding:0 0 var(--sp4);transition:color var(--tr);cursor:pointer}
+.orbleadlink:hover{color:var(--teal)}
 .orblead{flex:1;padding:var(--sp5);border-top:1.5px solid var(--dv);overflow-y:auto}
 .orblead-form{display:flex;flex-direction:column;gap:var(--sp3)}
 .orblead-title{font-family:var(--fd);font-weight:700;font-size:var(--tx-lg);color:var(--ink)}

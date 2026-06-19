@@ -135,10 +135,9 @@ export function ChakraOrb() {
           {
             role: "assistant",
             content:
-              "I'm having trouble connecting right now. Please try again in a moment, or leave a note for Kelly below.",
+              "I'm having trouble connecting right now. Please try again in a moment, or leave a note for Kelly using the link below.",
           },
         ]);
-        setShowLead(true);
       }
     },
     [orbChat, chakra, conversationId],
@@ -337,27 +336,6 @@ export function ChakraOrb() {
                 )}
               </div>
 
-              {messages.length <= 1 && (
-                <div className="orbprompts">
-                  {chakra.prompts.map((p) => (
-                    <button
-                      key={p}
-                      className="orbprompt"
-                      onClick={() => void sendMessage(p)}
-                    >
-                      {p}
-                    </button>
-                  ))}
-                </div>
-              )}
-
-              <button
-                className="orbleadcta"
-                onClick={() => setShowLead(true)}
-              >
-                ✉ Leave a note for Kelly
-              </button>
-
               <form className="orbcompose" onSubmit={onSubmit}>
                 <input
                   className="orbinp"
@@ -374,6 +352,15 @@ export function ChakraOrb() {
                   ➤
                 </button>
               </form>
+
+              {!leadSent && (
+                <button
+                  className="orbleadlink"
+                  onClick={() => setShowLead(true)}
+                >
+                  Leave a note for Kelly →
+                </button>
+              )}
             </>
           )}
         </div>
