@@ -40,7 +40,7 @@ export function Hero() {
               <div className="hbadge">
                 <span style={{ fontSize: "1.2rem" }}>⭐</span>
                 <div>
-                  <div style={{ fontSize: "var(--tx-xs)", fontWeight: 700, color: "var(--ink)", textTransform: "uppercase", letterSpacing: ".06em" }}>7+ Years</div>
+                  <div style={{ fontSize: "var(--tx-xs)", fontWeight: 700, color: "var(--ink)", textTransform: "uppercase", letterSpacing: ".06em" }}>8+ Years</div>
                   <div style={{ fontSize: "var(--tx-xs)", color: "var(--inkm)" }}>Clinical Experience</div>
                 </div>
               </div>

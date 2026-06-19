@@ -27,16 +27,16 @@ export function About() {
               />
             </div>
             <div className="aboutcred">
-              <div className="aboutcname">Kelly Nelson, LCSW</div>
-              <div className="aboutctitle">Texas License #67591 &middot; Simmons University MSW &middot; 2018</div>
+              <div className="aboutcname">Kelly Nelson, LCSW-S</div>
+              <div className="aboutctitle">Owner &amp; Lead Psychotherapist &middot; Texas License #67591 &middot; Simmons University MSW &middot; 2018</div>
             </div>
           </div>
           <div className="fi">
             <div className="slabel">About Kelly</div>
-            <h2 className="stitle">Kelly Nelson, <em>LCSW</em></h2>
+            <h2 className="stitle">Kelly Nelson, <em>LCSW-S</em></h2>
             <div className="stats">
               <div className="stat">
-                <div className="statv">7</div>
+                <div className="statv">8</div>
                 <div className="statl">Years in practice</div>
               </div>
               <div className="stat">
@@ -49,10 +49,10 @@ export function About() {
               </div>
             </div>
             <p className="aboutbio">
-              Kelly Nelson is a Licensed Clinical Social Worker based in Houston, Texas. She earned her Master of Social Work from Simmons University in 2018 and holds Texas license #67591. She has been in clinical practice for seven years.
+              Kelly Nelson is the Owner and Lead Psychotherapist of Science and Soul Counseling &amp; Wellness, a Licensed Clinical Social Worker–Supervisor (LCSW-S) based in Houston, Texas. She earned her Master of Social Work from Simmons University in 2018 and holds Texas license #67591. She has been in clinical practice for eight years.
             </p>
             <p className="aboutbio">
-              She works with teens, adults, and the LGBTQIA+ community on trauma, depression, anxiety, mood disorders, grief, self-harm, and life transitions. Her clinical methods include CBT, DBT, psychodynamic therapy, person-centered approaches, mindfulness, and attachment-based work.
+              She works with teens, adults, and the LGBTQIA+ community on trauma, depression, anxiety, mood disorders, ADHD/ADD, grief, self-harm, attachment and personality disorders, suicidal ideation, stress, and life transitions. Her clinical methods include CBT, DBT, psychodynamic therapy, person-centered approaches, mindfulness, and attachment-based work.
             </p>
             <p className="aboutbio">
               Kelly also offers Reiki, chakra alignment, and sound bowl healing for clients who want to address emotional and energetic wellbeing alongside clinical therapy. She holds late-evening appointments for clients who need scheduling flexibility.

@@ -13,9 +13,9 @@ export function Footer() {
                 <span className="nsub">Counseling &amp; Wellness, PLLC</span>
               </div>
             </div>
-            <p className="fbranddesc">Where evidence-based healing meets the depth of the human soul. Kelly Nelson, LCSW &mdash; Houston, TX.</p>
+            <p className="fbranddesc">Where evidence-based healing meets the depth of the human soul. Kelly Nelson, LCSW-S &mdash; Houston, TX.</p>
             <div style={{ display: "flex", gap: "var(--sp2)", flexWrap: "wrap" }}>
-              <span className="pill pt" style={{ fontSize: ".65rem" }}>LCSW Licensed</span>
+              <span className="pill pt" style={{ fontSize: ".65rem" }}>LCSW-S Licensed</span>
               <span className="pill ps" style={{ fontSize: ".65rem" }}>TX #67591</span>
               <span className="pill pl" style={{ fontSize: ".65rem" }}>LGBTQIA+ Affirming</span>
             </div>
@@ -54,14 +54,14 @@ export function Footer() {
                 </a>
               </li>
               <li style={{ color: "var(--inkf)", fontSize: "var(--tx-xs)", lineHeight: 1.6 }}>
-                9950 Cypresswood Dr<br />Houston, TX 77070
+                9950 Cypresswood Dr, Suite 203<br />Houston, TX 77070
               </li>
             </ul>
           </div>
         </div>
         <div className="fbot">
           <div className="fbottxt">
-            &copy; 2025 Science and Soul Counseling &amp; Wellness, PLLC &middot; Kelly Nelson, LCSW &middot; All rights reserved.
+            &copy; 2026 Science and Soul Counseling &amp; Wellness, PLLC &middot; Kelly Nelson, LCSW-S &middot; All rights reserved.
           </div>
           <ul className="fbotlinks" role="list">
             <li><a href="#">Privacy Policy</a></li>

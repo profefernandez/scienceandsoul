@@ -2,10 +2,11 @@ const groups = [
   {
     emoji: "🌱",
     title: "Teens & adults",
-    desc: "Kelly works with teenagers and adults on trauma, depression, anxiety, mood disorders, grief, self-harm, and relationship challenges. Sessions are paced to what each person is ready for and built around their specific goals.",
+    desc: "Kelly works with teenagers and adults on trauma, depression, anxiety, mood disorders, ADHD/ADD, grief, self-harm, attachment and personality disorders, suicidal ideation, stress, and relationship challenges. Sessions are paced to what each person is ready for and built around their specific goals.",
     tags: [
       { cls: "pill ps", label: "Trauma" },
       { cls: "pill ps", label: "Depression" },
+      { cls: "pill ps", label: "ADHD / ADD" },
       { cls: "pill ps", label: "Grief" },
     ],
   },
