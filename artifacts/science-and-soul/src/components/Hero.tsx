@@ -1,4 +1,4 @@
-import { ColoringImage } from "./ColoringImage";
+const heroImg = `${import.meta.env.BASE_URL}hero-illustration.png`;
 
 export function Hero() {
   return (
@@ -14,37 +14,25 @@ export function Hero() {
         </svg>
       </div>
       <div className="ww">
-        <div className="hgrid">
-          <div className="fi">
-            <div className="heyebrow">Houston, Texas · Licensed Clinical Social Worker</div>
-            <h1 className="htitle">
-              Therapy for the<br />whole self
-            </h1>
-            <p className="hdesc">
-              Kelly Nelson offers individual and couples therapy in Houston, drawing on CBT, DBT, psychodynamic approaches, and spiritual practices including Reiki, chakra alignment, and sound bowl healing. Serving teens, adults, and the LGBTQIA+ community.
-            </p>
-            <div className="hacts">
-              <a href="#contact" className="btn btnp btnlg">Book a Free Consult</a>
-              <a href="#services" className="btn btno btnlg">Explore Services</a>
-            </div>
-          </div>
-          <div className="himgwrap fi">
-            <div className="hframe" style={{ position: "relative" }}>
-              <ColoringImage
-                src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/e4bd94ce-72e8-490a-9d84-147dae6c3020.png"
-                alt="Coloring-book style illustration of a Black woman meditating with chakra alignment"
-                width={600}
-                height={600}
-                loading="eager"
-              />
-              <div className="hbadge">
-                <span style={{ fontSize: "1.2rem" }}>⭐</span>
-                <div>
-                  <div style={{ fontSize: "var(--tx-xs)", fontWeight: 700, color: "var(--ink)", textTransform: "uppercase", letterSpacing: ".06em" }}>8+ Years</div>
-                  <div style={{ fontSize: "var(--tx-xs)", color: "var(--inkm)" }}>Clinical Experience</div>
-                </div>
-              </div>
-            </div>
+        <div className="hcenter fi">
+          <div className="heyebrow">Houston, Texas · Licensed Clinical Social Worker</div>
+          <h1 className="htitle hctitle">Therapy for the whole self</h1>
+          <figure className="hfeature">
+            <img
+              className="hfeatimg"
+              src={heroImg}
+              alt="Watercolor illustration of a therapy session at Science &amp; Soul — a counselor and client in a warm, plant-filled room with books on neuroscience and healing, a brain diagram, a lotus, and the words 'You are whole. You are enough. You are becoming.'"
+              width={1254}
+              height={1254}
+              loading="eager"
+            />
+          </figure>
+          <p className="hdesc hcdesc">
+            Individual and couples therapy in Houston — evidence-based care that honors mind, body, and spirit. Serving teens, adults, and the LGBTQIA+ community.
+          </p>
+          <div className="hacts hcacts">
+            <a href="#contact" className="btn btnp btnlg">Book a Free Consult</a>
+            <a href="#services" className="btn btno btnlg">Explore Services</a>
           </div>
         </div>
       </div>
