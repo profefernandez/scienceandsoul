@@ -250,6 +250,69 @@ export function ChakraOrb() {
                 ))}
               </div>
             </div>
+          ) : showLead ? (
+            <div className="orblead">
+              {leadSent ? (
+                <div className="orblead-donewrap">
+                  <p className="orblead-done">
+                    ✓ Thank you — Kelly will reach out to you soon.
+                  </p>
+                  <button
+                    type="button"
+                    className="orblead-back"
+                    onClick={() => setShowLead(false)}
+                  >
+                    ← Back to chat
+                  </button>
+                </div>
+              ) : (
+                <form onSubmit={submitLead} className="orblead-form">
+                  <p className="orblead-title">Leave a note for Kelly</p>
+                  <p className="orblead-intro">
+                    Kelly personally reads every note and will get back to you.
+                    Share your name, email, and what's on your mind.
+                  </p>
+                  <input
+                    className="orbinp"
+                    placeholder="Your name"
+                    value={lead.name}
+                    onChange={(e) => setLead({ ...lead, name: e.target.value })}
+                  />
+                  <input
+                    className="orbinp"
+                    type="email"
+                    placeholder="Your email"
+                    value={lead.email}
+                    onChange={(e) => setLead({ ...lead, email: e.target.value })}
+                  />
+                  <textarea
+                    className="orbinp orbtxt"
+                    placeholder="What's on your mind?"
+                    value={lead.message}
+                    onChange={(e) =>
+                      setLead({ ...lead, message: e.target.value })
+                    }
+                  />
+                  {leadError && <p className="orblead-err">{leadError}</p>}
+                  <div className="orblead-acts">
+                    <button
+                      type="button"
+                      className="orblead-cancel"
+                      onClick={() => setShowLead(false)}
+                    >
+                      ← Back to chat
+                    </button>
+                    <button
+                      type="submit"
+                      className="orbsend orblead-send"
+                      disabled={createInquiry.isPending}
+                    >
+                      {createInquiry.isPending ? "Sending…" : "Send note"}
+                    </button>
+                  </div>
+                </form>
+              )}
+            </div>
           ) : (
             <>
               <div className="orbhint">{sectionHint}</div>
@@ -288,89 +351,29 @@ export function ChakraOrb() {
                 </div>
               )}
 
-              {showLead ? (
-                <div className="orblead">
-                  {leadSent ? (
-                    <p className="orblead-done">
-                      ✓ Thank you — Kelly will reach out to you soon.
-                    </p>
-                  ) : (
-                    <form onSubmit={submitLead} className="orblead-form">
-                      <p className="orblead-title">Leave a note for Kelly</p>
-                      <input
-                        className="orbinp"
-                        placeholder="Your name"
-                        value={lead.name}
-                        onChange={(e) =>
-                          setLead({ ...lead, name: e.target.value })
-                        }
-                      />
-                      <input
-                        className="orbinp"
-                        type="email"
-                        placeholder="Your email"
-                        value={lead.email}
-                        onChange={(e) =>
-                          setLead({ ...lead, email: e.target.value })
-                        }
-                      />
-                      <textarea
-                        className="orbinp orbtxt"
-                        placeholder="What's on your mind?"
-                        value={lead.message}
-                        onChange={(e) =>
-                          setLead({ ...lead, message: e.target.value })
-                        }
-                      />
-                      {leadError && (
-                        <p className="orblead-err">{leadError}</p>
-                      )}
-                      <div className="orblead-acts">
-                        <button
-                          type="button"
-                          className="orblead-cancel"
-                          onClick={() => setShowLead(false)}
-                        >
-                          Back to chat
-                        </button>
-                        <button
-                          type="submit"
-                          className="orbsend orblead-send"
-                          disabled={createInquiry.isPending}
-                        >
-                          {createInquiry.isPending ? "Sending…" : "Send"}
-                        </button>
-                      </div>
-                    </form>
-                  )}
-                </div>
-              ) : (
-                <form className="orbcompose" onSubmit={onSubmit}>
-                  <input
-                    className="orbinp"
-                    placeholder="Ask me anything…"
-                    value={input}
-                    onChange={(e) => setInput(e.target.value)}
-                  />
-                  <button
-                    type="submit"
-                    className="orbsend"
-                    disabled={orbChat.isPending || !input.trim()}
-                    aria-label="Send message"
-                  >
-                    ➤
-                  </button>
-                </form>
-              )}
+              <button
+                className="orbleadcta"
+                onClick={() => setShowLead(true)}
+              >
+                ✉ Leave a note for Kelly
+              </button>
 
-              {!showLead && !leadSent && (
+              <form className="orbcompose" onSubmit={onSubmit}>
+                <input
+                  className="orbinp"
+                  placeholder="Ask me anything…"
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                />
                 <button
-                  className="orbleadlink"
-                  onClick={() => setShowLead(true)}
+                  type="submit"
+                  className="orbsend"
+                  disabled={orbChat.isPending || !input.trim()}
+                  aria-label="Send message"
                 >
-                  Leave a note for Kelly →
+                  ➤
                 </button>
-              )}
+              </form>
             </>
           )}
         </div>

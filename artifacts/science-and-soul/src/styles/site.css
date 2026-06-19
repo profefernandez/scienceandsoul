@@ -263,11 +263,10 @@ section{padding:clamp(3rem,8vw,6rem) 0}
 
 /* ===== Chakra Orb AI Guide ===== */
 .orbroot{position:fixed;bottom:clamp(1rem,4vw,2rem);right:clamp(1rem,4vw,2rem);z-index:300;display:flex;flex-direction:column;align-items:flex-end;gap:var(--sp4)}
-.orbbtn{position:relative;width:64px;height:64px;border-radius:var(--rfull);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 35% 30%,color-mix(in oklch,var(--orb-glow) 92%,#fff),var(--orb-deep));box-shadow:0 0 0 0 color-mix(in oklch,var(--orb-glow) 50%,transparent),var(--shlg);transition:transform var(--tr),box-shadow var(--tr);animation:orbpulse 3.2s ease-in-out infinite}
-.orbbtn:hover{transform:scale(1.06)}
+.orbbtn{position:relative;width:64px;height:64px;border-radius:var(--rfull);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 35% 30%,color-mix(in oklch,var(--orb-glow) 92%,#fff),var(--orb-deep));box-shadow:0 0 18px 0 color-mix(in oklch,var(--orb-glow) 35%,transparent),var(--shlg);transition:transform var(--tr),box-shadow var(--tr)}
+.orbbtn:hover{transform:scale(1.06);box-shadow:0 0 26px 2px color-mix(in oklch,var(--orb-glow) 45%,transparent),var(--shlg)}
 .orbbtn.is-open{transform:scale(.94)}
 .orbbtn-core{font-size:1.6rem;line-height:1;filter:drop-shadow(0 1px 2px rgba(0,0,0,.25))}
-@keyframes orbpulse{0%,100%{box-shadow:0 0 0 0 color-mix(in oklch,var(--orb-glow) 45%,transparent),var(--shlg)}50%{box-shadow:0 0 0 14px color-mix(in oklch,var(--orb-glow) 0%,transparent),var(--shlg)}}
 .orbpanel{width:min(380px,calc(100vw - 2rem));height:min(560px,calc(100dvh - 7rem));background:var(--sf);border:1.5px solid var(--dv);border-radius:var(--r2xl);box-shadow:var(--shlg);display:flex;flex-direction:column;overflow:hidden;animation:orbin 260ms cubic-bezier(.16,1,.3,1) both}
 @keyframes orbin{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
 .orbpanel-head{display:flex;align-items:center;justify-content:space-between;gap:var(--sp3);padding:var(--sp4) var(--sp5);background:linear-gradient(135deg,color-mix(in oklch,var(--orb-glow) 22%,var(--sf)),var(--sf));border-bottom:1.5px solid var(--dv)}
@@ -316,17 +315,22 @@ section{padding:clamp(3rem,8vw,6rem) 0}
 .orbsend{flex-shrink:0;width:42px;height:42px;border-radius:var(--rfull);background:var(--orb-deep);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.95rem;transition:all var(--tr);cursor:pointer}
 .orbsend:hover:not(:disabled){filter:brightness(1.12);transform:translateY(-1px)}
 .orbsend:disabled{opacity:.45;cursor:not-allowed}
-.orbleadlink{align-self:center;font-size:var(--tx-xs);font-weight:600;color:var(--inkm);padding:0 0 var(--sp4);transition:color var(--tr);cursor:pointer}
-.orbleadlink:hover{color:var(--teal)}
-.orblead{padding:var(--sp5);border-top:1.5px solid var(--dv);overflow-y:auto}
+.orbleadcta{flex-shrink:0;display:flex;align-items:center;justify-content:center;gap:var(--sp2);margin:0 var(--sp5) var(--sp3);padding:var(--sp3) var(--sp4);border-radius:var(--rlg);font-size:var(--tx-sm);font-weight:700;color:#fff;background:linear-gradient(135deg,var(--orb-glow),var(--orb-deep));box-shadow:0 4px 14px color-mix(in oklch,var(--orb-glow) 35%,transparent);transition:transform var(--tr),box-shadow var(--tr),filter var(--tr);cursor:pointer}
+.orbleadcta:hover{transform:translateY(-1px);filter:brightness(1.07);box-shadow:0 6px 18px color-mix(in oklch,var(--orb-glow) 45%,transparent)}
+.orblead{flex:1;padding:var(--sp5);border-top:1.5px solid var(--dv);overflow-y:auto}
 .orblead-form{display:flex;flex-direction:column;gap:var(--sp3)}
-.orblead-title{font-family:var(--fd);font-weight:700;font-size:var(--tx-base);color:var(--ink);margin-bottom:var(--sp1)}
+.orblead-title{font-family:var(--fd);font-weight:700;font-size:var(--tx-lg);color:var(--ink)}
+.orblead-intro{font-size:var(--tx-sm);color:var(--inkm);line-height:1.6;margin-bottom:var(--sp2)}
 .orblead-acts{display:flex;justify-content:space-between;align-items:center;gap:var(--sp3);margin-top:var(--sp1)}
-.orblead-cancel{font-size:var(--tx-xs);font-weight:600;color:var(--inkm);cursor:pointer}
+.orblead-cancel{font-size:var(--tx-sm);font-weight:600;color:var(--inkm);cursor:pointer}
 .orblead-cancel:hover{color:var(--ink)}
 .orblead-send{width:auto;height:auto;padding:var(--sp2) var(--sp6);border-radius:var(--rfull);font-size:var(--tx-sm);font-weight:700}
 .orblead-err{font-size:var(--tx-xs);color:var(--blush);font-weight:600}
+.orblead-donewrap{display:flex;flex-direction:column;align-items:center;gap:var(--sp5);padding-top:var(--sp5)}
 .orblead-done{font-size:var(--tx-sm);color:var(--sage);font-weight:600;text-align:center;line-height:1.6}
+.orblead-back{font-size:var(--tx-sm);font-weight:600;color:var(--inkm);cursor:pointer}
+.orblead-back:hover{color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.orbpanel{animation:none}.orbtyping span{animation:none}}
 @media(max-width:480px){.orbpanel{width:calc(100vw - 2rem);height:calc(100dvh - 6rem)}}
 
 /* ===== AI Coloring Page Studio ===== */
