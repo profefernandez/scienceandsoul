@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Nunito:wght@300;400;500;600;700&family=Dancing+Script:wght@400;600;700&display=swap');
 
 :root{
---tx-xs:clamp(.75rem,.7rem + .25vw,.875rem);
---tx-sm:clamp(.875rem,.8rem + .35vw,1rem);
---tx-base:clamp(1rem,.95rem + .25vw,1.125rem);
---tx-lg:clamp(1.125rem,1rem + .75vw,1.5rem);
+--tx-xs:clamp(.8125rem,.76rem + .27vw,.9375rem);
+--tx-sm:clamp(.9375rem,.88rem + .3vw,1.0625rem);
+--tx-base:clamp(1.0625rem,1rem + .3vw,1.1875rem);
+--tx-lg:clamp(1.1875rem,1.05rem + .7vw,1.5625rem);
 --tx-xl:clamp(1.5rem,1.2rem + 1.25vw,2.25rem);
 --tx-2xl:clamp(2rem,1.2rem + 2.5vw,3.5rem);
 --tx-3xl:clamp(2.5rem,1rem + 4vw,5rem);
@@ -30,7 +30,7 @@
 }
 [data-theme="dark"]{
 --bg:#1a160f;--sf:#201c14;--sf2:#252019;--off:#2e2820;--dv:#3a3228;--bd:#4a4035;
---ink:#e8dfc8;--inkm:#9e9075;--inkf:#5e5545;
+--ink:#e8dfc8;--inkm:#bcb094;--inkf:#a89c80;
 --teal:#5ab0b0;--tealh:#70c5c5;--teall:#1f3838;
 --lav:#a090d5;--lavh:#b8a8e8;--lavl:#2a2840;
 --sage:#82b87d;--sageh:#9acd96;--sagel:#1e2e1c;
@@ -39,6 +39,13 @@
 --rose:#cc90b0;--rosel:#381828;
 --shsm:0 1px 3px rgba(0,0,0,.25);--shmd:0 4px 16px rgba(0,0,0,.35);--shlg:0 12px 40px rgba(0,0,0,.45);
 }
+/* Dark-theme contrast fixes (WCAG): light accents need dark text instead of white */
+[data-theme="dark"] .btnp,[data-theme="dark"] .btnp:hover{color:var(--bg)}
+[data-theme="dark"] .ann{color:var(--bg)}
+[data-theme="dark"] .ann a{color:var(--bg);text-decoration-color:rgba(0,0,0,.5)}
+[data-theme="dark"] .ctaband{background:var(--teall)}
+[data-theme="dark"] .cpschip:hover{color:var(--bg)}
+[data-theme="dark"] .btnw,[data-theme="dark"] .btnw:hover{color:var(--teall)}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;scroll-behavior:smooth;scroll-padding-top:5rem}
 body{min-height:100dvh;line-height:1.7;font-family:var(--fb);font-size:var(--tx-base);color:var(--ink);background:var(--bg);overflow-x:hidden}
