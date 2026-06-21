@@ -32,7 +32,7 @@ export function Footer({ linkPrefix = "" }: FooterProps) {
               <li><a href={`${linkPrefix}#services`}>Sound Bowl Healing</a></li>
               <li><a href={`${linkPrefix}#services`}>Reiki &amp; Energy Healing</a></li>
               <li><a href={`${linkPrefix}#services`}>Evidence-Based Therapy</a></li>
-              <li><a href={`${linkPrefix}#services`}>Couples Therapy</a></li>
+              <li><a href={`${linkPrefix}#services`}>Group Therapy</a></li>
             </ul>
           </div>
           <div>

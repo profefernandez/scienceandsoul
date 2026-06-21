@@ -28,7 +28,7 @@ export function Hero() {
             />
           </figure>
           <p className="hdesc hcdesc">
-            Individual and couples therapy in Houston — evidence-based care that honors mind, body, and spirit. Serving teens, adults, and the LGBTQIA+ community.
+            Individual and group therapy in Houston — evidence-based care that honors mind, body, and spirit. Serving teens, adults, and the LGBTQIA+ community.
           </p>
           <div className="hacts hcacts">
             <a href="#contact" className="btn btnp btnlg">Book a Free Consult</a>

@@ -203,7 +203,7 @@ export function ContactForm() {
           <option>Sound Bowl Healing</option>
           <option>Reiki &amp; Spiritual Healing</option>
           <option>Integrative / All Services</option>
-          <option>Couples Therapy</option>
+          <option>Group Therapy</option>
           <option>Not sure yet — just exploring</option>
         </select>
       </div>
