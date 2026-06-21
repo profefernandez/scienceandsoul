@@ -1,4 +1,5 @@
-import { useState, useRef, useEffect, FormEvent, ChangeEvent } from "react";
+import { useState, useRef, useEffect, type FormEvent, type ChangeEvent } from "react";
+import { useCreateInquiry } from "@workspace/api-client-react";
 
 interface FormFields {
   firstName: string;
@@ -43,11 +44,14 @@ export function ContactForm() {
     service: "",
     message: "",
   });
+  const [intent, setIntent] = useState<"schedule" | "question" | "">("");
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [cooldownSecs, setCooldownSecs] = useState(0);
   const submissionTimes = useRef<number[]>([]);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const createInquiry = useCreateInquiry();
 
   useEffect(() => {
     return () => {
@@ -91,10 +95,9 @@ export function ContactForm() {
     }
   }
 
-  function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     if (cooldownSecs > 0) return;
-
     if (!checkRateLimit()) return;
 
     const validationErrors = validate(fields);
@@ -112,11 +115,35 @@ export function ContactForm() {
       message: sanitize(fields.message),
     };
 
-    console.info("Form submission (sanitized):", safe);
-    setSubmitted(true);
+    const intentLabel =
+      intent === "schedule"
+        ? "[Schedule Consultation]"
+        : intent === "question"
+        ? "[General Inquiry]"
+        : "";
+    const fullName = [safe.firstName, safe.lastName].filter(Boolean).join(" ");
+    const serviceNote = safe.service ? ` | Service: ${safe.service}` : "";
+    const phoneNote = safe.phone ? ` | Phone: ${safe.phone}` : "";
+    const fullMessage = [intentLabel, safe.message].filter(Boolean).join(" ");
+
+    setSubmitError(null);
+    try {
+      await createInquiry.mutateAsync({
+        data: {
+          name: fullName,
+          email: safe.email,
+          message: `${fullMessage}${serviceNote}${phoneNote}`,
+          source: "website",
+        },
+      });
+      setSubmitted(true);
+    } catch {
+      setSubmitError("Something went wrong sending your message. Please try emailing Kelly directly at scienceandsoulcounseling@gmail.com.");
+    }
   }
 
   const isThrottled = cooldownSecs > 0;
+  const isPending = createInquiry.isPending;
 
   if (submitted) {
     return (
@@ -132,6 +159,32 @@ export function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} noValidate>
+      <div className="fg">
+        <div className="flabel">How can Kelly help you?</div>
+        <div className="fchoices">
+          <label className="fchoice">
+            <input
+              type="radio"
+              name="intent"
+              value="schedule"
+              checked={intent === "schedule"}
+              onChange={() => setIntent("schedule")}
+            />
+            <span>I'd like to schedule a consultation</span>
+          </label>
+          <label className="fchoice">
+            <input
+              type="radio"
+              name="intent"
+              value="question"
+              checked={intent === "question"}
+              onChange={() => setIntent("question")}
+            />
+            <span>I have questions first</span>
+          </label>
+        </div>
+      </div>
+
       <div className="frow">
         <div className="fg">
           <label className="flabel" htmlFor="firstName">First Name</label>
@@ -220,6 +273,11 @@ export function ContactForm() {
         {errors.message && <div className="ferr">{errors.message}</div>}
       </div>
       <p className="fnote">🔒 Your privacy is sacred. All information is fully confidential and HIPAA-protected.</p>
+      {submitError && (
+        <p className="ferr" style={{ marginTop: "var(--sp3)", textAlign: "center" }}>
+          {submitError}
+        </p>
+      )}
       {isThrottled && (
         <p className="ferr" style={{ marginTop: "var(--sp3)", textAlign: "center" }}>
           Too many submissions — please wait {cooldownSecs}s before trying again.
@@ -228,17 +286,17 @@ export function ContactForm() {
       <button
         type="submit"
         className="btn btnp btnlg"
-        disabled={isThrottled}
-        aria-disabled={isThrottled}
+        disabled={isThrottled || isPending}
+        aria-disabled={isThrottled || isPending}
         style={{
           width: "100%",
           marginTop: "var(--sp4)",
           justifyContent: "center",
-          opacity: isThrottled ? 0.5 : 1,
-          cursor: isThrottled ? "not-allowed" : "pointer",
+          opacity: isThrottled || isPending ? 0.5 : 1,
+          cursor: isThrottled || isPending ? "not-allowed" : "pointer",
         }}
       >
-        {isThrottled ? `Please wait ${cooldownSecs}s…` : "Send My Message ✦"}
+        {isPending ? "Sending…" : isThrottled ? `Please wait ${cooldownSecs}s…` : "Send My Message ✦"}
       </button>
     </form>
   );

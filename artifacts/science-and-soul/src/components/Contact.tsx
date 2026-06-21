@@ -30,6 +30,15 @@ export function Contact() {
               </div>
             </div>
             <div className="ciitem">
+              <div className="ciicon">✉️</div>
+              <div>
+                <div className="cilabel">Email</div>
+                <a href="mailto:scienceandsoulcounseling@gmail.com" className="civalue" style={{ color: "var(--teal)" }}>
+                  scienceandsoulcounseling@gmail.com
+                </a>
+              </div>
+            </div>
+            <div className="ciitem">
               <div className="ciicon">🌐</div>
               <div>
                 <div className="cilabel">Psychology Today</div>

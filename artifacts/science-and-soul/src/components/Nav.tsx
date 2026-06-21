@@ -59,7 +59,7 @@ export function Nav({ theme, onToggleTheme, linkPrefix = "" }: NavProps) {
                   </svg>
                 )}
               </button>
-              <a href="tel:8325011687" className="btn btnp">Call Now</a>
+              <a href="mailto:scienceandsoulcounseling@gmail.com?subject=New%20Client%20Inquiry%20%E2%80%94%20Science%20%26%20Soul%20Counseling" className="btn btnp">Book Now</a>
               <button
                 className="burg"
                 onClick={() => setMobileOpen(true)}
@@ -96,8 +96,8 @@ export function Nav({ theme, onToggleTheme, linkPrefix = "" }: NavProps) {
             </li>
           ))}
         </ul>
-        <a href="tel:8325011687" className="btn btnp btnlg">
-          Call (832) 501-1687
+        <a href="mailto:scienceandsoulcounseling@gmail.com?subject=New%20Client%20Inquiry%20%E2%80%94%20Science%20%26%20Soul%20Counseling" className="btn btnp btnlg">
+          Book Now
         </a>
       </div>
     </>

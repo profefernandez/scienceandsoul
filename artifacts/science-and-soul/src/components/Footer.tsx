@@ -48,6 +48,7 @@ export function Footer({ linkPrefix = "" }: FooterProps) {
             <div className="fcoltitle">Contact</div>
             <ul className="flinks" role="list">
               <li><a href="tel:8325011687">(832) 501-1687</a></li>
+              <li><a href="mailto:scienceandsoulcounseling@gmail.com">scienceandsoulcounseling@gmail.com</a></li>
               <li><a href={`${linkPrefix}#contact`}>Send a Message</a></li>
               <li>
                 <a

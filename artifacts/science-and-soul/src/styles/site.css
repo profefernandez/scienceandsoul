@@ -243,6 +243,10 @@ section{padding:clamp(3rem,8vw,6rem) 0}
 .frow{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp4)}
 .fnote{font-size:var(--tx-xs);color:var(--inkf);margin-top:var(--sp2)}
 .ferr{font-size:var(--tx-xs);color:var(--blush);margin-top:var(--sp1);font-weight:600}
+.fchoices{display:flex;flex-direction:column;gap:var(--sp3);margin-top:var(--sp1)}
+.fchoice{display:flex;align-items:center;gap:var(--sp3);cursor:pointer;font-size:var(--tx-base);color:var(--ink);padding:var(--sp3) var(--sp4);border:1.5px solid var(--bd);border-radius:var(--rlg);transition:border-color var(--tr),background var(--tr)}
+.fchoice:has(input:checked){border-color:var(--teal);background:var(--teall)}
+.fchoice input[type="radio"]{accent-color:var(--teal);width:18px;height:18px;flex-shrink:0;cursor:pointer}
 .footer{background:var(--sf2);border-top:1.5px solid var(--dv);padding:var(--sp10) 0 var(--sp8)}
 .footerinner{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:2rem;margin-bottom:var(--sp10)}
 .fbranddesc{font-size:var(--tx-sm);color:var(--inkm);line-height:1.75;max-width:28ch;margin:var(--sp3) 0 var(--sp4)}
