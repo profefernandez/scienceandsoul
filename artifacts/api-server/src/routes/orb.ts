@@ -5,6 +5,7 @@ import {
   LemonadeConfigError,
   LemonadeUpstreamError,
 } from "../lib/launchlemonade";
+import { getFallbackResponse } from "../lib/fallback-responses";
 
 const router: IRouter = Router();
 
@@ -16,25 +17,25 @@ router.post("/orb/chat", async (req, res): Promise<void> => {
     return;
   }
 
+  const { message, chakra, conversationId } = parsed.data;
+  const input = chakra?.trim()
+    ? `[Chakra: ${chakra}]\n\n${message}`
+    : message;
+
   try {
-    const { message, chakra, conversationId } = parsed.data;
-    const input = chakra?.trim()
-      ? `[Chakra: ${chakra}]\n\n${message}`
-      : message;
     const result = await sendLemonadeChat(input, conversationId);
-    res.json({
-      reply: result.reply,
-      conversationId: result.conversationId,
-    });
+    res.json({ reply: result.reply, conversationId: result.conversationId });
   } catch (err) {
-    if (err instanceof LemonadeConfigError) {
-      req.log.error({ err }, "Orb chat misconfigured");
-      res.status(503).json({ error: "The AI guide is not available right now." });
-      return;
-    }
-    if (err instanceof LemonadeUpstreamError) {
-      req.log.error({ err }, "Orb chat upstream error");
-      res.status(502).json({ error: err.message });
+    if (
+      err instanceof LemonadeConfigError ||
+      err instanceof LemonadeUpstreamError
+    ) {
+      req.log.warn(
+        { err },
+        "LaunchLemonade unavailable — using scripted fallback",
+      );
+      const fallback = getFallbackResponse(message, conversationId);
+      res.json({ reply: fallback.reply, conversationId: fallback.conversationId });
       return;
     }
     throw err;
