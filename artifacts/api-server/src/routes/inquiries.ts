@@ -11,6 +11,15 @@ const resend = process.env.RESEND_API_KEY
 
 const KELLY_EMAIL = "scienceandsoulcounseling@gmail.com";
 
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#x27;");
+}
+
 function buildEmailHtml(data: {
   name: string;
   email: string;
@@ -26,7 +35,12 @@ function buildEmailHtml(data: {
       ? "Coloring Studio"
       : data.source ?? "Website";
 
-  const lines = data.message.split("\n").map((l) => `<p style="margin:0 0 8px">${l}</p>`).join("");
+  const safeName = escapeHtml(data.name);
+  const safeEmail = escapeHtml(data.email);
+  const lines = data.message
+    .split("\n")
+    .map((l) => `<p style="margin:0 0 8px">${escapeHtml(l)}</p>`)
+    .join("");
 
   return `
 <!DOCTYPE html>
@@ -37,7 +51,7 @@ function buildEmailHtml(data: {
     <tr>
       <td style="background:#2d6e6e;border-radius:12px 12px 0 0;padding:24px 32px">
         <p style="color:#a8d5d5;font-size:12px;margin:0 0 4px;letter-spacing:.1em;text-transform:uppercase">Science &amp; Soul Counseling &amp; Wellness</p>
-        <h1 style="color:#ffffff;font-size:20px;margin:0">New Inquiry via ${sourceLabel}</h1>
+        <h1 style="color:#ffffff;font-size:20px;margin:0">New Inquiry via ${escapeHtml(sourceLabel)}</h1>
       </td>
     </tr>
     <tr>
@@ -46,13 +60,13 @@ function buildEmailHtml(data: {
           <tr>
             <td style="padding:0 0 16px">
               <p style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.08em;margin:0 0 4px">Name</p>
-              <p style="font-size:16px;color:#1a1a1a;margin:0;font-weight:bold">${data.name}</p>
+              <p style="font-size:16px;color:#1a1a1a;margin:0;font-weight:bold">${safeName}</p>
             </td>
           </tr>
           <tr>
             <td style="padding:0 0 16px">
               <p style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.08em;margin:0 0 4px">Email</p>
-              <p style="font-size:15px;color:#2d6e6e;margin:0"><a href="mailto:${data.email}" style="color:#2d6e6e">${data.email}</a></p>
+              <p style="font-size:15px;color:#2d6e6e;margin:0"><a href="mailto:${safeEmail}" style="color:#2d6e6e">${safeEmail}</a></p>
             </td>
           </tr>
           <tr>
@@ -66,7 +80,7 @@ function buildEmailHtml(data: {
         </table>
         <hr style="border:none;border-top:1px solid #e5e0d8;margin:0 0 20px">
         <p style="font-size:12px;color:#aaa;margin:0">
-          Reply directly to this email to respond to ${data.name.split(" ")[0]}.
+          Reply directly to this email to respond to ${escapeHtml(data.name.split(" ")[0] ?? data.name)}.
         </p>
       </td>
     </tr>
