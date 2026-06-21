@@ -21,9 +21,9 @@ export function Hero() {
             <img
               className="hfeatimg"
               src={heroImg}
-              alt="Watercolor illustration of a therapy session at Science &amp; Soul — a counselor and client in a warm, plant-filled room with books on neuroscience and healing, a brain diagram, a lotus, and the words 'You are whole. You are enough. You are becoming.'"
-              width={1254}
-              height={1254}
+              alt="Coloring-book style illustration of three Tibetan singing bowls surrounded by lotus flowers, amethyst crystals, a mandala, and flowering vines — representing sound bowl healing"
+              width={1024}
+              height={1536}
               loading="eager"
             />
           </figure>
