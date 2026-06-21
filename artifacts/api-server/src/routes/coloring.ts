@@ -1,12 +1,16 @@
 import { Router, type IRouter } from "express";
+import { GoogleGenAI, Modality } from "@google/genai";
 import { GenerateColoringPageBody } from "@workspace/api-zod";
-import { generateImageBuffer } from "@workspace/integrations-openai-ai-server/image";
 import { checkRateLimit } from "../lib/rateLimit";
 
 const RATE_MAX = 3;
 const RATE_WINDOW_MS = 10 * 60 * 1000;
 
 const router: IRouter = Router();
+
+const ai = process.env.GEMINI_API_KEY
+  ? new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY })
+  : null;
 
 router.post("/coloring/generate", async (req, res): Promise<void> => {
   const ip =
@@ -36,6 +40,13 @@ router.post("/coloring/generate", async (req, res): Promise<void> => {
     return;
   }
 
+  if (!ai) {
+    res.status(503).json({
+      error: "Coloring page generation is not configured. Please try again later.",
+    });
+    return;
+  }
+
   const prompt = [
     "A black-and-white line-art coloring page for an adult to color in.",
     `Theme or feeling to express: ${theme}.`,
@@ -48,16 +59,30 @@ router.post("/coloring/generate", async (req, res): Promise<void> => {
   ].join(" ");
 
   try {
-    const buffer = await generateImageBuffer(prompt, "1024x1024");
-    if (!buffer.length) {
-      res.status(502).json({ error: "The coloring page could not be created. Please try again." });
+    const response = await ai.models.generateContent({
+      model: "gemini-2.5-flash-image",
+      contents: prompt,
+      config: {
+        responseModalities: [Modality.IMAGE],
+      },
+    });
+
+    const inlineData = response.candidates?.[0]?.content?.parts?.[0]?.inlineData;
+    const b64 = inlineData?.data ?? "";
+    const mimeType = inlineData?.mimeType ?? "image/png";
+
+    if (!b64) {
+      res.status(502).json({
+        error: "The coloring page could not be created. Please try again.",
+      });
       return;
     }
+
     res.json({
-      imageDataUrl: `data:image/png;base64,${buffer.toString("base64")}`,
+      imageDataUrl: `data:${mimeType};base64,${b64}`,
     });
   } catch (err) {
-    req.log.error({ err }, "Coloring page generation failed");
+    req.log.error({ err }, "Coloring page generation failed (Gemini)");
     res.status(502).json({
       error: "We couldn't create your coloring page right now. Please try again.",
     });
