@@ -7,10 +7,10 @@ export function Philosophy() {
         <div className="philos-inner">
           <div className="philos-img fi">
             <ColoringImage
-              src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/1d80a0ab-3752-4880-bc0a-df1780b022eb.png"
-              alt="Black woman therapist with Black woman client in a soulful therapy setting"
-              width={520}
-              height={520}
+              src={`${import.meta.env.BASE_URL}philosophy-illustration.png`}
+              alt="Coloring-book style illustration of Tibetan singing bowls surrounded by lotus flowers, amethyst crystals, and a mandala — representing sound bowl healing"
+              width={1024}
+              height={1536}
             />
           </div>
           <div className="fi">
