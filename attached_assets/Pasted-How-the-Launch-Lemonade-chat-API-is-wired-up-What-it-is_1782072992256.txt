@@ -1,0 +1,35 @@
+How the "Launch Lemonade" chat API is wired up
+What it is: Launch Lemonade is the external AI assistant provider (a Bubble.io-hosted workflow API). Your own backend (api-server) doesn't run the AI itself — it forwards each chat message to Launch Lemonade and relays the reply back to the website.
+
+Where the code lives: artifacts/api-server/src/routes/chat.ts (the public site calls your POST /api/chat, which then calls Launch Lemonade).
+
+The outbound call your server makes
+Method + URL: POST https://sip.launchlemonade.app/version-live/api/1.1/wf/run_assistant
+The base (…/api/1.1/wf) can be overridden by the env var LAUNCH_LEMONADE_ENDPOINT; /run_assistant is always appended.
+Headers:
+Content-Type: application/json
+Authorization: Bearer <LAUNCH_LEMONADE_API_KEY>
+JSON body:
+{
+  "assistant_id": "<LAUNCH_LEMONADE_ID>",
+  "input": "the message text",
+  "conversation_id": "<optional, to continue a thread>"
+}
+
+The response it expects back
+Launch Lemonade returns these fields (either at the top level or nested under a response object — the code handles both):
+
+Response — the assistant's reply text
+Conversation_ID — id used to continue the same conversation on the next turn
+Error — the string "yes" when something failed
+Error_Reason — why it failed (text containing "rate limit" / "quota" / "too many" is treated as a temporary busy state)
+The three configuration values (Secrets / env vars)
+Variable	Status in this project	Purpose
+LAUNCH_LEMONADE_API_KEY	✅ set	Bearer token for auth
+LAUNCH_LEMONADE_ID	✅ set	The assistant/workflow ID (assistant_id)
+LAUNCH_LEMONADE_ENDPOINT	not set (uses default)	Optional override of the base URL
+If either of the first two is missing, your server returns 503 with: "The chat isn't connected yet. Please add your Launch Lemonade API key and Lemonade ID to enable it." — so that 503 is the tell-tale sign the keys aren't configured in that environment.
+
+Two things that often trip people up
+The system prompt is NOT in this codebase. The assistant's personality, knowledge, and rules are configured inside the Launch Lemonade dashboard, attached to that assistant_id. Your server only sends per-message context (an internal envelope plus the user's text); it never sets the base prompt. So if the other agent is trying to change how the AI behaves, that's done in Launch Lemonade, not in the code.
+Secrets are per-environment. In this project they're set, but they don't travel automatically. If the other agent is working in a different environment/deployment, LAUNCH_LEMONADE_API_KEY and LAUNCH_LEMONADE_ID must be added there too, or it'll hit that 503.
