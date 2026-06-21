@@ -134,20 +134,28 @@ section{padding:clamp(3rem,8vw,6rem) 0}
 .cshead{text-align:center;max-width:620px;margin:0 auto var(--sp8)}
 .cstitle{font-family:var(--fd);font-size:var(--tx-2xl);font-weight:700;color:var(--ink);line-height:1.15;margin-bottom:var(--sp3)}
 .cssub{font-size:var(--tx-base);color:var(--inkm);line-height:1.7;margin:0 auto;max-width:54ch}
-.csinner{display:flex;justify-content:center;align-items:stretch;gap:var(--sp3);flex-wrap:wrap}
-.ci{display:flex;flex-direction:column;align-items:center;gap:var(--sp2);flex:1 1 0;min-width:118px;max-width:160px}
-.cibtn{background:var(--sf);border:1.5px solid var(--dv);border-radius:var(--rxl);padding:var(--sp4) var(--sp3);cursor:pointer;text-align:center;transition:transform var(--tr),box-shadow var(--tr),border-color var(--tr)}
-.cibtn:hover{transform:translateY(-3px);box-shadow:var(--shmd);border-color:var(--ci-glow,var(--teal))}
-.cibtn:focus-visible{outline:2px solid var(--ci-glow,var(--teal));outline-offset:2px}
-.cibtn.is-active{border-color:var(--ci-glow,var(--teal));box-shadow:0 0 0 2px color-mix(in oklch,var(--ci-glow,var(--teal)) 35%,transparent)}
-.cidot{width:42px;height:42px;border-radius:var(--rfull);display:flex;align-items:center;justify-content:center;font-size:1.15rem;border:2px solid currentColor;flex-shrink:0;transition:transform var(--tr)}
-.cibtn:hover .cidot{transform:scale(1.08)}
-.ciname{font-size:var(--tx-xs);font-weight:700;letter-spacing:.06em;text-transform:uppercase;text-align:center}
-.cielem{font-size:var(--tx-xs);color:var(--inkf);text-align:center;font-style:italic}
-.cimean{font-size:var(--tx-xs);color:var(--inkm);text-align:center;line-height:1.4;margin-top:var(--sp1)}
-.cipick{font-size:var(--tx-xs);font-weight:700;color:var(--ci-glow,var(--teal));margin-top:var(--sp2);opacity:0;transform:translateY(2px);transition:opacity var(--tr),transform var(--tr)}
-.cibtn:hover .cipick,.cibtn:focus-visible .cipick,.cibtn.is-active .cipick{opacity:1;transform:translateY(0)}
-@media(max-width:640px){.ci{min-width:44%;max-width:none}.cipick{opacity:1;transform:none}}
+/* Chakra carousel */
+@keyframes cfall{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.ccar{display:flex;justify-content:center;padding:var(--sp2) 0}
+.cccard{width:min(560px,100%);background:var(--sf);border:2px solid var(--ci-glow,var(--dv));border-radius:var(--r2xl);overflow:hidden;box-shadow:var(--shmd);transition:border-color var(--tr),box-shadow var(--tr)}
+.cccard-a{box-shadow:0 0 0 3px color-mix(in oklch,var(--ci-glow,var(--teal)) 35%,transparent),var(--shmd)}
+.ccslide{animation:cfall .2s ease}
+.cchead{padding:var(--sp10) var(--sp6);display:flex;justify-content:center;align-items:center}
+.ccorb{width:96px;height:96px;border-radius:var(--rfull);display:flex;align-items:center;justify-content:center;font-size:3rem;border:2px solid;flex-shrink:0;box-shadow:0 4px 20px rgba(0,0,0,.08)}
+.ccbody{padding:var(--sp6) var(--sp8) var(--sp8);text-align:center}
+.ccskr{font-family:var(--fh);font-size:calc(var(--tx-base) + 1px);color:var(--inkm);margin-bottom:var(--sp2)}
+.ccname{font-family:var(--fd);font-size:var(--tx-xl);font-weight:700;color:var(--ink);line-height:1.2;margin-bottom:var(--sp3)}
+.ccmean{font-size:var(--tx-lg);color:var(--inkm);line-height:1.75;margin-bottom:var(--sp8)}
+.ccact{width:100%}
+/* Nav row */
+.ccnav{display:flex;align-items:center;justify-content:center;gap:var(--sp5);padding-top:var(--sp6)}
+.ccarr{background:var(--sf);border:1.5px solid var(--dv);border-radius:var(--rfull);width:44px;height:44px;display:flex;align-items:center;justify-content:center;font-size:2rem;line-height:1;cursor:pointer;color:var(--ink);flex-shrink:0;transition:all var(--tr);padding:0}
+.ccarr:hover{background:var(--sf2);transform:translateY(-1px);box-shadow:var(--shmd)}
+.ccarr:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+.ccdots{display:flex;gap:var(--sp2);align-items:center}
+.ccdot{width:10px;height:10px;border-radius:var(--rfull);background:var(--dv);border:none;cursor:pointer;padding:0;transition:all .2s ease;flex-shrink:0}
+.ccdot-a{background:var(--teal);transform:scale(1.4)}
+.ccdot:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
 .philos{background:var(--sf2);border-top:1.5px solid var(--dv);border-bottom:1.5px solid var(--dv)}
 .philos-inner{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
 .philos-img .colimg{border-radius:var(--r2xl);box-shadow:var(--shlg);border:3px solid var(--dv)}
