@@ -86,10 +86,15 @@ export function ColoringStudio() {
         setSendError(null);
         setColor(PALETTE[0].hex);
         setBrush(BRUSHES[1].size);
-      } catch {
-        setGenError(
-          "We couldn't create your coloring page right now. Please try again in a moment.",
-        );
+      } catch (err) {
+        const apiErr = err as { status?: number; data?: { error?: string } };
+        if (apiErr.status === 429 && apiErr.data?.error) {
+          setGenError(apiErr.data.error);
+        } else {
+          setGenError(
+            "We couldn't create your coloring page right now. Please try again in a moment.",
+          );
+        }
       }
     },
     [generate],

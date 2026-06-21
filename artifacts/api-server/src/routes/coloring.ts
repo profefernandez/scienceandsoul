@@ -1,10 +1,28 @@
 import { Router, type IRouter } from "express";
 import { GenerateColoringPageBody } from "@workspace/api-zod";
 import { generateImageBuffer } from "@workspace/integrations-openai-ai-server/image";
+import { checkRateLimit } from "../lib/rateLimit";
+
+const RATE_MAX = 3;
+const RATE_WINDOW_MS = 10 * 60 * 1000;
 
 const router: IRouter = Router();
 
 router.post("/coloring/generate", async (req, res): Promise<void> => {
+  const ip =
+    (req.headers["x-forwarded-for"] as string | undefined)?.split(",")[0]?.trim() ??
+    req.socket.remoteAddress ??
+    "unknown";
+
+  const { allowed, retryAfterSec } = checkRateLimit(ip, RATE_MAX, RATE_WINDOW_MS);
+  if (!allowed) {
+    res.setHeader("Retry-After", String(retryAfterSec));
+    res.status(429).json({
+      error: `You've created ${RATE_MAX} coloring pages recently. Please wait ${Math.ceil(retryAfterSec / 60)} minute(s) and try again.`,
+    });
+    return;
+  }
+
   const parsed = GenerateColoringPageBody.safeParse(req.body);
   if (!parsed.success) {
     req.log.warn({ errors: parsed.error.message }, "Invalid coloring prompt");
@@ -32,9 +50,7 @@ router.post("/coloring/generate", async (req, res): Promise<void> => {
   try {
     const buffer = await generateImageBuffer(prompt, "1024x1024");
     if (!buffer.length) {
-      res
-        .status(502)
-        .json({ error: "The coloring page could not be created. Please try again." });
+      res.status(502).json({ error: "The coloring page could not be created. Please try again." });
       return;
     }
     res.json({
