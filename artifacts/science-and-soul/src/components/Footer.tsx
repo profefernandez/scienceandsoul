@@ -20,9 +20,9 @@ export function Footer({ linkPrefix = "" }: FooterProps) {
             </div>
             <p className="fbranddesc">Where evidence-based healing meets the depth of the human soul. Kelly Nelson, LCSW-S &mdash; Houston, TX.</p>
             <div style={{ display: "flex", gap: "var(--sp2)", flexWrap: "wrap" }}>
-              <span className="pill pt" style={{ fontSize: ".65rem" }}>LCSW-S Licensed</span>
-              <span className="pill ps" style={{ fontSize: ".65rem" }}>TX #67591</span>
-              <span className="pill pl" style={{ fontSize: ".65rem" }}>LGBTQIA+ Affirming</span>
+              <span className="pill pt">LCSW-S Licensed</span>
+              <span className="pill ps">TX #67591</span>
+              <span className="pill pl">LGBTQIA+ Affirming</span>
             </div>
           </div>
           <div>
