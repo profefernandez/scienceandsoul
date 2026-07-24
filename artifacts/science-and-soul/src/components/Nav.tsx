@@ -35,7 +35,7 @@ export function Nav({ theme, onToggleTheme, linkPrefix = "" }: NavProps) {
           <div className="navi">
             <a href={homeHref} className="nlogo" aria-label="Science and Soul Counseling and Wellness">
               <Logo size={44} />
-              <div style={{ display: "flex", flexDirection: "column", lineHeight: 1.1 }}>
+              <div style={{ display: "flex", flexDirection: "column", lineHeight: "var(--lh-tight)" }}>
                 <span className="ntitle">Science &amp; Soul</span>
                 <span className="nsub">Counseling &amp; Wellness</span>
               </div>

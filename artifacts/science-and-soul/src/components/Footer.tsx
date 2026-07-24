@@ -12,7 +12,7 @@ export function Footer({ linkPrefix = "" }: FooterProps) {
           <div>
             <div className="nlogo" style={{ marginBottom: 0 }}>
               <Logo size={36} />
-              <div style={{ display: "flex", flexDirection: "column", lineHeight: 1.1 }}>
+              <div style={{ display: "flex", flexDirection: "column", lineHeight: "var(--lh-tight)" }}>
                 <span className="ntitle">Science &amp; Soul</span>
                 <span className="nsub">Counseling &amp; Wellness, PLLC</span>
               </div>
