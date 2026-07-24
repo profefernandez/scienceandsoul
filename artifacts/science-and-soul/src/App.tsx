@@ -22,6 +22,11 @@ function AppLayout({ theme, toggle }: { theme: "light" | "dark"; toggle: () => v
 
   return (
     <>
+      <div
+        className="washbg"
+        aria-hidden="true"
+        style={{ "--env-bg-url": `url(${import.meta.env.BASE_URL}img/env-bg-1600.webp)` } as React.CSSProperties}
+      />
       <a className="skiplink" href="#main">Skip to main content</a>
       <Announcement />
       <Nav theme={theme} onToggleTheme={toggle} linkPrefix={linkPrefix} />

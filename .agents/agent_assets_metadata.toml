@@ -1,5 +1,4 @@
 uploads = []
-outputs = []
 
 [[generated]]
 id = "a2Lf3x-RmxhIW5YourqyK"
@@ -24,3 +23,15 @@ id = "M3cbZHCK18sbsfz5_2TRy"
 uri = "file://attached_assets/generated_images/env-watercolor-bg.png"
 type = "image"
 title = "generated_image"
+
+[[outputs]]
+id = "mra3AONDK26nU29fmyTBX"
+uri = "file://artifacts/science-and-soul/screens/hero-masked.png"
+type = "image"
+title = "Option 1 — Hero as-is (plain background)"
+
+[[outputs]]
+id = "AusD34750zy38sQrQaTj6"
+uri = "file://artifacts/science-and-soul/screens/hero-wash.png"
+type = "image"
+title = "Option 2 — Hero with the watercolor wash"

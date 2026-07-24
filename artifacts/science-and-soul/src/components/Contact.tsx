@@ -3,11 +3,7 @@ import { imgSrc, imgSrcSet } from "../lib/img";
 
 export function Contact() {
   return (
-    <section
-      id="contact"
-      className="env-sec"
-      style={{ "--env-bg-url": `url(${imgSrc("env-bg", 1600)})` } as React.CSSProperties}
-    >
+    <section id="contact">
       <div className="ww">
         <div className="fi" style={{ textAlign: "center", marginBottom: "var(--sp10)" }}>
           <div className="slabel" style={{ justifyContent: "center" }}>Get in Touch</div>
