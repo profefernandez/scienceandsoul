@@ -1,4 +1,3 @@
-import { ColoringImage } from "./ColoringImage";
 import { imgSrc, imgSrcSet } from "../lib/img";
 
 const services = [
@@ -52,7 +51,7 @@ export function Services() {
         <div className="svcgrid">
           {services.map((s) => (
             <div className={`scard ${s.accent} fi`} key={s.title}>
-              <ColoringImage
+              <img
                 className="scard-img"
                 src={imgSrc(s.img, 1024)}
                 srcSet={imgSrcSet(s.img, [480, 768, 1024, 1254])}
@@ -60,7 +59,8 @@ export function Services() {
                 alt={s.imgAlt}
                 width={600}
                 height={450}
-                fit
+                loading="lazy"
+                decoding="async"
               />
               <div className="scard-body">
                 <span className={s.pill.cls}>{s.pill.label}</span>
