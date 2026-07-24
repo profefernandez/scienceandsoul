@@ -2,12 +2,12 @@
 
 :root{
 --tx-xs:clamp(.875rem,.82rem + .27vw,1rem);
---tx-sm:clamp(1rem,.94rem + .3vw,1.125rem);
---tx-base:clamp(1.125rem,1.065rem + .3vw,1.25rem);
---tx-lg:clamp(1.25rem,1.1rem + .75vw,1.625rem);
---tx-xl:clamp(1.625rem,1.3rem + 1.3vw,2.375rem);
---tx-2xl:clamp(2.125rem,1.3rem + 2.6vw,3.625rem);
---tx-3xl:clamp(2.625rem,1.1rem + 4.1vw,5.125rem);
+--tx-sm:clamp(.9375rem,.86rem + .34vw,1.125rem);
+--tx-base:clamp(1rem,.89rem + .45vw,1.25rem);
+--tx-lg:clamp(1.125rem,.91rem + .9vw,1.625rem);
+--tx-xl:clamp(1.375rem,.94rem + 1.8vw,2.375rem);
+--tx-2xl:clamp(1.625rem,.75rem + 3.6vw,3.625rem);
+--tx-3xl:clamp(2rem,.64rem + 5.6vw,5.125rem);
 --sp1:.25rem;--sp2:.5rem;--sp3:.75rem;--sp4:1rem;--sp5:1.25rem;--sp6:1.5rem;
 --sp8:2rem;--sp10:2.5rem;--sp12:3rem;--sp16:4rem;--sp20:5rem;--sp24:6rem;
 --bg:#ffffff;--sf:#ffffff;--sf2:#f7f7f7;--off:#eeeeee;
@@ -138,7 +138,7 @@ input,button,textarea,select{font:inherit;color:inherit}
 .epprov-ico img{display:block;object-fit:contain}
 .epprov-lbl{font-size:var(--tx-sm);text-align:center;line-height:1.2}
 @media(max-width:400px){.epgrid{grid-template-columns:1fr 1fr;gap:var(--sp3)}.epmodal{padding:var(--sp5)}.epprov{min-height:90px}.epprov-ico{width:48px;height:48px}}
-section{padding:clamp(3rem,8vw,6rem) 0}
+section{padding:clamp(2.5rem,8vw,6rem) 0}
 .hero{padding:clamp(4rem,8vw,8rem) 0 clamp(3rem,6vw,5rem);position:relative;overflow:hidden}
 .hero-bg{position:absolute;inset:0;pointer-events:none;z-index:0}
 .heyebrow{font-family:var(--fh);font-size:calc(var(--tx-lg) + 1px);color:var(--teal);margin-bottom:var(--sp4)}
@@ -297,6 +297,9 @@ section{padding:clamp(3rem,8vw,6rem) 0}
 @media(max-width:768px){
 .nlinks{display:none}.burg{display:flex}.nav .bkdwrap{display:none}
 .tt,.burg{width:44px;min-width:44px;height:44px;flex-shrink:0}
+body{line-height:1.55;letter-spacing:.05em;word-spacing:.06em}
+.hero{padding:2.5rem 0 2rem}
+.ctaband{padding:3rem 0}
 .nact{gap:var(--sp2)}
 .nact .btn{white-space:nowrap;padding:var(--sp3) var(--sp4)}
 .philos-inner{grid-template-columns:1fr}
@@ -548,4 +551,8 @@ html.a11y-simple .colimg-base{filter:none}
 html.a11y-simple .colimg-full{opacity:1;transition:none}
 html.a11y-simple *{box-shadow:none!important;backdrop-filter:none!important}
 html.a11y-simple .fi{opacity:1!important;animation:none!important}
-@media(max-width:600px){.a11y-root{bottom:5.5rem}}
+@media(max-width:600px){
+.a11y-root{bottom:5.5rem}
+.a11y-btn{width:48px;height:48px}
+.orbbtn{width:52px;height:52px}
+}

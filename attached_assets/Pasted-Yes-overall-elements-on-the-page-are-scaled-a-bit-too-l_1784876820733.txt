@@ -1,0 +1,19 @@
+Yes, overall, elements on the page are scaled a bit too large for a comfortable mobile experience.
+While the aesthetic and branding look warm and professional, the current sizing creates heavy vertical scrolling, awkward line breaks, and UI floating button overlaps.
+Here is a breakdown of what feels oversized and how to tweak it:
+Key Sizing & Design Issues
+1. Oversized Typography & Line Height
+ * Hero Subtext / Body Text: Text blocks like "therapy in Houston — evidence-based care..." use a large font size with very generous line height and word spacing. On mobile screens, this forces single sentences to take up almost the entire viewport.
+ * Heading Line Breaks: Headings like "Therapy for the whole self" and "Choose a chakra guide" dominate the viewport, leaving little room for supporting content without excessive scrolling.
+2. Huge Vertical Spacing (Padding/Margins)
+ * Content blocks have excessive top and bottom padding. On mobile, you generally want tighter section spacing (e.g., 32px to 48px max) so users don't feel like they're endlessly scrolling through empty dark space.
+3. Floating Widget Overlaps
+ * In image.png and image_2.png, the teal accessibility button (left side) and the purple floating action button (bottom right) overlap text cards, interactive buttons, and carousel arrows.
+ * Oversized main elements reduce the "safe area" available for fixed overlays, making the screen feel cluttered and hard to tap without triggering the wrong element.
+Recommended Adjustments
+ * Scale down base mobile font sizes:
+   * Main Headings (H1): ~28px–32px
+   * Subheadings (H2/H3): ~20px–24px
+   * Body Text: ~15px–16px with a line-height of 1.5
+ * Reduce Section Padding: Scale down section padding on screens under 768px wide (e.g., set top/bottom padding to 2rem or 3rem).
+ * Adjust Floating Button Offsets: Give the floating widgets (accessibility & purple spark button) slightly higher z-index management or extra bottom padding on mobile so they don't block main CTA buttons or content cards.
