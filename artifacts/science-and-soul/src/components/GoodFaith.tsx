@@ -70,8 +70,25 @@ export function GoodFaith() {
             />
           </div>
         </div>
+      </div>
+    </section>
+  );
+}
 
-        <div className="feesgrid" style={{ marginTop: "var(--sp10)" }}>
+export function EstimateRights() {
+  return (
+    <section id="estimate-rights">
+      <div className="ww">
+        <div style={{ textAlign: "center", marginBottom: "var(--sp10)" }}>
+          <div className="slabel" style={{ justifyContent: "center" }}>No Surprises</div>
+          <h2 className="stitle" style={{ marginInline: "auto" }}>
+            Your Estimate &amp; <em>Your Rights</em>
+          </h2>
+          <p className="sdesc" style={{ marginInline: "auto", textAlign: "center" }}>
+            Here&rsquo;s what your written estimate will cover — and the rights that protect you every step of the way.
+          </p>
+        </div>
+        <div className="feesgrid">
           <div className="fcard fi">
             <h3 className="fcardtitle">What your estimate will include</h3>
             <table className="ftable">
