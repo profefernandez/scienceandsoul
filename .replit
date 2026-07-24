@@ -11,6 +11,86 @@ env = { "CI" = "true" }
 [workflows]
 runButton = "Project"
 
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "lint"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "a11y-home"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "a11y-privacy"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "a11y-hipaa"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "a11y-accessibility"
+
+[[workflows.workflow]]
+name = "lint"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd artifacts/science-and-soul && pnpm run lint"
+
+[workflows.workflow.metadata]
+isValidation = true
+
+[[workflows.workflow]]
+name = "a11y-home"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "bash artifacts/science-and-soul/scripts/a11y-validate.sh / 4181"
+
+[workflows.workflow.metadata]
+isValidation = true
+
+[[workflows.workflow]]
+name = "a11y-privacy"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "bash artifacts/science-and-soul/scripts/a11y-validate.sh /privacy 4182"
+
+[workflows.workflow.metadata]
+isValidation = true
+
+[[workflows.workflow]]
+name = "a11y-hipaa"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "bash artifacts/science-and-soul/scripts/a11y-validate.sh /hipaa 4183"
+
+[workflows.workflow.metadata]
+isValidation = true
+
+[[workflows.workflow]]
+name = "a11y-accessibility"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "bash artifacts/science-and-soul/scripts/a11y-validate.sh /accessibility 4184"
+
+[workflows.workflow.metadata]
+isValidation = true
+
 [agent]
 stack = "PNPM_WORKSPACE"
 expertMode = true
