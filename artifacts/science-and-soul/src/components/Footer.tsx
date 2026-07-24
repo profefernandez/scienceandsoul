@@ -35,6 +35,7 @@ export function Footer({ linkPrefix = "" }: FooterProps) {
             <ul className="flinks" role="list">
               <li><a href={`${linkPrefix}#services`}>Our Services</a></li>
               <li><a href={`${linkPrefix}#fees`}>Fees &amp; Insurance</a></li>
+              <li><a href={`${linkPrefix}#goodfaith`}>Good Faith Estimate</a></li>
             </ul>
           </div>
         </div>
