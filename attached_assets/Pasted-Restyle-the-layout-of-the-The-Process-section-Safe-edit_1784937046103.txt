@@ -1,0 +1,44 @@
+Restyle the layout of the "The Process" section. Safe edit surface
+(per audit — do not exceed it):
+
+ALLOWED:
+- src/components/Approach.tsx (fully bespoke to this section)
+- src/styles/site.css — ONLY the appr* selectors (lines 208–218, 301–307,
+  317–318). New rules must be appr*-prefixed.
+
+HARD CONSTRAINTS — DO NOT MODIFY:
+- band, slabel, fi classes or their CSS rules
+- :root CSS custom properties (--amb, --dv, --ink, --inkm, spacing/type tokens)
+- Home.tsx, img.ts, index.css, or any other component
+- The eyebrow label and section background stay on their current shared
+  classes. If card backgrounds need adjustment for readability over band,
+  put that styling on the apprstep cards themselves.
+
+PROBLEMS TO FIX (all confirmed by audit):
+1. The 4 step cards (li.apprstep) are bare text on the page background —
+   no card containers.
+2. Uneven card heights (card 3's title wraps to two lines).
+3. Number badge (apprstep-num) styling/position is inconsistent across cards.
+
+NEW LAYOUT:
+1. Keep the top two-column intro (apprgrid + apprimg) exactly as-is — do not
+   change the illustration, its sizing, or the intro copy.
+2. Below the intro, ol.apprsteps becomes an equal-height card grid: 4 columns
+   on desktop, 2×2 on tablet, 1 column on mobile. Grid must align to the same
+   content width as the intro block.
+3. li.apprstep gets a real card surface via appr* classes: lightly translucent
+   solid background, consistent padding, border-radius, and subtle shadow —
+   text must never sit directly on the page background. Use existing :root
+   tokens for colors/radii/shadows where they exist.
+4. apprstep-num: one consistent style and position across all 4 cards
+   (top-left of the card, above the icon).
+5. Equal-height rows (grid/flex with stretch), so card 3's two-line title
+   doesn't break alignment. apprititle may use min-height if needed.
+6. Keep the inline iconStyle tints in Approach.tsx as-is.
+
+DEFINITION OF DONE: All 4 cards render equal height with identical badge
+style/position and readable contrast at desktop, tablet, and mobile widths —
+and no other section's appearance changes.
+
+Show me the diff of site.css limited to appr* selectors before applying,
+and confirm zero edits outside Approach.tsx and those selectors.
