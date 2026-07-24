@@ -1,0 +1,25 @@
+Here are 20 more essential practices to take your web accessibility to the next level, covering dynamic controls, cognitive ease, content structure, and technical edge-cases:
+5. Dynamic Content & Interactive Components
+ * 21. Live Region Updates (aria-live): Announce dynamic content changes—like new chat messages, shopping cart updates, or status messages—to screen reader users without interrupting their focus.
+ * 22. Accessible Modal Dialogs: When a pop-up or modal opens, keyboard focus should automatically move into the modal and stay "trapped" inside it until the modal is closed.
+ * 23. Accessible Custom Widgets: Complex components like tabs, accordions, and slider controls must follow standard keyboard patterns (e.g., arrow key navigation between tabs).
+ * 24. Dismissible Overlay Controls: Users should be able to quickly close pop-ups, menus, or tooltip overlays using a single standard key, like Escape.
+ * 25. Screen Reader Announcements for Loading States: Show visual progress spinners and announce "Loading content..." programmatically so visually impaired users aren't left waiting silently.
+6. Motion, Timing & Cognition
+ * 26. Respect "Reduced Motion" Preferences: Check media queries (prefers-reduced-motion: reduce) to disable smooth scrolling, parallax effects, or large visual animations for users prone to motion sickness or vertigo.
+ * 27. Avoid Parallax & Infinite Scrolling Trap: Provide a visible option to turn off infinite scrolling so screen reader and keyboard users aren't blocked from reaching the page footer.
+ * 28. Adjustable Session Timeouts: If a page logs users out automatically (like online banking), warn them in advance and provide an easy way to extend the time.
+ * 29. Plain Language & Clear Formatting: Write in concise sentences with plain language, avoiding jargon or idioms that complicate reading for users with cognitive or learning disabilities.
+ * 30. Avoid Rapid Flashing Content: Never flash or flicker content more than 3 times per second to prevent photosensitive epileptic seizures.
+7. Form Design & Data Entry
+ * 31. Autocomplete Attributes for Personal Fields: Include autocomplete attributes (e.g., autocomplete="email" or autocomplete="shipping postal-code") on standard form fields so browsers can easily auto-fill data.
+ * 32. In-Context Form Help & Tooltips: Position instructions, format requirements (e.g., "MM/DD/YYYY"), and helper text before or alongside the input so screen readers read them in context.
+ * 33. Confirmation for Legal or Financial Actions: Provide a confirmation screen, review step, or undo option before final submission for transactions, data deletions, or legal agreements.
+ * 34. Focus Preserved After Form Errors: When a form submission fails, automatically focus the user's cursor on the first field containing an error or on an error summary at the top.
+ * 35. Alternative Input Options: Never force users to manually type long strings of data when copy-pasting, uploading files, or selecting options is more accessible.
+8. Mobile, Media & Advanced Semantics
+ * 36. Orientation Agnostic Layouts: Ensure pages render correctly in both landscape and portrait orientations without locking display orientation via CSS or JavaScript.
+ * 37. Flexible Touch & Motion Gestures: Don't require complex multi-touch gestures (like pinching to zoom) or device-shaking actions without providing simple single-pointer/click alternatives.
+ * 38. Audio Description for Video Content: Provide audio descriptions that narrate important visual actions, character changes, or text on screen during silent moments in a video.
+ * 39. Descriptive Anchor Text: Avoid vague link text like "Click Here" or "Read More"—use descriptive phrases like "Read our 2026 Accessibility Guidelines" so screen reader users understand the link's target out of context.
+ * 40. Scalable Vector Icons with Semantic Labels: When using icon fonts or SVG graphics for actions (like a magnifying glass or trash icon), supply explicit text labels or aria-label attributes instead of relying on the visual icon alone.

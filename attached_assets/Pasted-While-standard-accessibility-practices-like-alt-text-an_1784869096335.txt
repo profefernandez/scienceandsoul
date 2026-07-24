@@ -1,0 +1,25 @@
+While standard accessibility practices (like alt text and basic color contrast) get most of the attention, these 20 advanced and often-overlooked features are frequently missed on modern websites. Implementing them sets an exceptionally high standard for user experience:
+1. Advanced Focus & Navigation Control
+ * 1. Scroll-Margin Offsets for Sticky Headers: When keyboard users tab through a page, sticky headers often overlap and hide the focused element. Using CSS scroll-margin-top ensures focused items scroll comfortably into view below fixed bars.
+ * 2. Focus Restoration on Dismissal: When a modal, slide-out drawer, or pop-over closes, programmatic focus should instantly return to the exact button that opened it, keeping the keyboard user oriented.
+ * 3. High Contrast / Windows Forced Colors (forced-colors): Custom SVG icons and styled borders often disappear in Windows High Contrast Mode. Using CSS @media (forced-colors: active) ensures custom components adapt cleanly to system contrast themes.
+ * 4. No Keyboard Traps in Embedded iFrames: Third-party widgets (like embedded maps, payment gateways, or video players) frequently "trap" keyboard users inside them. Ensuring users can Tab in and out smoothly prevents dead-end navigation.
+ * 5. Disabling Disruptive Auto-Focus: Script-driven autofocus on page load can disorient screen reader users by jumping past the main navigation and main page context before they know where they are.
+2. Advanced Form & Authentication UX
+ * 6. Unblocked Password & Code Pasting: Never disable paste functionality in password or verification fields. Blocking paste harms users with memory impairments or dexterity issues who rely on password managers.
+ * 7. Prevention of Redundant Data Entry: Asking users to re-type previously entered info (like shipping vs. billing addresses or multi-step form data) adds unnecessary cognitive and physical load. Provide check-boxes or auto-fill options.
+ * 8. Dynamic Target Expansion (Hit-Box Padding): Tiny social icons or narrow links can be hard to tap. Adding transparent CSS borders or pseudo-element padding expands the clickable target area to at least 24×24px (or 44×44px) without altering the visual design.
+ * 9. Live Screen Reader Announcements for Filters: When filtering a product grid or search page dynamically, use aria-live="polite" so screen reader users hear status updates (e.g., "12 products found") without losing their place on the page.
+ * 10. Screen Reader-Friendly Character Counters: Text inputs with character limits should announce remaining capacity periodically (e.g., at 50, 20, and 5 characters remaining) rather than constantly interrupting screen reader output with every keystroke.
+3. Cognitive & Interaction Support
+ * 11. Click-Based Alternatives for Drag-and-Drop: Drag-and-drop interactions (like reordering Kanban boards or uploading files) exclude users who cannot hold down a mouse button or use a touch drag gesture. Always supply simple "Move Up / Move Down" or click-to-select alternatives.
+ * 12. Consistent Help & Support Placement: Placing chat widgets, FAQ links, or support options in identical locations across every single page helps users with cognitive conditions quickly locate assistance.
+ * 13. Keyboard-Accessible Custom Tooltips: Tooltips shouldn't only appear on mouse hover. They must open on keyboard focus, stay visible while hovered/focused, and close cleanly when pressing Escape.
+ * 14. Automated System Preference Sync: Instead of requiring manual site toggles, automatically inherit system-level user preferences for dark mode (prefers-color-scheme) and reduced motion (prefers-reduced-motion) via CSS.
+ * 15. Reading Time & Complexity Indicators: For long-form articles or docs, indicating estimated reading time and providing a quick bulleted summary helps users with attention or cognitive processing difficulties plan their reading.
+4. Rich Media & Structural Precision
+ * 16. Audio Descriptions for Video: For visual-heavy videos, provide an audio description track (or audio-described text version) that verbally describes key on-screen actions, scenes, and text during pauses in dialogue.
+ * 17. Proper Breadcrumb Markup (aria-current="page"): Breadcrumbs should be wrapped in <nav aria-label="Breadcrumb"> with the current page marked using aria-current="page" so assistive technology conveys exact location context.
+ * 18. Complex Table Scope Attributes: Explicitly tag table headers with scope="col" or scope="row" (and use aria-describedby for complex multi-level tables) so screen readers associate data cells with the correct context.
+ * 19. Accessible Print Stylesheets: Provide clean @media print CSS rules so users who print pages for offline, distraction-free reading get high-contrast text stripped of floating pop-ups, menus, and sidebars.
+ * 20. Dedicated /accessibility Page & Direct Feedback Link: Publish a dedicated accessibility statement detailing compliance status and providing a direct contact path (email/phone) for users to report barriers or request alternative formats.
