@@ -48,7 +48,7 @@
 [data-theme="dark"] .btnw,[data-theme="dark"] .btnw:hover{color:var(--teall)}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;scroll-behavior:smooth;scroll-padding-top:5rem}
-body{min-height:100dvh;line-height:1.7;letter-spacing:0.012em;word-spacing:0.016em;font-family:var(--fb);font-size:var(--tx-base);color:var(--ink);background:var(--bg);overflow-x:hidden}
+body{min-height:100dvh;line-height:1.7;letter-spacing:0.12em;word-spacing:0.16em;font-family:var(--fb);font-size:var(--tx-base);color:var(--ink);background:var(--bg);overflow-x:hidden}
 img,svg{display:block;max-width:100%;height:auto}
 .colimg{position:relative;overflow:hidden;display:block;line-height:0}
 .colimg-base{display:block;width:100%;height:auto;filter:grayscale(1)}
