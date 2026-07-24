@@ -12,3 +12,15 @@ id = "fe-ZPFjBZ-87FlCpf34iA"
 uri = "file://artifacts/science-and-soul/public/methods-illustration.png"
 type = "image"
 title = "generated_image"
+
+[[generated]]
+id = "ddWll9eP3HSXFcGDkiusd"
+uri = "file://attached_assets/generated_images/env-garland.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "M3cbZHCK18sbsfz5_2TRy"
+uri = "file://attached_assets/generated_images/env-watercolor-bg.png"
+type = "image"
+title = "generated_image"

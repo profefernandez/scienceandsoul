@@ -3,7 +3,11 @@ import { imgSrc, imgSrcSet } from "../lib/img";
 
 export function Contact() {
   return (
-    <section id="contact">
+    <section
+      id="contact"
+      className="env-sec"
+      style={{ "--env-bg-url": `url(${imgSrc("env-bg", 1600)})` } as React.CSSProperties}
+    >
       <div className="ww">
         <div className="fi" style={{ textAlign: "center", marginBottom: "var(--sp10)" }}>
           <div className="slabel" style={{ justifyContent: "center" }}>Get in Touch</div>
@@ -20,18 +24,18 @@ export function Contact() {
               </p>
               <EmailKellyButton btnClass="btn btnp btnlg" label="Schedule Now" />
             </div>
-            <div className="env-seal" aria-hidden="true">
-              <img
-                src={imgSrc("logo", 96)}
-                srcSet={imgSrcSet("logo", [96, 192])}
-                sizes="64px"
-                alt=""
-                width={64}
-                height={64}
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
+            <img
+              className="env-garland"
+              src={imgSrc("env-garland", 768)}
+              srcSet={imgSrcSet("env-garland", [1024, 768, 480])}
+              sizes="(max-width: 480px) 90vw, 620px"
+              alt=""
+              aria-hidden="true"
+              width={620}
+              height={338}
+              loading="lazy"
+              decoding="async"
+            />
           </div>
         </div>
       </div>
