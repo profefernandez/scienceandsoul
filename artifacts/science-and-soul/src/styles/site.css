@@ -65,9 +65,9 @@ input,button,textarea,select{font:inherit;color:inherit}
 ::selection{background:color-mix(in oklch,var(--teal) 25%,transparent)}
 :focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:var(--rsm)}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
-.ww{max-width:1200px;margin-inline:auto;padding-inline:var(--sp6)}
-.w{max-width:960px;margin-inline:auto;padding-inline:var(--sp6)}
-.wn{max-width:640px;margin-inline:auto;padding-inline:var(--sp6)}
+.ww{max-width:1440px;margin-inline:auto;padding-inline:var(--sp6)}
+.w{max-width:1140px;margin-inline:auto;padding-inline:var(--sp6)}
+.wn{max-width:720px;margin-inline:auto;padding-inline:var(--sp6)}
 .btn{display:inline-flex;align-items:center;gap:var(--sp2);padding:var(--sp3) var(--sp6);font-size:var(--tx-sm);font-weight:700;border-radius:var(--rfull);transition:all var(--tr);letter-spacing:.02em;cursor:pointer;border:none}
 .btnlg{padding:var(--sp4) var(--sp10);font-size:var(--tx-base)}
 .btnp{background:var(--teal);color:#fff}

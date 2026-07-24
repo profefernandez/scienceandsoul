@@ -16,6 +16,7 @@ export default function Home() {
   return (
     <main id="main">
       <Hero />
+      <About />
       <ChakraStrip />
       <Philosophy />
       <Services />
@@ -23,7 +24,6 @@ export default function Home() {
       <Methods />
       <WhoWeServe />
       <ColoringStudio />
-      <About />
       <Fees />
       <GoodFaith />
       <FAQ />
