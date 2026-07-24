@@ -11,7 +11,7 @@ export function ChakraStrip() {
   const next = () => setIdx((i) => (i + 1) % CHAKRAS.length);
 
   return (
-    <section className="cstrip" id="guides" aria-label="Choose your chakra guide">
+    <section className="cstrip band" id="guides" aria-label="Choose your chakra guide">
       <div className="ww">
         <div className="cshead">
           <div className="slabel" style={{ justifyContent: "center" }}>Your AI Companion</div>

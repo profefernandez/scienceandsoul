@@ -21,7 +21,7 @@ const estimateRows = [
 
 export function GoodFaith() {
   return (
-    <section id="goodfaith" style={{ background: "color-mix(in srgb, var(--sf2) 62%, transparent)", borderTop: "1.5px solid var(--dv)" }}>
+    <section id="goodfaith" className="band bandnb">
       <div className="ww">
         <div className="philos-inner">
           <div className="fi">

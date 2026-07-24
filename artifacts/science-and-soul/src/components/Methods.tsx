@@ -41,7 +41,7 @@ const groups = [
 
 export function Methods() {
   return (
-    <section id="methods" style={{ background: "color-mix(in srgb, var(--sf2) 62%, transparent)", borderTop: "1.5px solid var(--dv)", borderBottom: "1.5px solid var(--dv)" }}>
+    <section id="methods" className="band">
       <div className="ww">
         <div className="philos-inner">
           <div className="philos-img fi">

@@ -2,7 +2,7 @@ import { imgSrc, imgSrcSet } from "../lib/img";
 
 export function Philosophy() {
   return (
-    <section className="philos" id="philosophy">
+    <section className="philos band" id="philosophy">
       <div className="ww">
         <div className="philos-inner">
           <div className="philos-img fi">

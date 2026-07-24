@@ -288,7 +288,7 @@ export function ColoringStudio() {
   };
 
   return (
-    <section id="coloring" className="cps">
+    <section id="coloring" className="cps band">
       <div className="ww">
         <div className="fi" style={{ textAlign: "center", maxWidth: "680px", marginInline: "auto" }}>
           <div className="slabel" style={{ justifyContent: "center" }}>

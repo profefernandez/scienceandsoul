@@ -155,7 +155,9 @@ section{padding:clamp(2.5rem,8vw,6rem) 0}
 .stitle{font-family:var(--fd);font-size:var(--tx-2xl);font-weight:700;color:var(--ink);line-height:var(--lh-tight);margin-bottom:var(--sp4)}
 .stitle em{font-style:italic}
 .sdesc{font-size:var(--tx-base);color:var(--inkm);line-height:var(--lh-relaxed);max-width:58ch;margin-bottom:var(--sp10)}
-.cstrip{background:color-mix(in srgb,var(--sf2) 62%,transparent);border-top:1.5px solid var(--dv);border-bottom:1.5px solid var(--dv);padding:var(--sp10) 0}
+.band{background:color-mix(in srgb,var(--sf2) 62%,transparent);border-top:1.5px solid var(--dv);border-bottom:1.5px solid var(--dv)}
+.bandnb{border-bottom:none}
+.cstrip{padding:var(--sp10) 0}
 .cshead{text-align:center;max-width:620px;margin:0 auto var(--sp8)}
 .cstitle{font-family:var(--fd);font-size:var(--tx-2xl);font-weight:700;color:var(--ink);line-height:var(--lh-tight);margin-bottom:var(--sp3)}
 .cssub{font-size:var(--tx-base);color:var(--inkm);line-height:var(--lh-body);margin:0 auto;max-width:54ch}
@@ -181,7 +183,6 @@ section{padding:clamp(2.5rem,8vw,6rem) 0}
 .ccdot{width:10px;height:10px;border-radius:var(--rfull);background:var(--dv);border:none;cursor:pointer;padding:0;transition:all .2s ease;flex-shrink:0}
 .ccdot-a{background:var(--teal);transform:scale(1.4)}
 .ccdot:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
-.philos{background:color-mix(in srgb,var(--sf2) 62%,transparent);border-top:1.5px solid var(--dv);border-bottom:1.5px solid var(--dv)}
 .philos-inner{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
 .philos-img img{border-radius:var(--r2xl);box-shadow:var(--shlg);border:3px solid var(--dv)}
 .pquote{font-family:var(--fd);font-style:italic;font-size:var(--tx-xl);color:var(--teal);line-height:var(--lh-md);margin-bottom:var(--sp6);padding-left:var(--sp6);border-left:4px solid var(--teal)}
@@ -387,7 +388,6 @@ body{line-height:var(--lh-md);letter-spacing:.05em;word-spacing:.06em}
 @media(max-width:480px){.orbpanel{width:calc(100vw - 2rem);height:calc(100dvh - 6rem)}}
 
 /* ===== AI Coloring Page Studio ===== */
-.cps{background:color-mix(in srgb,var(--sf2) 62%,transparent);border-top:1.5px solid var(--dv);border-bottom:1.5px solid var(--dv)}
 .cpscard{max-width:760px;margin:var(--sp10) auto 0;background:var(--sf);border:1.5px solid var(--dv);border-radius:var(--r2xl);box-shadow:var(--shmd);padding:clamp(1.25rem,4vw,2.5rem)}
 .cpsgen{display:flex;flex-direction:column;align-items:center;text-align:center;gap:var(--sp5);min-height:240px;justify-content:center}
 .cpsq{font-family:var(--fd);font-size:var(--tx-lg);font-weight:700;color:var(--ink)}
