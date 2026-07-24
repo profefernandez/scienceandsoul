@@ -1,0 +1,39 @@
+Three changes, scoped below. For anything nontrivial, do the audit/plan step first and wait for my approval before executing.
+
+═══ CHANGE 1 — Methods section: convert 5-item stack to horizontal step row ═══
+
+In Methods.tsx: restructure the five items (Start with the Full Picture, Apply Clinical Methods, Add Spiritual Practices When Useful, Build Skills That Last, plus the fifth item) from a vertical icon list into a horizontal step row below the "A structured process..." text-and-image grid.
+
+Before changing anything: report the current structure of Methods.tsx and the exact CSS grid classes it uses (per the terse naming convention in the science-soul-css-classnames project doc), and confirm the fifth item's title/description. Wait for approval.
+
+Then:
+1. Desktop: five numbered steps (01–05) in a single row, each step = small circular number badge (terracotta, matching the site's existing accent color from the token file), the title, and the description underneath. Connect the steps with a thin line or subtle arrow so they read as a progression left-to-right. Reuse the existing icon assets from the current list — no new images.
+2. Mobile (<768px): the row collapses to a single vertical step list with the connector running top-to-bottom — keep the number badges. Follow the existing breakpoint variables from site.css; do not introduce new breakpoints.
+3. Keep all five descriptions readable — nothing gets hidden or truncated.
+4. The section keeps the watercolor wash background treatment (translucent band) exactly as-is. Text contrast must still pass a11y checks.
+5. Do not touch the intro text, the illustration image, or any other section.
+
+═══ CHANGE 2 — Fix text clipping under the floating widget ═══
+
+Two symptoms: (a) the Methods list text ("...beyond therapy") is clipped by the accessibility widget at desktop width, and (b) when the screen shrinks, the widget overlaps page content.
+
+Fix:
+1. Add bottom padding to the page's main scroll container (find the existing page-wrapper class — likely in site.css) equal to the widget's height plus ~24px clearance, so no section content can ever slide underneath it. Do NOT use z-index tricks or reposition content per-section — fix it once at the container level.
+2. The widget must stay fixed bottom-right at all viewport widths down to 320px without covering interactive content. Verify on mobile widths specifically.
+3. If two floating elements exist (accessibility widget AND the AI chat widget), make sure they don't overlap each other at any width — stack them vertically if needed.
+4. Do not move, resize, or restyle the widget(s) themselves beyond preventing the overlap.
+
+═══ CHANGE 3 — Logo as the AI chat widget launcher ═══
+
+STEP 0 — Report first, change nothing: find the site's logo image asset file path (check the nav/header component and public/img/), report which file it is and its dimensions, and report which component renders the circular AI chat launcher button (bottom-right) and how it's currently styled. Wait for my confirmation of the correct logo file.
+
+Then:
+1. Replace the launcher button's current icon/content with the logo image. Circular button, logo fitted inside (object-fit: cover or contain — show me which looks better via screenshot), with a visible border/ring in the site's accent color so it still reads as a tappable button, not decoration.
+2. It must still look and behave like a button: hover state, visible keyboard focus indicator (per the project's WCAG rules — minimum 3px high-contrast focus outline), and an aria-label describing what it opens.
+3. Keep the same size and position as the current launcher. Do not change the chat panel itself, the accessibility widget, or the nav logo.
+4. Do not generate a new logo image — reuse the existing asset exactly. If the logo file has a non-transparent background that looks bad in a circle, report that and stop.
+
+═══ Verification for all three ═══
+Screenshots: Methods section (desktop + mobile), bottom-of-page at 375px width showing widget clearance, and the new logo launcher (idle + keyboard-focus state). Dark mode versions of all. Contrast/a11y checks still pass. No new image files added.
+
+Done when: the five steps render as a connected horizontal row on desktop and vertical step flow on mobile with all text readable; no content clips under the widget at any width; and the chat launcher shows the site logo in a clean circular button with proper focus/aria states.
