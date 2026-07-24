@@ -1,4 +1,3 @@
-import { ColoringImage } from "./ColoringImage";
 import { imgSrc, imgSrcSet } from "../lib/img";
 
 const steps = [
@@ -54,13 +53,16 @@ export function Approach() {
             </ul>
           </div>
           <div className="apprimg fi">
-            <ColoringImage
+            <img
               src={imgSrc("sound-healing", 1024)}
               srcSet={imgSrcSet("sound-healing", [480, 768, 1024, 1254])}
               sizes="(min-width: 768px) 50vw, 100vw"
               alt="Black woman sound healing illustration in coloring-book style"
               width={540}
               height={540}
+              loading="lazy"
+              decoding="async"
+              style={{ width: "100%", height: "auto", display: "block" }}
             />
           </div>
         </div>

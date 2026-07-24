@@ -1,4 +1,3 @@
-import { ColoringImage } from "./ColoringImage";
 import { imgSrc, imgSrcSet } from "../lib/img";
 
 const modalities = [
@@ -19,14 +18,15 @@ export function About() {
         <div className="aboutgrid">
           <div className="aboutportrait fi">
             <div className="aboutframe">
-              <ColoringImage
+              <img
                 src={imgSrc("kelly-portrait", 1024)}
                 srcSet={imgSrcSet("kelly-portrait", [480, 768, 1024, 1254])}
                 sizes="(min-width: 1024px) 380px, 100vw"
                 alt="Black woman healing illustration representing Kelly Nelson LCSW practice"
                 width={380}
                 height={507}
-                fit
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <div className="aboutcred">

@@ -49,13 +49,6 @@
 html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;scroll-behavior:smooth;scroll-padding-top:5rem}
 body{min-height:100dvh;line-height:1.7;letter-spacing:0.12em;word-spacing:0.16em;font-family:var(--fb);font-size:var(--tx-base);color:var(--ink);background:var(--bg);overflow-x:hidden}
 img,svg{display:block;max-width:100%;height:auto}
-.colimg{position:relative;overflow:hidden;display:block;line-height:0}
-.colimg-base{display:block;width:100%;height:auto;filter:grayscale(1)}
-.colimg-canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
-.colimg-full{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 800ms ease;pointer-events:none}
-.colimg.is-revealed .colimg-full{opacity:1}
-.colimg-fit{width:100%;height:100%}
-.colimg-fit .colimg-base{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 h1,h2,h3,h4{text-wrap:balance;line-height:1.2}
 p,li{text-wrap:pretty;max-width:72ch}
 p+p{margin-top:2em}
@@ -188,7 +181,7 @@ section{padding:clamp(2.5rem,8vw,6rem) 0}
 .ccdot:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
 .philos{background:var(--sf2);border-top:1.5px solid var(--dv);border-bottom:1.5px solid var(--dv)}
 .philos-inner{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
-.philos-img .colimg{border-radius:var(--r2xl);box-shadow:var(--shlg);border:3px solid var(--dv)}
+.philos-img img{border-radius:var(--r2xl);box-shadow:var(--shlg);border:3px solid var(--dv)}
 .pquote{font-family:var(--fd);font-style:italic;font-size:var(--tx-xl);color:var(--teal);line-height:1.5;margin-bottom:var(--sp6);padding-left:var(--sp6);border-left:4px solid var(--teal)}
 .ptext{font-size:var(--tx-base);color:var(--inkm);line-height:1.85;margin-bottom:var(--sp4)}
 .ppills{display:flex;flex-wrap:wrap;gap:var(--sp2);margin-top:var(--sp4)}
@@ -210,7 +203,7 @@ section{padding:clamp(2.5rem,8vw,6rem) 0}
 .sc-sage{border-top:4px solid var(--sage)}
 .sc-amb{border-top:4px solid var(--amb)}
 .apprgrid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
-.apprimg .colimg{border-radius:var(--r2xl);box-shadow:var(--shlg);border:3px solid var(--dv)}
+.apprimg img{border-radius:var(--r2xl);box-shadow:var(--shlg);border:3px solid var(--dv)}
 .apprlist{list-style:none;padding:0;display:flex;flex-direction:column;gap:var(--sp5)}
 .appritem{display:flex;gap:var(--sp4);align-items:flex-start}
 .appricon{width:48px;height:48px;border-radius:var(--rxl);display:flex;align-items:center;justify-content:center;font-size:var(--tx-lg);flex-shrink:0}
@@ -226,7 +219,6 @@ section{padding:clamp(2.5rem,8vw,6rem) 0}
 .aboutportrait{position:relative}
 .aboutframe{border-radius:var(--r2xl);overflow:hidden;border:3px solid var(--dv);box-shadow:var(--shlg);aspect-ratio:3/4;background:var(--sf2)}
 .aboutframe img{width:100%;height:100%;object-fit:cover}
-.aboutframe .colimg{width:100%;height:100%}
 .aboutcred{position:absolute;bottom:var(--sp4);left:var(--sp4);right:var(--sp4);background:color-mix(in oklch,var(--sf) 95%,transparent);backdrop-filter:blur(8px);border:1.5px solid var(--dv);border-radius:var(--rxl);padding:var(--sp3) var(--sp4)}
 .aboutcname{font-family:var(--fd);font-weight:700;font-size:var(--tx-base);color:var(--ink)}
 .aboutctitle{font-size:var(--tx-xs);color:var(--inkm);font-weight:600;letter-spacing:.04em}
@@ -531,9 +523,7 @@ html.a11y-motion .fi{opacity:1!important;animation:none!important}
 /* Widget effect: reading mask (focus mode) */
 .a11y-mask{position:fixed;left:0;right:0;z-index:940;background:rgba(0,0,0,.55);pointer-events:none}
 /* Widget effect: simplified layout */
-html.a11y-simple .hero-bg,html.a11y-simple .orbroot,html.a11y-simple .colimg-canvas{display:none!important}
-html.a11y-simple .colimg-base{filter:none}
-html.a11y-simple .colimg-full{opacity:1;transition:none}
+html.a11y-simple .hero-bg,html.a11y-simple .orbroot{display:none!important}
 html.a11y-simple *{box-shadow:none!important;backdrop-filter:none!important}
 html.a11y-simple .fi{opacity:1!important;animation:none!important}
 @media(max-width:600px){
