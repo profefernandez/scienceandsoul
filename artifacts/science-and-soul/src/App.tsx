@@ -8,6 +8,7 @@ import { ChakraOrb } from "./components/ChakraOrb";
 import Home from "./pages/Home";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import HipaaNotice from "./pages/HipaaNotice";
+import AccessibilityStatement from "./pages/AccessibilityStatement";
 import NotFound from "./pages/not-found";
 
 const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
@@ -26,6 +27,7 @@ function AppLayout({ theme, toggle }: { theme: "light" | "dark"; toggle: () => v
         <Route path="/" component={Home} />
         <Route path="/privacy" component={PrivacyPolicy} />
         <Route path="/hipaa" component={HipaaNotice} />
+        <Route path="/accessibility" component={AccessibilityStatement} />
         <Route component={NotFound} />
       </Switch>
       <Footer linkPrefix={linkPrefix} />

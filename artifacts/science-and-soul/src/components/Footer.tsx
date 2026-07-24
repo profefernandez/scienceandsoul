@@ -44,6 +44,13 @@ export function Footer({ linkPrefix = "" }: FooterProps) {
           <div className="fbottxt">
             &copy; 2026 Science and Soul Counseling &amp; Wellness, PLLC &middot; All rights reserved.
           </div>
+          <div className="fbottxt">
+            <a href={`${linkPrefix}privacy`}>Privacy Policy</a>
+            {" \u00b7 "}
+            <a href={`${linkPrefix}hipaa`}>HIPAA Notice</a>
+            {" \u00b7 "}
+            <a href={`${linkPrefix}accessibility`}>Accessibility</a>
+          </div>
         </div>
       </div>
     </footer>
