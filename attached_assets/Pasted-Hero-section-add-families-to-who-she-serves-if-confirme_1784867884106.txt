@@ -1,0 +1,21 @@
+Hero section — add "families" to who she serves if confirmed:
+
+Individual, family, and group therapy... Serving pre-teens, adolescents, adults, families, and the LGBTQIA+ community.
+
+About Kelly Nelson — expand with:
+
+BA, Auburn University + MSW, Simmons University (2018)
+Personal identity line, if she wants it: e.g., "Kelly is a Black woman whose practice reflects a commitment to culturally responsive care."
+Practice style: Warm, holistic, open-minded
+Her own words, tightened: "I believe we each hold the key to our own healing, though we often lose touch with it through life's experiences. My work is to help you peel back the layers — hopelessness, depression, trauma, negative beliefs — to reconnect with who you already are."
+Therapy Methods Explained (new section, plain-language) — this is the big addition. The directory lists ~19 methods, which is too many to explain individually without overwhelming a visitor. I'd group them into client-facing categories rather than list all 19:
+
+Understanding your thoughts and behavior (CBT, REBT, Behavior Modification) — "Identifying unhelpful thought patterns and building practical strategies to change them."
+Processing trauma (Trauma-Focused CBT, Cognitive Processing Therapy) — "Structured approaches to work through traumatic experiences at a manageable pace."
+Understanding where patterns come from (Psychodynamic, Attachment-Based, Psychoanalytic) — "Exploring how past relationships and experiences shape current feelings and behavior."
+Building on what already works (Strength-Based, Solution-Focused, Motivational Interviewing) — "Focusing on your existing strengths and specific, achievable goals."
+Staying present (Mindfulness-Based Cognitive Therapy, ACT) — "Practical tools for managing difficult thoughts and emotions in the moment."
+Family and relationships (Family Systems, Interpersonal, Multi-Systemic) — "Looking at how relationships and family dynamics affect your wellbeing."
+I'd leave out niche/clinical-only terms not relevant to her actual client base (Biofeedback, Psychotic Disorders as a "method," Brief Dynamic) unless she confirms she uses them regularly — a website should reflect real practice, not a directory checklist.
+
+Specialties — expand existing list with what's new and non-duplicate: Bipolar disorder, OCD, panic disorders, anger management, cultural & ethnic issues, maternal mental health, identity issues, end-of-life care. Drop duplicates already covered (trauma, depression, anxiety, grief, ADHD).
