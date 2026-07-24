@@ -306,7 +306,7 @@ body{line-height:1.55;letter-spacing:.05em;word-spacing:.06em}
 }
 @media(max-width:360px){
 .nsub{display:none}
-.nlogo svg{display:none}
+.nlogo img{display:none}
 .fcard{padding:var(--sp5)}
 }
 
