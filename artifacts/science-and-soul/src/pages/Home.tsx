@@ -3,6 +3,7 @@ import { ChakraStrip } from "../components/ChakraStrip";
 import { Philosophy } from "../components/Philosophy";
 import { Services } from "../components/Services";
 import { Approach } from "../components/Approach";
+import { Methods } from "../components/Methods";
 import { WhoWeServe } from "../components/WhoWeServe";
 import { ColoringStudio } from "../components/ColoringStudio";
 import { Testimonials } from "../components/Testimonials";
@@ -20,6 +21,7 @@ export default function Home() {
       <Philosophy />
       <Services />
       <Approach />
+      <Methods />
       <WhoWeServe />
       <ColoringStudio />
       <Testimonials />

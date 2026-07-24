@@ -28,7 +28,7 @@ export function About() {
             </div>
             <div className="aboutcred">
               <div className="aboutcname">Kelly Nelson, LCSW-S</div>
-              <div className="aboutctitle">Owner &amp; Lead Psychotherapist &middot; Texas License #67591 &middot; Simmons University MSW &middot; 2018</div>
+              <div className="aboutctitle">Owner &amp; Lead Psychotherapist &middot; Texas License #67591 &middot; BA, Auburn University &middot; MSW, Simmons University (2018)</div>
             </div>
           </div>
           <div className="fi">
@@ -49,8 +49,11 @@ export function About() {
               </div>
             </div>
             <p className="aboutbio">
-              Kelly works with teens, adults, and the LGBTQIA+ community on various mental health challenges using a blend of evidence-based and spiritual practices. Late-evening appointments available for flexible scheduling.
+              Kelly earned her BA from Auburn University and her MSW from Simmons University in 2018. She works with pre-teens, adolescents, adults, families, and the LGBTQIA+ community using a blend of evidence-based and spiritual practices. Her style is warm, holistic, and open-minded — and late-evening appointments are available for flexible scheduling.
             </p>
+            <blockquote className="aboutbio" style={{ borderLeft: "3px solid var(--teal)", paddingLeft: "var(--sp4)", fontStyle: "italic", color: "var(--inkm)" }}>
+              &ldquo;I believe we each hold the key to our own healing, though we often lose touch with it through life&rsquo;s experiences. My work is to help you peel back the layers &mdash; hopelessness, depression, trauma, negative beliefs &mdash; to reconnect with who you already are.&rdquo;
+            </blockquote>
             <div className="modcloud">
               {modalities.map((m) => (
                 <span className={m.cls} key={m.label}>{m.label}</span>
