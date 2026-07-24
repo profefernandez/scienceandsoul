@@ -1,4 +1,5 @@
 import { EmailKellyButton } from "./EmailKellyButton";
+import { imgSrc, imgSrcSet } from "../lib/img";
 
 export function Contact() {
   return (
@@ -19,7 +20,18 @@ export function Contact() {
               </p>
               <EmailKellyButton btnClass="btn btnp btnlg" label="Schedule Now" />
             </div>
-            <div className="env-seal" aria-hidden="true">S&amp;S</div>
+            <div className="env-seal" aria-hidden="true">
+              <img
+                src={imgSrc("logo", 96)}
+                srcSet={imgSrcSet("logo", [96, 192])}
+                sizes="64px"
+                alt=""
+                width={64}
+                height={64}
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
           </div>
         </div>
       </div>
