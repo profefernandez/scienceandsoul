@@ -447,3 +447,14 @@ section{padding:clamp(3rem,8vw,6rem) 0}
 .legalbody a{color:var(--teal);font-weight:600}
 .legalbody a:hover{text-decoration:underline}
 .legalcontact{background:var(--sf2);border:1.5px solid var(--dv);border-radius:var(--rxl);padding:var(--sp5) var(--sp6);font-size:var(--tx-sm);line-height:1.9}
+/* FAQ */
+.faqlist{max-width:52rem;margin:0 auto;display:flex;flex-direction:column;gap:var(--sp4)}
+.faqitem{background:var(--sf);border:1.5px solid var(--dv);border-radius:var(--rxl);box-shadow:var(--shsm);overflow:hidden;transition:border-color var(--tr),box-shadow var(--tr)}
+.faqitem[open]{border-color:var(--teal);box-shadow:var(--shlg)}
+.faqq{display:flex;justify-content:space-between;align-items:center;gap:var(--sp4);cursor:pointer;padding:var(--sp5) var(--sp6);font-family:var(--fd);font-weight:700;font-size:var(--tx-lg);color:var(--ink);list-style:none}
+.faqq::-webkit-details-marker{display:none}
+.faqq:hover{color:var(--teal)}
+.faqchev{flex-shrink:0;font-family:var(--fd);font-weight:400;font-size:var(--tx-xl);color:var(--teal);transition:transform var(--tr)}
+.faqitem[open] .faqchev{transform:rotate(45deg)}
+.faqa{padding:0 var(--sp6) var(--sp6);color:var(--inkm);line-height:1.8;margin:0}
+@media(max-width:768px){.faqq{padding:var(--sp4) var(--sp4);font-size:var(--tx-base)}.faqa{padding:0 var(--sp4) var(--sp4)}}
