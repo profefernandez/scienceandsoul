@@ -6,12 +6,10 @@ import { Approach } from "../components/Approach";
 import { Methods } from "../components/Methods";
 import { WhoWeServe } from "../components/WhoWeServe";
 import { ColoringStudio } from "../components/ColoringStudio";
-import { Testimonials } from "../components/Testimonials";
 import { About } from "../components/About";
 import { Fees } from "../components/Fees";
 import { GoodFaith } from "../components/GoodFaith";
 import { FAQ } from "../components/FAQ";
-import { CTABand } from "../components/CTABand";
 import { Contact } from "../components/Contact";
 
 export default function Home() {
@@ -25,12 +23,10 @@ export default function Home() {
       <Methods />
       <WhoWeServe />
       <ColoringStudio />
-      <Testimonials />
       <About />
       <Fees />
       <GoodFaith />
       <FAQ />
-      <CTABand />
       <Contact />
     </main>
   );
