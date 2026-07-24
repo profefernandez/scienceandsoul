@@ -13,7 +13,7 @@ const insurance = [
 
 export function Fees() {
   return (
-    <section id="fees" style={{ background: "var(--sf2)", borderTop: "1.5px solid var(--dv)", borderBottom: "1.5px solid var(--dv)" }}>
+    <section id="fees" style={{ background: "color-mix(in srgb, var(--sf2) 62%, transparent)", borderTop: "1.5px solid var(--dv)", borderBottom: "1.5px solid var(--dv)" }}>
       <div className="ww">
         <div style={{ textAlign: "center", marginBottom: "var(--sp10)" }}>
           <div className="slabel" style={{ justifyContent: "center" }}>Invest in Your Healing</div>

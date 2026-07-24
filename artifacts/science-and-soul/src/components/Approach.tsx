@@ -29,7 +29,7 @@ const steps = [
 
 export function Approach() {
   return (
-    <section id="approach" style={{ background: "var(--sf2)", borderTop: "1.5px solid var(--dv)", borderBottom: "1.5px solid var(--dv)" }}>
+    <section id="approach" style={{ background: "color-mix(in srgb, var(--sf2) 62%, transparent)", borderTop: "1.5px solid var(--dv)", borderBottom: "1.5px solid var(--dv)" }}>
       <div className="ww">
         <div className="apprgrid">
           <div className="fi">
