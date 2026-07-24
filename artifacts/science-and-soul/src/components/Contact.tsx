@@ -1,4 +1,4 @@
-import { ContactForm } from "./ContactForm";
+import { EmailKellyButton, KELLY_EMAIL } from "./EmailKellyButton";
 
 export function Contact() {
   return (
@@ -33,8 +33,8 @@ export function Contact() {
               <div className="ciicon">✉️</div>
               <div>
                 <div className="cilabel">Email</div>
-                <a href="mailto:scienceandsoulcounseling@gmail.com" className="civalue" style={{ color: "var(--teal)" }}>
-                  scienceandsoulcounseling@gmail.com
+                <a href={`mailto:${KELLY_EMAIL}`} className="civalue" style={{ color: "var(--teal)" }}>
+                  {KELLY_EMAIL}
                 </a>
               </div>
             </div>
@@ -64,12 +64,23 @@ export function Contact() {
               </div>
             </div>
           </div>
+
           <div className="fi">
-            <div className="fwrap">
-              <h3 style={{ fontFamily: "var(--fd)", fontSize: "var(--tx-xl)", marginBottom: "var(--sp6)" }}>
-                Send a Message
+            <div className="fwrap" style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", gap: "var(--sp6)", minHeight: "320px" }}>
+              <div style={{ fontSize: "var(--tx-2xl)" }}>✉️</div>
+              <h3 style={{ fontFamily: "var(--fd)", fontSize: "var(--tx-xl)", color: "var(--ink)", lineHeight: 1.2 }}>
+                Send Kelly a message
               </h3>
-              <ContactForm />
+              <p style={{ color: "var(--inkm)", maxWidth: "36ch", lineHeight: 1.7 }}>
+                Click below to open your preferred email app. Kelly typically responds within 24 hours.
+              </p>
+              <EmailKellyButton btnClass="btn btnp btnlg" label="✉ Email Kelly" />
+              <p style={{ fontSize: "var(--tx-sm)", color: "var(--inkm)" }}>
+                Or call directly:{" "}
+                <a href="tel:8325011687" style={{ color: "var(--teal)", fontWeight: 600 }}>
+                  (832) 501-1687
+                </a>
+              </p>
             </div>
           </div>
         </div>
