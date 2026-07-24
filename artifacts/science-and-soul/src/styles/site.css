@@ -435,6 +435,11 @@ section{padding:clamp(3rem,8vw,6rem) 0}
 /* Legal pages (Privacy Policy, HIPAA Notice) */
 .legal{padding:clamp(2.5rem,7vw,5rem) 0}
 .legalhead{margin-bottom:var(--sp10)}
+.nf404{padding:clamp(5rem,12vw,9rem) 0;text-align:center}
+.nf404-inner{display:flex;flex-direction:column;align-items:center;gap:var(--sp5)}
+.nf404-eyebrow{font-family:var(--fh);font-size:calc(var(--tx-lg) + 1px);color:var(--teal)}
+.nf404-title{font-family:var(--fd);font-size:var(--tx-2xl);font-weight:700;color:var(--ink);line-height:1.15}
+.nf404-desc{font-size:var(--tx-base);color:var(--inkm);line-height:1.8;max-width:48ch;margin-inline:auto}
 .legalback{display:inline-block;font-size:var(--tx-sm);font-weight:600;color:var(--teal);margin-bottom:var(--sp6)}
 .legalback:hover{text-decoration:underline}
 .legaltitle{font-family:var(--fd);font-size:var(--tx-2xl);font-weight:700;color:var(--ink);line-height:1.15;margin-bottom:var(--sp4)}

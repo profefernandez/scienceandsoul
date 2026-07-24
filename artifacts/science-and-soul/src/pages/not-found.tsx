@@ -1,21 +1,24 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { AlertCircle } from "lucide-react";
+import { Link } from "wouter";
+import { Helmet } from "react-helmet-async";
 
 export default function NotFound() {
   return (
-    <main id="main" className="min-h-screen w-full flex items-center justify-center bg-gray-50">
-      <Card className="w-full max-w-md mx-4">
-        <CardContent className="pt-6">
-          <div className="flex mb-4 gap-2">
-            <AlertCircle className="h-8 w-8 text-red-500" />
-            <h1 className="text-2xl font-bold text-gray-900">404 Page Not Found</h1>
-          </div>
-
-          <p className="mt-4 text-sm text-gray-600">
-            Did you forget to add the page to the router?
+    <main id="main">
+      <Helmet>
+        <title>Page Not Found | Science and Soul Counseling & Wellness</title>
+        <meta name="robots" content="noindex" />
+      </Helmet>
+      <section className="nf404">
+        <div className="wn nf404-inner">
+          <p className="nf404-eyebrow">Oops, a wrong turn</p>
+          <h1 className="nf404-title">We couldn&rsquo;t find that page</h1>
+          <p className="nf404-desc">
+            The page you&rsquo;re looking for may have moved, or the link may have been
+            mistyped. Let&rsquo;s get you back to a familiar place.
           </p>
-        </CardContent>
-      </Card>
+          <Link href="/" className="btn btnp">Back to home</Link>
+        </div>
+      </section>
     </main>
   );
 }
