@@ -40,17 +40,6 @@ export function Approach() {
             <p style={{ fontSize: "var(--tx-base)", color: "var(--inkm)", lineHeight: "var(--lh-relaxed)", marginBottom: "2rem", maxWidth: "52ch" }}>
               Each treatment plan starts with a thorough understanding of the client's history, goals, and existing strengths. Kelly selects clinical and integrative methods based on what each person needs at each stage of the work.
             </p>
-            <ul className="apprlist" role="list">
-              {steps.map((s) => (
-                <li className="appritem" key={s.title}>
-                  <div className="appricon" style={s.iconStyle}>{s.emoji}</div>
-                  <div>
-                    <div className="apprititle">{s.title}</div>
-                    <p className="appridesc">{s.desc}</p>
-                  </div>
-                </li>
-              ))}
-            </ul>
           </div>
           <div className="apprimg fi">
             <img
@@ -66,6 +55,18 @@ export function Approach() {
             />
           </div>
         </div>
+        <ol className="apprsteps">
+          {steps.map((s, i) => (
+            <li className="apprstep fi" key={s.title}>
+              <div className="apprstep-head">
+                <div className="appricon" style={s.iconStyle} aria-hidden="true">{s.emoji}</div>
+                <span className="apprstep-num" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
+              </div>
+              <div className="apprititle">{s.title}</div>
+              <p className="appridesc">{s.desc}</p>
+            </li>
+          ))}
+        </ol>
       </div>
     </section>
   );

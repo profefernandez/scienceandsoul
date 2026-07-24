@@ -35,3 +35,15 @@ id = "AusD34750zy38sQrQaTj6"
 uri = "file://artifacts/science-and-soul/screens/hero-wash.png"
 type = "image"
 title = "Option 2 — Hero with the watercolor wash"
+
+[[outputs]]
+id = "T0Si4t3Kdtj1DbiHQn7YH"
+uri = "file://artifacts/science-and-soul/screens/launcher-cover-idle-light.png"
+type = "image"
+title = "Option A — logo fills the circle (cover)"
+
+[[outputs]]
+id = "4SICIOAfiamsVb6xbErlQ"
+uri = "file://artifacts/science-and-soul/screens/launcher-contain2-light.png"
+type = "image"
+title = "Option B — logo inset with breathing room (contain)"

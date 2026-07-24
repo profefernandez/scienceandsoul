@@ -9,6 +9,7 @@ import {
 import ReactMarkdown from "react-markdown";
 import { useOrbChat, useCreateInquiry } from "@workspace/api-client-react";
 import { CHAKRAS } from "../data/chakras";
+import { imgSrc, imgSrcSet } from "../lib/img";
 import { useChakraGuide } from "../context/ChakraGuideContext";
 const SECTION_HINTS: Record<string, string> = {
   home: "Welcome — ask me anything about Kelly's practice.",
@@ -367,13 +368,22 @@ export function ChakraOrb() {
       )}
 
       <button
-        className={`orbbtn${open ? " is-open" : ""}`}
+        className={`orbbtn orbbtn-haslogo${open ? " is-open" : ""}`}
         onClick={toggleOpen}
-        aria-label={open ? "Close chakra guide" : "Open chakra guide"}
+        aria-label={open ? "Close the chakra guide chat" : "Open the chakra guide chat"}
       >
-        <span className="orbbtn-core" aria-hidden="true">
-          {chakra ? chakra.emoji : "✦"}
-        </span>
+        <img
+          className="orbbtn-logo"
+          src={imgSrc("logo", 96)}
+          srcSet={imgSrcSet("logo", [96, 192])}
+          sizes="64px"
+          alt=""
+          aria-hidden="true"
+          width={64}
+          height={64}
+          loading="lazy"
+          decoding="async"
+        />
       </button>
     </div>
   );
