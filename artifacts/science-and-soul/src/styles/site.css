@@ -292,7 +292,7 @@ section{padding:clamp(3rem,8vw,6rem) 0}
 .footerinner{grid-template-columns:1fr 1fr}
 }
 @media(max-width:768px){
-.nlinks{display:none}.burg{display:flex}
+.nlinks{display:none}.burg{display:flex}.nav .bkdwrap{display:none}
 .philos-inner{grid-template-columns:1fr}
 .svcgrid{grid-template-columns:1fr}
 .apprgrid{grid-template-columns:1fr}
@@ -307,6 +307,8 @@ section{padding:clamp(3rem,8vw,6rem) 0}
 .hacts{flex-direction:column;align-items:stretch}
 .stats{grid-template-columns:1fr 1fr}
 .footerinner{grid-template-columns:1fr}
+.nsub{letter-spacing:.03em;font-size:calc(var(--tx-xs) - .5px)}
+.inslist{grid-template-columns:1fr}
 }
 
 /* ===== Chakra Orb AI Guide ===== */
