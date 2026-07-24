@@ -246,7 +246,10 @@ section{padding:clamp(2.5rem,8vw,6rem) 0}
 /* Standard site-wide section background: the watercolor wash (env-bg asset).
    RULE: this is THE standard background — new sections inherit it automatically.
    Variations only via overlay tint/opacity/position on this same asset. */
-.washbg{position:fixed;inset:0;z-index:-1;pointer-events:none;background-image:linear-gradient(rgba(252,249,241,.8),rgba(252,249,241,.8)),var(--env-bg-url);background-size:cover;background-position:center}
+.washbg{--env-bg-url:var(--env-bg-480);position:fixed;inset:0;z-index:-1;pointer-events:none;background-image:linear-gradient(rgba(252,249,241,.8),rgba(252,249,241,.8)),var(--env-bg-url);background-size:cover;background-position:center}
+@media (min-width:481px){.washbg{--env-bg-url:var(--env-bg-768)}}
+@media (min-width:769px){.washbg{--env-bg-url:var(--env-bg-1024)}}
+@media (min-width:1025px){.washbg{--env-bg-url:var(--env-bg-1600)}}
 [data-theme="dark"] .washbg{background-image:linear-gradient(rgba(26,22,15,.88),rgba(26,22,15,.88)),var(--env-bg-url)}
 html.a11y-simple .washbg,html.a11y-contrast .washbg{display:none}
 .env-wrap{display:flex;justify-content:center}

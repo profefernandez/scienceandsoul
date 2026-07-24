@@ -25,7 +25,12 @@ function AppLayout({ theme, toggle }: { theme: "light" | "dark"; toggle: () => v
       <div
         className="washbg"
         aria-hidden="true"
-        style={{ "--env-bg-url": `url(${import.meta.env.BASE_URL}img/env-bg-1600.webp)` } as React.CSSProperties}
+        style={{
+          "--env-bg-480": `url(${import.meta.env.BASE_URL}img/env-bg-480.webp)`,
+          "--env-bg-768": `url(${import.meta.env.BASE_URL}img/env-bg-768.webp)`,
+          "--env-bg-1024": `url(${import.meta.env.BASE_URL}img/env-bg-1024.webp)`,
+          "--env-bg-1600": `url(${import.meta.env.BASE_URL}img/env-bg-1600.webp)`,
+        } as React.CSSProperties}
       />
       <a className="skiplink" href="#main">Skip to main content</a>
       <Announcement />
