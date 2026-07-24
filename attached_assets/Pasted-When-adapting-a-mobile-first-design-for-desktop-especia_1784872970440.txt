@@ -1,0 +1,21 @@
+When adapting a mobile-first design for desktop—especially regarding imagery and media—the extra screen real estate and different user behaviors change how visual assets should perform.
+Here are key visual, functional, and layout considerations specifically tailored to handling images and visual design when moving from mobile to desktop:
+1. Dynamic Image Cropping (Art Direction)
+ * The Mobile Needs: Mobile images often need vertical (portrait) crops or tight close-ups so subjects remain recognizable on smaller, narrow screens.
+ * The Desktop Adaptation: On desktop, taking up full vertical space with a portrait crop forces unnecessary scrolling. Use the HTML <picture> element with media queries to serve landscape-cropped variants on desktop.
+2. High-DPI & Retina Image Optimization
+ * The Mobile Needs: Mobile devices run on varied cellular networks; serving giant high-res images can severely hurt page speed and Core Web Vitals.
+ * The Desktop Adaptation: Modern desktop monitors (4K, Retina, 5K) expose low-resolution images instantly as pixelated or blurry. Use srcset with descriptor values (e.g., 1x, 2x, 1000w) so high-resolution desktop screens pull crisp assets without forcing phones to download heavy files.
+3. Aspect Ratio Control (object-fit)
+ * The Mobile Needs: Images on mobile typically expand to fill 100% of the screen width, relying on natural height.
+ * The Desktop Adaptation: Spanning 100% width on a wide monitor can turn a simple image into a screen-dominating banner. Define explicit aspect ratios (e.g., aspect-ratio: 16 / 9) and use CSS object-fit: cover to keep photos proportionate across breakpoint jumps.
+4. Interactive Image Features (Hover & Zoom)
+ * The Mobile Needs: Mobile users interact via touch—pinch-to-zoom or tapping an icon to view full-screen images.
+ * The Desktop Adaptation: Desktop allows cursor-driven interactions like hover zooms on e-commerce product shots, hover overlay captions, and multi-image thumbnails on side-by-side product galleries.
+5. Hero Banner Layouts (Text Placement vs. Backgrounds)
+ * The Mobile Needs: Hero images usually sit above or below headline text in a single stacked column to keep reading clear.
+ * The Desktop Adaptation: Desktop allows text to sit over or beside hero imagery. If placing text over background images, ensure proper contrast adjustments (like dark overlays or gradients) so text remains readable at wider screen dimensions.
+Additional Non-Image Mobile-to-Desktop Considerations
+ * Keyboard Navigation & Focus States: Mobile users rely on touch, but desktop users often navigate via keyboard (Tab keys) or screen readers. Ensure all interactive components have visible :focus-visible styling on desktop screens.
+ * Sticky Navigation vs. Header Real Estate: Mobile headers are kept compact so they don't block content. Desktop headers can incorporate sticky sub-nav bars, mega-menus, or quick-action bars that remain visible as the user scrolls down long pages.
+ * Hover Reveal vs. Persistent Information: On mobile, critical info (like pricing, stock status, or badges) must be visible at all times since hover states don't exist. On desktop, secondary details can selectively reveal on cursor hover to keep the interface clean.

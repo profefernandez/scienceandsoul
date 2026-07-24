@@ -457,7 +457,13 @@ section{padding:clamp(3rem,8vw,6rem) 0}
 .faqchev{flex-shrink:0;font-family:var(--fd);font-weight:400;font-size:var(--tx-xl);color:var(--teal);transition:transform var(--tr)}
 .faqitem[open] .faqchev{transform:rotate(45deg)}
 .faqa{padding:0 var(--sp6) var(--sp6);color:var(--inkm);line-height:1.8;margin:0}
+.faqitem:hover{border-color:var(--teal)}
 @media(max-width:768px){.faqq{padding:var(--sp4) var(--sp4);font-size:var(--tx-base)}.faqa{padding:0 var(--sp4) var(--sp4)}}
+/* Desktop: expand the FAQ accordion into a two-column open layout (mobile-first scaling) */
+@media(min-width:1024px){
+.faqgrid-desk{max-width:none;display:grid;grid-template-columns:1fr 1fr;gap:var(--sp5);align-items:start}
+.faqgrid-desk .faqitem{margin:0}
+}
 
 /* ===== Accessibility (Task: AAA audit) ===== */
 /* Skip link */

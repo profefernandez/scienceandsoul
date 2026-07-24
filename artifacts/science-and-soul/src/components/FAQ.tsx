@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 const faqs = [
   {
     q: "How much does a session cost?",
@@ -34,6 +36,17 @@ const faqs = [
 ];
 
 export function FAQ() {
+  const [defaultOpen, setDefaultOpen] = useState(
+    () => typeof window !== "undefined" && window.matchMedia("(min-width: 1024px)").matches,
+  );
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const onChange = (e: MediaQueryListEvent) => setDefaultOpen(e.matches);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+
   return (
     <section id="faq">
       <div className="ww">
@@ -46,9 +59,13 @@ export function FAQ() {
             Starting therapy comes with questions — here are answers to the ones we hear most.
           </p>
         </div>
-        <div className="faqlist fi">
+        <div className="faqlist faqgrid-desk fi">
           {faqs.map((f) => (
-            <details className="faqitem" key={f.q}>
+            <details
+              className="faqitem"
+              key={`${f.q}-${defaultOpen ? "open" : "closed"}`}
+              open={defaultOpen || undefined}
+            >
               <summary className="faqq">
                 <span>{f.q}</span>
                 <span className="faqchev" aria-hidden="true">+</span>

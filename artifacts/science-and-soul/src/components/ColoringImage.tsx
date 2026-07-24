@@ -165,9 +165,9 @@ export function ColoringImage({
 
   return (
     <div className={cls} ref={wrapRef}>
-      <img className="colimg-base" src={src} alt={alt} width={width} height={height} loading={loading} />
+      <img className="colimg-base" src={src} alt={alt} width={width} height={height} loading={loading} decoding="async" />
       <canvas className="colimg-canvas" ref={canvasRef} aria-hidden="true" />
-      <img className="colimg-full" src={src} alt="" aria-hidden="true" loading={loading} />
+      <img className="colimg-full" src={src} alt="" aria-hidden="true" loading={loading} decoding="async" />
     </div>
   );
 }

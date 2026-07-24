@@ -61,6 +61,7 @@ export function GoodFaith() {
               width={1024}
               height={768}
               loading="lazy"
+              decoding="async"
               style={{ borderRadius: "var(--r2xl)", boxShadow: "var(--shlg)", width: "100%", height: "auto" }}
             />
           </div>
