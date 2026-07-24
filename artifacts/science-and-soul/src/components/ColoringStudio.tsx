@@ -308,7 +308,7 @@ export function ColoringStudio() {
           {!lineArt ? (
             <div className="cpsgen">
               {generate.isPending ? (
-                <div className="cpsloading">
+                <div className="cpsloading" role="status">
                   <div className="cpsspinner" aria-hidden="true" />
                   <p className="cpsloading-txt">
                     Drawing your page — this takes a few moments…
@@ -354,7 +354,7 @@ export function ColoringStudio() {
                       Create my page ✦
                     </button>
                   </form>
-                  {genError && <p className="cpserr">{genError}</p>}
+                  {genError && <p className="cpserr" role="alert">{genError}</p>}
                 </>
               )}
             </div>
@@ -439,7 +439,7 @@ export function ColoringStudio() {
 
               <div className="cpssend">
                 {sent ? (
-                  <p className="cpssent">
+                  <p className="cpssent" role="status">
                     ✓ Thank you for sharing — Kelly received your piece and will
                     be in touch soon.
                   </p>
@@ -450,6 +450,8 @@ export function ColoringStudio() {
                       <input
                         className="cpsinp"
                         placeholder="Your name"
+                        aria-label="Your name"
+                        autoComplete="name"
                         value={lead.name}
                         onChange={(e) =>
                           setLead({ ...lead, name: e.target.value })
@@ -459,6 +461,8 @@ export function ColoringStudio() {
                         className="cpsinp"
                         type="email"
                         placeholder="Your email"
+                        aria-label="Your email"
+                        autoComplete="email"
                         value={lead.email}
                         onChange={(e) =>
                           setLead({ ...lead, email: e.target.value })
@@ -468,12 +472,13 @@ export function ColoringStudio() {
                     <textarea
                       className="cpsinp cpstxt"
                       placeholder="Add a short note (optional)"
+                      aria-label="Add a short note (optional)"
                       value={lead.message}
                       onChange={(e) =>
                         setLead({ ...lead, message: e.target.value })
                       }
                     />
-                    {sendError && <p className="cpserr">{sendError}</p>}
+                    {sendError && <p className="cpserr" role="alert">{sendError}</p>}
                     <button
                       type="submit"
                       className="btn btnp cpssend-btn"

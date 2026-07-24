@@ -16,7 +16,7 @@ import { Contact } from "../components/Contact";
 
 export default function Home() {
   return (
-    <main>
+    <main id="main">
       <Hero />
       <ChakraStrip />
       <Philosophy />

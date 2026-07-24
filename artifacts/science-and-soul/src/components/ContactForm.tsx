@@ -103,6 +103,14 @@ export function ContactForm() {
     const validationErrors = validate(fields);
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
+      const firstErrorField = (["firstName", "email", "message"] as const).find(
+        (f) => validationErrors[f],
+      );
+      if (firstErrorField) {
+        requestAnimationFrame(() => {
+          document.getElementById(firstErrorField)?.focus();
+        });
+      }
       return;
     }
 
@@ -147,7 +155,7 @@ export function ContactForm() {
 
   if (submitted) {
     return (
-      <div style={{ textAlign: "center", padding: "2rem" }}>
+      <div style={{ textAlign: "center", padding: "2rem" }} role="status">
         <div style={{ fontSize: "var(--tx-2xl)", marginBottom: "var(--sp4)" }}>🌸</div>
         <h4 style={{ fontFamily: "var(--fd)", fontSize: "var(--tx-xl)", marginBottom: "var(--sp3)", color: "var(--teal)" }}>
           Thank you for reaching out.
@@ -159,8 +167,8 @@ export function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} noValidate>
-      <div className="fg">
-        <div className="flabel">How can Kelly help you?</div>
+      <fieldset className="fg" style={{ border: "none", padding: 0, margin: "0 0 var(--sp5)" }}>
+        <legend className="flabel">How can Kelly help you?</legend>
         <div className="fchoices">
           <label className="fchoice">
             <input
@@ -183,7 +191,7 @@ export function ContactForm() {
             <span>I have questions first</span>
           </label>
         </div>
-      </div>
+      </fieldset>
 
       <div className="frow">
         <div className="fg">
@@ -197,8 +205,10 @@ export function ContactForm() {
             value={fields.firstName}
             onChange={handleChange}
             autoComplete="given-name"
+            aria-invalid={errors.firstName ? true : undefined}
+            aria-describedby={errors.firstName ? "firstName-error" : undefined}
           />
-          {errors.firstName && <div className="ferr">{errors.firstName}</div>}
+          {errors.firstName && <div className="ferr" id="firstName-error" role="alert">{errors.firstName}</div>}
         </div>
         <div className="fg">
           <label className="flabel" htmlFor="lastName">Last Name</label>
@@ -225,8 +235,10 @@ export function ContactForm() {
           value={fields.email}
           onChange={handleChange}
           autoComplete="email"
+          aria-invalid={errors.email ? true : undefined}
+          aria-describedby={errors.email ? "email-error" : undefined}
         />
-        {errors.email && <div className="ferr">{errors.email}</div>}
+        {errors.email && <div className="ferr" id="email-error" role="alert">{errors.email}</div>}
       </div>
       <div className="fg">
         <label className="flabel" htmlFor="phone">Phone Number</label>
@@ -269,17 +281,19 @@ export function ContactForm() {
           placeholder="Share as much or as little as you'd like. This is a safe space."
           value={fields.message}
           onChange={handleChange}
+          aria-invalid={errors.message ? true : undefined}
+          aria-describedby={errors.message ? "message-error" : undefined}
         />
-        {errors.message && <div className="ferr">{errors.message}</div>}
+        {errors.message && <div className="ferr" id="message-error" role="alert">{errors.message}</div>}
       </div>
       <p className="fnote">🔒 Your privacy is sacred. All information is fully confidential and HIPAA-protected.</p>
       {submitError && (
-        <p className="ferr" style={{ marginTop: "var(--sp3)", textAlign: "center" }}>
+        <p className="ferr" role="alert" style={{ marginTop: "var(--sp3)", textAlign: "center" }}>
           {submitError}
         </p>
       )}
       {isThrottled && (
-        <p className="ferr" style={{ marginTop: "var(--sp3)", textAlign: "center" }}>
+        <p className="ferr" role="alert" style={{ marginTop: "var(--sp3)", textAlign: "center" }}>
           Too many submissions — please wait {cooldownSecs}s before trying again.
         </p>
       )}

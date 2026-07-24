@@ -5,6 +5,7 @@ import { Announcement } from "./components/Announcement";
 import { Nav } from "./components/Nav";
 import { Footer } from "./components/Footer";
 import { ChakraOrb } from "./components/ChakraOrb";
+import { AccessibilityWidget } from "./components/AccessibilityWidget";
 import Home from "./pages/Home";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import HipaaNotice from "./pages/HipaaNotice";
@@ -21,6 +22,7 @@ function AppLayout({ theme, toggle }: { theme: "light" | "dark"; toggle: () => v
 
   return (
     <>
+      <a className="skiplink" href="#main">Skip to main content</a>
       <Announcement />
       <Nav theme={theme} onToggleTheme={toggle} linkPrefix={linkPrefix} />
       <Switch>
@@ -31,6 +33,7 @@ function AppLayout({ theme, toggle }: { theme: "light" | "dark"; toggle: () => v
         <Route component={NotFound} />
       </Switch>
       <Footer linkPrefix={linkPrefix} />
+      <AccessibilityWidget />
       {isHome ? <ChakraOrb /> : null}
     </>
   );

@@ -69,6 +69,34 @@ export default function AccessibilityStatement() {
           <strong>Dark mode.</strong> A built-in dark mode is available for visitors who find high-brightness
           screens difficult to use, accessible via the toggle in the site navigation.
         </li>
+        <li>
+          <strong>Skip link.</strong> A &ldquo;Skip to main content&rdquo; link is the first focusable element on
+          every page, letting keyboard and screen-reader users bypass the navigation.
+        </li>
+        <li>
+          <strong>Accessible dialogs.</strong> The mobile menu and pop-up dialogs trap keyboard focus while open,
+          close with the Escape key, and return focus to the control that opened them.
+        </li>
+        <li>
+          <strong>Status announcements.</strong> Form errors, loading states, and confirmation messages are
+          announced to screen readers through live regions.
+        </li>
+        <li>
+          <strong>Accessibility widget.</strong> A floating accessibility button (bottom-left corner of every
+          page) opens a panel where you can increase text size in three steps, switch to a high-contrast palette,
+          underline and highlight all links, reduce motion, enable a reading mask that follows your cursor, or
+          switch to a simplified view with decorative imagery and effects removed. Your choices are saved on your
+          device and applied automatically on your next visit.
+        </li>
+        <li>
+          <strong>Windows High Contrast and print.</strong> The site respects forced-colors mode and includes a
+          dedicated print stylesheet for clean, readable printed pages.
+        </li>
+        <li>
+          <strong>Automated and manual testing.</strong> Every page is audited with axe-core against WCAG 2.1
+          A, AA, and AAA rules at desktop, tablet, and mobile screen sizes, in both light and dark themes, in
+          addition to manual keyboard and screen-reader checks.
+        </li>
       </ul>
 
       <h2>Known limitations</h2>

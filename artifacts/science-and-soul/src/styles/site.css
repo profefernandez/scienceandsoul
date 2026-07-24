@@ -458,3 +458,72 @@ section{padding:clamp(3rem,8vw,6rem) 0}
 .faqitem[open] .faqchev{transform:rotate(45deg)}
 .faqa{padding:0 var(--sp6) var(--sp6);color:var(--inkm);line-height:1.8;margin:0}
 @media(max-width:768px){.faqq{padding:var(--sp4) var(--sp4);font-size:var(--tx-base)}.faqa{padding:0 var(--sp4) var(--sp4)}}
+
+/* ===== Accessibility (Task: AAA audit) ===== */
+/* Skip link */
+.skiplink{position:absolute;left:-9999px;top:0;z-index:1000;background:var(--teal);color:#fff;padding:var(--sp3) var(--sp5);border-radius:0 0 var(--rlg) 0;font-weight:700;font-size:var(--tx-sm);text-decoration:underline}
+.skiplink:focus{left:0}
+/* Visually hidden utility */
+.vh{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+/* WCAG 1.4.1 — links inside prose must not rely on color alone */
+.faqa a,.sdesc a,.ptext a,.aboutbio a,.hdesc a,.scard-desc a,.legalbody a{text-decoration:underline;text-underline-offset:.15em}
+.legalbody a{color:var(--teal);font-weight:600}
+/* Windows High Contrast / forced colors */
+@media(forced-colors:active){
+.btn,.btnp,.btno,.btnw,.btngw,.cpsbtn,.cpschip,.tt,.burg,.mnav-x,.ccarr{border:1px solid ButtonText!important}
+.ccdot{border:1px solid ButtonText!important}
+.skiplink:focus{outline:2px solid Highlight}
+.pill{border:1px solid CanvasText}
+}
+/* Print stylesheet */
+@media print{
+.nav,.mnav,.ann,.skiplink,.orbroot,.a11y-root,.ctaband,.cps,.burg,.tt,.btn{display:none!important}
+body{background:#fff;color:#000;font-size:12pt;line-height:1.5;letter-spacing:normal;word-spacing:normal}
+a{text-decoration:underline;color:#000}
+section{padding:1rem 0;break-inside:avoid}
+.fi{opacity:1!important;animation:none!important}
+}
+
+/* ===== Accessibility widget ===== */
+.a11y-root{position:fixed;bottom:clamp(1rem,4vw,2rem);left:clamp(1rem,4vw,2rem);z-index:950;display:flex;flex-direction:column;align-items:flex-start;gap:var(--sp3)}
+.a11y-btn{width:56px;height:56px;border-radius:var(--rfull);background:var(--teal);color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:var(--shlg);border:2px solid color-mix(in oklch,#fff 30%,var(--teal));cursor:pointer;transition:transform var(--tr)}
+.a11y-btn:hover{transform:scale(1.06)}
+.a11y-panel{width:min(340px,calc(100vw - 2rem));max-height:min(560px,calc(100dvh - 8rem));overflow-y:auto;background:var(--sf);border:1.5px solid var(--dv);border-radius:var(--r2xl);box-shadow:var(--shlg);padding:var(--sp5)}
+.a11y-head{display:flex;align-items:center;justify-content:space-between;gap:var(--sp3);margin-bottom:var(--sp4)}
+.a11y-title{font-family:var(--fd);font-weight:700;font-size:var(--tx-lg);color:var(--ink)}
+.a11y-x{width:36px;height:36px;border-radius:var(--rfull);background:var(--sf2);color:var(--inkm);display:flex;align-items:center;justify-content:center;font-size:var(--tx-base);flex-shrink:0}
+.a11y-x:hover{background:var(--dv);color:var(--ink)}
+.a11y-group{margin-bottom:var(--sp4)}
+.a11y-lbl{display:block;font-size:var(--tx-xs);font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--inkm);margin-bottom:var(--sp2)}
+.a11y-sizes{display:flex;gap:var(--sp2)}
+.a11y-size{flex:1;padding:var(--sp2) var(--sp3);border:1.5px solid var(--bd);border-radius:var(--rlg);background:var(--bg);color:var(--ink);font-weight:700;font-size:var(--tx-sm);min-height:44px}
+.a11y-size[aria-pressed="true"]{border-color:var(--teal);background:var(--teall);color:var(--tealh)}
+.a11y-toggle{display:flex;align-items:center;justify-content:space-between;gap:var(--sp3);width:100%;padding:var(--sp3) var(--sp4);border:1.5px solid var(--bd);border-radius:var(--rlg);background:var(--bg);color:var(--ink);font-size:var(--tx-sm);font-weight:600;margin-bottom:var(--sp2);min-height:44px;text-align:left}
+.a11y-toggle[aria-pressed="true"]{border-color:var(--teal);background:var(--teall);color:var(--tealh)}
+.a11y-toggle-ind{flex-shrink:0;font-weight:700}
+.a11y-reset{width:100%;padding:var(--sp3);border:1.5px solid var(--bd);border-radius:var(--rlg);background:var(--sf2);color:var(--ink);font-weight:700;font-size:var(--tx-sm);min-height:44px}
+.a11y-reset:hover{border-color:var(--blush);color:var(--blush)}
+[data-theme="dark"] .a11y-size[aria-pressed="true"],[data-theme="dark"] .a11y-toggle[aria-pressed="true"]{color:var(--teal)}
+
+/* Widget effect: text size steps */
+html.a11y-text-1{font-size:112.5%}
+html.a11y-text-2{font-size:125%}
+html.a11y-text-3{font-size:143.75%}
+/* Widget effect: high contrast */
+html.a11y-contrast{--bg:#ffffff;--sf:#ffffff;--sf2:#f2f2f2;--off:#e8e8e8;--dv:#555555;--bd:#333333;--ink:#000000;--inkm:#111111;--inkf:#1a1a1a;--teal:#0a3d3d;--tealh:#062828;--teall:#d5eded;--lav:#33265e;--lavh:#261c48;--sage:#173015;--amb:#4a300a;--blush:#4d1616;--rose:#3d1830}
+html.a11y-contrast[data-theme="dark"]{--bg:#000000;--sf:#0a0a0a;--sf2:#141414;--off:#1e1e1e;--dv:#888888;--bd:#aaaaaa;--ink:#ffffff;--inkm:#f0f0f0;--inkf:#e8e8e8;--teal:#8ae0e0;--tealh:#a8f0f0;--teall:#0f2a2a;--lav:#c8bcf5;--lavh:#d8d0fa;--sage:#a8e0a0;--amb:#f0c070;--blush:#f0a8a0;--rose:#e8a8cc}
+/* Widget effect: highlight links */
+html.a11y-links a{text-decoration:underline!important;text-underline-offset:.15em;text-decoration-thickness:2px}
+html.a11y-links a:focus-visible,html.a11y-links a:hover{outline:2px solid var(--teal);outline-offset:2px}
+/* Widget effect: reduced motion */
+html.a11y-motion *,html.a11y-motion *::before,html.a11y-motion *::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+html.a11y-motion .fi{opacity:1!important;animation:none!important}
+/* Widget effect: reading mask (focus mode) */
+.a11y-mask{position:fixed;left:0;right:0;z-index:940;background:rgba(0,0,0,.55);pointer-events:none}
+/* Widget effect: simplified layout */
+html.a11y-simple .hero-bg,html.a11y-simple .ctaband::before,html.a11y-simple .orbroot,html.a11y-simple .colimg-canvas{display:none!important}
+html.a11y-simple .colimg-base{filter:none}
+html.a11y-simple .colimg-full{opacity:1;transition:none}
+html.a11y-simple *{box-shadow:none!important;backdrop-filter:none!important}
+html.a11y-simple .fi{opacity:1!important;animation:none!important}
+@media(max-width:600px){.a11y-root{bottom:5.5rem}}

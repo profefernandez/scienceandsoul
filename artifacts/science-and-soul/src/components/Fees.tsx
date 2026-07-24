@@ -28,7 +28,7 @@ export function Fees() {
               <tbody>
                 {sessionRates.map((r) => (
                   <tr key={r.label}>
-                    <td>{r.label}</td>
+                    <th scope="row" style={{ textAlign: "left", fontWeight: 400, padding: "var(--sp3) 0", borderBottom: "1px solid var(--dv)", fontSize: "var(--tx-base)" }}>{r.label}</th>
                     <td>{r.price}</td>
                   </tr>
                 ))}

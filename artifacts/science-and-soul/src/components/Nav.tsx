@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Logo } from "./Logo";
 import { EmailKellyButton } from "./EmailKellyButton";
+import { useFocusTrap } from "../hooks/useFocusTrap";
 
 interface NavProps {
   theme: "light" | "dark";
@@ -19,10 +20,13 @@ const navLinks = [
 export function Nav({ theme, onToggleTheme, linkPrefix = "" }: NavProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const homeHref = linkPrefix || "#";
+  const mnavRef = useRef<HTMLDivElement>(null);
 
   function closeMobile() {
     setMobileOpen(false);
   }
+
+  useFocusTrap(mnavRef, mobileOpen, closeMobile);
 
   return (
     <>
@@ -79,9 +83,12 @@ export function Nav({ theme, onToggleTheme, linkPrefix = "" }: NavProps) {
       </nav>
 
       <div
+        ref={mnavRef}
         className={`mnav${mobileOpen ? " open" : ""}`}
         role="dialog"
         aria-modal="true"
+        aria-label="Site menu"
+        aria-hidden={!mobileOpen}
       >
         <button
           className="mnav-x"

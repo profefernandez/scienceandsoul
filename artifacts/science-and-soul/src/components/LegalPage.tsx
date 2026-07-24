@@ -16,9 +16,9 @@ export function LegalPage({ title, subtitle, updated, metaDescription, children 
   }, []);
 
   return (
-    <main>
+    <main id="main">
       <Helmet>
-        <title>{title} | Science and Soul Counseling &amp; Wellness</title>
+        <title>{`${title} | Science and Soul Counseling & Wellness`}</title>
         <meta name="description" content={metaDescription} />
       </Helmet>
       <section className="legal">

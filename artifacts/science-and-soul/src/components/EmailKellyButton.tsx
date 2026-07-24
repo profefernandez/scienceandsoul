@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
+import { useFocusTrap } from "../hooks/useFocusTrap";
 
 export const KELLY_EMAIL = "kelly@scienceandsoulcounseling.com";
 const SUBJECT = "New Client Inquiry — Science & Soul Counseling";
@@ -38,21 +39,23 @@ interface EmailKellyButtonProps {
 }
 
 function ProviderModal({ onClose }: { onClose: () => void }) {
+  const overlayRef = useRef<HTMLDivElement>(null);
+  useFocusTrap(overlayRef, true, onClose);
+
   useEffect(() => {
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    function onKey(e: KeyboardEvent) {
-      if (e.key === "Escape") onClose();
-    }
-    document.addEventListener("keydown", onKey);
     return () => {
       document.body.style.overflow = prev;
-      document.removeEventListener("keydown", onKey);
     };
-  }, [onClose]);
+  }, []);
 
   return createPortal(
-    <div className="epoverlay" role="dialog" aria-modal="true" aria-label="Choose email app" onClick={onClose}>
+    // Backdrop click-to-close is a mouse-only convenience; keyboard users
+    // close via Escape (focus trap) or the labeled Close button.
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
+    <div ref={overlayRef} className="epoverlay" role="dialog" aria-modal="true" aria-label="Choose email app" onClick={onClose}>
+      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
       <div className="epmodal" onClick={(e) => e.stopPropagation()}>
         <div className="epmodal-head">
           <span className="epmodal-title">Choose your email app</span>
