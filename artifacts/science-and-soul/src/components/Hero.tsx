@@ -1,4 +1,6 @@
-const heroImg = `${import.meta.env.BASE_URL}hero-illustration.png`;
+import { imgSrc, imgSrcSet } from "../lib/img";
+
+const heroImg = imgSrc("hero", 1024);
 
 export function Hero() {
   return (
@@ -21,10 +23,13 @@ export function Hero() {
             <img
               className="hfeatimg"
               src={heroImg}
+              srcSet={imgSrcSet("hero", [480, 768, 1024, 1254])}
+              sizes="(min-width: 768px) 736px, 100vw"
               alt="Coloring-book style illustration of three Tibetan singing bowls surrounded by lotus flowers, amethyst crystals, a mandala, and flowering vines — representing sound bowl healing"
               width={1024}
               height={1536}
               loading="eager"
+              fetchPriority="high"
             />
           </figure>
           <p className="hdesc hcdesc">

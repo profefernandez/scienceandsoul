@@ -8,6 +8,8 @@ interface ColoringImageProps {
   loading?: "eager" | "lazy";
   className?: string;
   fit?: boolean;
+  srcSet?: string;
+  sizes?: string;
 }
 
 export function ColoringImage({
@@ -18,6 +20,8 @@ export function ColoringImage({
   loading = "lazy",
   className = "",
   fit = false,
+  srcSet,
+  sizes,
 }: ColoringImageProps) {
   const wrapRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -165,9 +169,9 @@ export function ColoringImage({
 
   return (
     <div className={cls} ref={wrapRef}>
-      <img className="colimg-base" src={src} alt={alt} width={width} height={height} loading={loading} decoding="async" />
+      <img className="colimg-base" src={src} srcSet={srcSet} sizes={sizes} alt={alt} width={width} height={height} loading={loading} decoding="async" />
       <canvas className="colimg-canvas" ref={canvasRef} aria-hidden="true" />
-      <img className="colimg-full" src={src} alt="" aria-hidden="true" loading={loading} decoding="async" />
+      <img className="colimg-full" src={src} srcSet={srcSet} sizes={sizes} alt="" aria-hidden="true" loading={loading} decoding="async" />
     </div>
   );
 }

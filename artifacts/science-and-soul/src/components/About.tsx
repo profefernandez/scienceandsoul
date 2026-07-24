@@ -1,4 +1,5 @@
 import { ColoringImage } from "./ColoringImage";
+import { imgSrc, imgSrcSet } from "../lib/img";
 
 const modalities = [
   { cls: "pill pt", label: "CBT" },
@@ -19,7 +20,9 @@ export function About() {
           <div className="aboutportrait fi">
             <div className="aboutframe">
               <ColoringImage
-                src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/db7664bf-57c6-41fe-b725-868539c597b3.png"
+                src={imgSrc("kelly-portrait", 1024)}
+                srcSet={imgSrcSet("kelly-portrait", [480, 768, 1024, 1254])}
+                sizes="(min-width: 1024px) 380px, 100vw"
                 alt="Black woman healing illustration representing Kelly Nelson LCSW practice"
                 width={380}
                 height={507}

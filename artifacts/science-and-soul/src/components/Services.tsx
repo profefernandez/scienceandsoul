@@ -1,9 +1,10 @@
 import { ColoringImage } from "./ColoringImage";
+import { imgSrc, imgSrcSet } from "../lib/img";
 
 const services = [
   {
     accent: "sc-lav",
-    img: "https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/e4bd94ce-72e8-490a-9d84-147dae6c3020.png",
+    img: "services-individual",
     imgAlt: "Black woman meditation and chakra alignment illustration",
     pill: { cls: "pill pl", label: "Chakra Alignment" },
     title: "Chakra alignment",
@@ -11,7 +12,7 @@ const services = [
   },
   {
     accent: "sc-amb",
-    img: "https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/7cd4a7d9-e8ec-4f7a-88ed-74fc2d48b0f3.png",
+    img: "sound-healing",
     imgAlt: "Black woman with sound bowls in coloring-book style",
     pill: { cls: "pill pa", label: "Sound Bowl Healing" },
     title: "Sound bowl healing",
@@ -19,7 +20,7 @@ const services = [
   },
   {
     accent: "sc-sage",
-    img: "https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/db7664bf-57c6-41fe-b725-868539c597b3.png",
+    img: "kelly-portrait",
     imgAlt: "Black woman receiving Reiki in coloring-book style",
     pill: { cls: "pill ps", label: "Reiki & Energy Work" },
     title: "Reiki & energy work",
@@ -27,7 +28,7 @@ const services = [
   },
   {
     accent: "sc-teal",
-    img: "https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/1d80a0ab-3752-4880-bc0a-df1780b022eb.png",
+    img: "services-group",
     imgAlt: "Black woman therapist and client evidence-based therapy illustration",
     pill: { cls: "pill pt", label: "Evidence-Based Therapy" },
     title: "Evidence-based therapy",
@@ -53,7 +54,9 @@ export function Services() {
             <div className={`scard ${s.accent} fi`} key={s.title}>
               <ColoringImage
                 className="scard-img"
-                src={s.img}
+                src={imgSrc(s.img, 1024)}
+                srcSet={imgSrcSet(s.img, [480, 768, 1024, 1254])}
+                sizes="(min-width: 768px) 50vw, 100vw"
                 alt={s.imgAlt}
                 width={600}
                 height={450}

@@ -1,3 +1,4 @@
 - [Science & Soul CSS class names](science-soul-css-classnames.md) — site.css uses ultra-terse 2-3 char global class names; namespace any new component classes to avoid silent collisions.
 - [Launch Lemonade API](launchlemonade-api.md) — use sip.launchlemonade.app wf endpoints (api.launchlemonade.app is dead); user owns the AI prompt/KB, server must not inject persona.
+- [Headless verification](playwright-verification.md) — test via direct Vite port, not :80 proxy path (404s in headless); verify styles via evaluate, not element screenshots.
 - [Helmet title entity bug](helmet-title-entity-bug.md) — react-helmet-async titles must be a single string; HTML entities split children and render an empty document title.

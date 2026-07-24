@@ -1,3 +1,5 @@
+import { imgSrc, imgSrcSet } from "../lib/img";
+
 const rights = [
   { num: "01", text: "Know your expected costs before services begin." },
   { num: "02", text: "Receive your estimate in writing at least 1 business day before your appointment." },
@@ -56,7 +58,9 @@ export function GoodFaith() {
           </div>
           <div className="philos-img fi">
             <img
-              src={`${import.meta.env.BASE_URL}goodfaith-illustration.png`}
+              src={imgSrc("goodfaith", 1024)}
+              srcSet={imgSrcSet("goodfaith", [480, 768, 1024, 1280])}
+              sizes="(min-width: 768px) 50vw, 100vw"
               alt="Watercolor illustration of a therapist warmly handing a client a written cost estimate in a cozy counseling office"
               width={1024}
               height={768}

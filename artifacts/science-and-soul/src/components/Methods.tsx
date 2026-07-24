@@ -1,3 +1,5 @@
+import { imgSrc, imgSrcSet } from "../lib/img";
+
 const groups = [
   {
     dot: "var(--teal)",
@@ -44,7 +46,9 @@ export function Methods() {
         <div className="philos-inner">
           <div className="philos-img fi">
             <img
-              src={`${import.meta.env.BASE_URL}methods-illustration.png`}
+              src={imgSrc("methods", 1024)}
+              srcSet={imgSrcSet("methods", [480, 768, 1024, 1280])}
+              sizes="(min-width: 768px) 50vw, 100vw"
               alt="Watercolor illustration of a therapist in warm conversation with a diverse group including a teen and family members in a cozy counseling room"
               width={1024}
               height={768}

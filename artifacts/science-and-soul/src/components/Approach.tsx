@@ -1,4 +1,5 @@
 import { ColoringImage } from "./ColoringImage";
+import { imgSrc, imgSrcSet } from "../lib/img";
 
 const steps = [
   {
@@ -54,7 +55,9 @@ export function Approach() {
           </div>
           <div className="apprimg fi">
             <ColoringImage
-              src="https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/7cd4a7d9-e8ec-4f7a-88ed-74fc2d48b0f3.png"
+              src={imgSrc("sound-healing", 1024)}
+              srcSet={imgSrcSet("sound-healing", [480, 768, 1024, 1254])}
+              sizes="(min-width: 768px) 50vw, 100vw"
               alt="Black woman sound healing illustration in coloring-book style"
               width={540}
               height={540}

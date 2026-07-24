@@ -152,6 +152,8 @@ section{padding:clamp(3rem,8vw,6rem) 0}
 .hctitle{margin-bottom:var(--sp6)}
 .hfeature{position:relative;width:100%;max-width:46rem;border-radius:var(--r2xl);overflow:hidden;box-shadow:var(--shlg);border:3px solid var(--dv)}
 .hfeatimg{width:100%;height:auto;display:block}
+/* Desktop art direction: cap the portrait hero so it doesn't force excess scrolling */
+@media(min-width:1024px){.hfeatimg{max-height:74vh;object-fit:cover;object-position:center 42%}}
 .hcdesc{margin:var(--sp8) auto 0;max-width:56ch;text-align:center}
 .hcacts{justify-content:center;margin-top:var(--sp6)}
 .slabel{display:inline-flex;align-items:center;gap:var(--sp2);font-family:var(--fh);font-size:calc(var(--tx-base) + 1px);color:var(--inkm);margin-bottom:var(--sp3)}

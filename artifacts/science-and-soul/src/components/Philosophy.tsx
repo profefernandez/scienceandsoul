@@ -1,4 +1,5 @@
 import { ColoringImage } from "./ColoringImage";
+import { imgSrc, imgSrcSet } from "../lib/img";
 
 export function Philosophy() {
   return (
@@ -7,7 +8,9 @@ export function Philosophy() {
         <div className="philos-inner">
           <div className="philos-img fi">
             <ColoringImage
-              src={`${import.meta.env.BASE_URL}philosophy-illustration.png`}
+              src={imgSrc("philosophy", 1024)}
+              srcSet={imgSrcSet("philosophy", [480, 768, 1024])}
+              sizes="(min-width: 768px) 50vw, 100vw"
               alt="Coloring-book style illustration of Tibetan singing bowls surrounded by lotus flowers, amethyst crystals, and a mandala — representing sound bowl healing"
               width={1024}
               height={1536}
