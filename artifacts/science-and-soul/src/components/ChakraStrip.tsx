@@ -48,7 +48,7 @@ export function ChakraStrip() {
                 <p className="ccmean">{c.meaning}</p>
                 <button
                   type="button"
-                  className="btn btnp ccact"
+                  className="btn btnp btnlg ccact"
                   aria-pressed={active?.id === c.id}
                   onClick={() => chooseChakra(c)}
                   aria-label={`Open the ${c.name} chakra guide — ${c.meaning}`}

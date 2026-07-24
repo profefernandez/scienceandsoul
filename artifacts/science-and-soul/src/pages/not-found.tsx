@@ -16,7 +16,7 @@ export default function NotFound() {
             The page you&rsquo;re looking for may have moved, or the link may have been
             mistyped. Let&rsquo;s get you back to a familiar place.
           </p>
-          <Link href="/" className="btn btnp">Back to home</Link>
+          <Link href="/" className="btn btnp btnlg">Back to home</Link>
         </div>
       </section>
     </main>
