@@ -99,7 +99,7 @@ input,button,textarea,select{font:inherit;color:inherit}
 .ntitle{font-family:var(--fd);font-size:var(--tx-base);font-weight:700;color:var(--ink);letter-spacing:-.01em}
 .nsub{font-size:var(--tx-xs);color:var(--inkm);font-weight:500;letter-spacing:.08em;text-transform:uppercase}
 .nlinks{display:flex;gap:var(--sp8);list-style:none}
-.nlinks a{font-size:var(--tx-sm);font-weight:600;color:var(--inkm);transition:color var(--tr)}
+.nlinks a{display:inline-block;padding:var(--sp2) var(--sp1);font-size:var(--tx-sm);font-weight:600;color:var(--inkm);transition:color var(--tr);border-radius:var(--rsm)}
 .nlinks a:hover{color:var(--teal)}
 .nact{display:flex;align-items:center;gap:var(--sp3)}
 .tt{width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:var(--rfull);border:1.5px solid var(--bd);color:var(--inkm);transition:all var(--tr)}
@@ -243,6 +243,7 @@ section{padding:clamp(3rem,8vw,6rem) 0}
 .statl{font-size:var(--tx-xs);color:var(--inkm);font-weight:600;text-transform:uppercase;letter-spacing:.06em}
 .modcloud{display:flex;flex-wrap:wrap;gap:var(--sp2)}
 .feesgrid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.feesgrid>*{min-width:0}
 .fcard{background:var(--sf);border:1.5px solid var(--dv);border-radius:var(--r2xl);padding:2rem}
 .fcardtitle{font-family:var(--fd);font-size:var(--tx-xl);font-weight:700;margin-bottom:var(--sp6);color:var(--ink)}
 .ftable{width:100%;border-collapse:collapse}
@@ -295,6 +296,9 @@ section{padding:clamp(3rem,8vw,6rem) 0}
 }
 @media(max-width:768px){
 .nlinks{display:none}.burg{display:flex}.nav .bkdwrap{display:none}
+.tt,.burg{width:44px;min-width:44px;height:44px;flex-shrink:0}
+.nact{gap:var(--sp2)}
+.nact .btn{white-space:nowrap;padding:var(--sp3) var(--sp4)}
 .philos-inner{grid-template-columns:1fr}
 .svcgrid{grid-template-columns:1fr}
 .apprgrid{grid-template-columns:1fr}
@@ -311,6 +315,11 @@ section{padding:clamp(3rem,8vw,6rem) 0}
 .footerinner{grid-template-columns:1fr}
 .nsub{letter-spacing:.03em;font-size:calc(var(--tx-xs) - .5px)}
 .inslist{grid-template-columns:1fr}
+}
+@media(max-width:360px){
+.nsub{display:none}
+.nlogo svg{display:none}
+.fcard{padding:var(--sp5)}
 }
 
 /* ===== Chakra Orb AI Guide ===== */

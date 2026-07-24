@@ -1,0 +1,28 @@
+When you scale a mobile-first design up to desktop, navigation and Calls to Action (CTAs) undergo two of the biggest operational transformations.
+1. Navigation Adapters
+Navigation Style & Layout
+| Mobile | Desktop |
+|---|---|
+| Hidden or Compact: Hamburger menus, slide-out drawers, or bottom navigation bars to preserve screen space. | Explicit & Horizontal: Fully visible horizontal header bar showcasing core links, search inputs, and key actions at a glance. |
+| Full-Screen Menus: Opening a menu often takes over the entire mobile viewport to keep touch targets large. | Mega Menus & Dropdowns: Multi-column dropdown menus that let users scan sub-categories without leaving the page context. |
+| Deep Drill-Downs: Nesting sub-links into accordion-style sub-menus. | Breadcrumbs & Persistent Utility Nav: Dedicated space for utility links (Account, Help, Location) alongside main navigation links. |
+Visual Placement
+ * Mobile: Critical actions sit at the bottom of the screen ("thumb zone") within easy reach of one-handed holding.
+ * Desktop: Navigation moves back to the top-left/top-right visual anchor points, matching natural F-shaped visual scanning patterns with a mouse cursor.
+2. CTA Sizing & Ergonomics
+Sizing Dynamics
+| Element | Mobile Target | Desktop Target |
+|---|---|---|
+| Min Target Size | 44×44px to 48×48px (Fits average human thumb tip) | 32×32px to 40×40px (Precision cursor navigation) |
+| Button Width | Full-width (100%) across screen for easy tapping | Auto-width / Fixed padded width (prevents giant stretch) |
+| Spacing Gap | 12px to 16px vertical gap to prevent mis-taps | 8px to 12px inline horizontal gap for side-by-side buttons |
+Functional Behavior Changes
+ * Sticky Positioning:
+   * Mobile: Primary CTAs are often fixed to a bottom sticky bar so they remain accessible while scrolling long pages.
+   * Desktop: Sticky CTAs shift to a top header bar or a sticky sidebar module on the right side of the main content column.
+ * Primary vs. Secondary Grouping:
+   * Mobile: Multiple buttons stack vertically, with the primary action placed on top.
+   * Desktop: Primary and secondary actions sit horizontally side-by-side (e.g., [ Primary Action ]  [ Cancel ]), relying on distinct visual hierarchy (solid fill vs. outline) rather than stack position.
+ * Interactive Affordances:
+   * Mobile: Feedback relies on active tap states (color shift on touch down) or haptic feedback.
+   * Desktop: Hover states (:hover), cursor pointer cues (cursor: pointer), and keyboard focus rings (:focus-visible) indicate clickability before an interaction happens.
