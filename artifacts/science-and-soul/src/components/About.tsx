@@ -49,13 +49,7 @@ export function About() {
               </div>
             </div>
             <p className="aboutbio">
-              Kelly Nelson is the Owner and Lead Psychotherapist of Science and Soul Counseling &amp; Wellness, a Licensed Clinical Social Worker–Supervisor (LCSW-S) based in Houston, Texas. She earned her Master of Social Work from Simmons University in 2018 and holds Texas license #67591. She has been in clinical practice for eight years.
-            </p>
-            <p className="aboutbio">
-              She works with teens, adults, and the LGBTQIA+ community on trauma, depression, anxiety, mood disorders, ADHD/ADD, grief, self-harm, attachment and personality disorders, suicidal ideation, stress, and life transitions. Her clinical methods include CBT, DBT, psychodynamic therapy, person-centered approaches, mindfulness, and attachment-based work.
-            </p>
-            <p className="aboutbio">
-              Kelly also offers Reiki, chakra alignment, and sound bowl healing for clients who want to address emotional and energetic wellbeing alongside clinical therapy. She holds late-evening appointments for clients who need scheduling flexibility.
+              Kelly works with teens, adults, and the LGBTQIA+ community on various mental health challenges using a blend of evidence-based and spiritual practices. Late-evening appointments available for flexible scheduling.
             </p>
             <div className="modcloud">
               {modalities.map((m) => (

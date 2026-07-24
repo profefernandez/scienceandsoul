@@ -7,12 +7,8 @@ const sessionRates = [
 const insurance = [
   "Aetna",
   "Blue Cross",
-  "Blue Shield",
-  "BlueCross & BlueShield",
-  "Cigna & Evernorth",
-  "Oscar Health",
-  "Oxford",
-  "UnitedHealthcare UHC",
+  "Cigna",
+  "UnitedHealthcare",
 ];
 
 export function Fees() {

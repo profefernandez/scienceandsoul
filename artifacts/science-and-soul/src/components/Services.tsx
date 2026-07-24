@@ -40,12 +40,12 @@ export function Services() {
     <section id="services">
       <div className="ww">
         <div style={{ textAlign: "center", marginBottom: "3rem" }}>
-          <div className="slabel" style={{ justifyContent: "center" }}>What Kelly Offers</div>
+          <div className="slabel" style={{ justifyContent: "center" }}>Services Offered</div>
           <h2 className="stitle" style={{ marginInline: "auto" }}>
-            Individual therapy,<br />group therapy, <em>&amp; integrative care</em>
+            Individual therapy, group therapy,<br /><em>&amp; integrative care</em>
           </h2>
           <p className="sdesc" style={{ marginInline: "auto", textAlign: "center" }}>
-            Kelly offers individual and group therapy alongside integrative spiritual modalities. Each session is shaped around your goals and the combination of methods that fits your needs.
+            Kelly offers personalized therapy sessions, integrating spiritual modalities. Each session is customized to your unique goals and needs.
           </p>
         </div>
         <div className="svcgrid">

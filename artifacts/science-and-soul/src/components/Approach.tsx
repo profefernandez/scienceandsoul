@@ -4,26 +4,26 @@ const steps = [
   {
     iconStyle: { background: "var(--teall)", color: "var(--teal)" },
     emoji: "🔬",
-    title: "Start with the full picture",
-    desc: "Kelly gathers a thorough history — what the client has experienced, what they want to work on, and what tools and strengths they already have. That foundation shapes everything that follows.",
+    title: "Start with the Full Picture",
+    desc: "Understanding your history and goals.",
   },
   {
     iconStyle: { background: "var(--lavl)", color: "var(--lav)" },
     emoji: "✨",
-    title: "Apply clinical methods",
-    desc: "CBT, DBT, psychodynamic therapy, and mindfulness provide the clinical structure for each session. Kelly adapts the method to the individual's pace, goals, and what is actually producing results.",
+    title: "Apply Clinical Methods",
+    desc: "Adapting CBT, DBT, and mindfulness based on what works for you.",
   },
   {
     iconStyle: { background: "var(--sagel)", color: "var(--sage)" },
     emoji: "🌿",
-    title: "Add spiritual practices when useful",
-    desc: "Reiki, chakra alignment, and sound bowl healing offer additional pathways for clients whose care benefits from attention to energy, spirituality, and somatic experience.",
+    title: "Add Spiritual Practices When Useful",
+    desc: "Integrating Reiki, chakra alignment, and sound bowl healing as needed.",
   },
   {
     iconStyle: { background: "var(--ambl)", color: "var(--amb)" },
     emoji: "⚡",
-    title: "Build skills that last",
-    desc: "Treatment develops insight, coping strategies, and self-understanding that clients can draw on independently. The goal is capability and clarity that carries forward after sessions end.",
+    title: "Build Skills That Last",
+    desc: "Developing coping strategies and self-understanding that empower you beyond therapy.",
   },
 ];
 
@@ -33,7 +33,7 @@ export function Approach() {
       <div className="ww">
         <div className="apprgrid">
           <div className="fi">
-            <div className="slabel">How Kelly Works</div>
+            <div className="slabel">The Process</div>
             <h2 className="stitle">
               A structured process,<br /><em>tailored to each person</em>
             </h2>

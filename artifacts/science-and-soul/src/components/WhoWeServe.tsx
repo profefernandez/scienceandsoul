@@ -1,19 +1,19 @@
 const groups = [
   {
     emoji: "🌱",
-    title: "Teens & adults",
-    desc: "Kelly works with teenagers and adults on trauma, depression, anxiety, mood disorders, ADHD/ADD, grief, self-harm, attachment and personality disorders, suicidal ideation, stress, and relationship challenges. Sessions are paced to what each person is ready for and built around their specific goals.",
+    title: "Teens & Adults",
+    desc: "Support for trauma, anxiety, ADHD/ADD, grief, and more.",
     tags: [
       { cls: "pill ps", label: "Trauma" },
-      { cls: "pill ps", label: "Depression" },
+      { cls: "pill ps", label: "Anxiety" },
       { cls: "pill ps", label: "ADHD / ADD" },
       { cls: "pill ps", label: "Grief" },
     ],
   },
   {
     emoji: "🌈",
-    title: "LGBTQIA+ community",
-    desc: "Kelly provides affirming care for LGBTQIA+ clients, including work on gender identity, sexual orientation, family dynamics, and the specific stressors that come with navigating those experiences. Her training and clinical focus reflect her commitment to this community.",
+    title: "LGBTQIA+ Community",
+    desc: "Affirming care addressing identity, family dynamics, and unique stressors.",
     tags: [
       { cls: "pill pl", label: "Affirming" },
       { cls: "pill pl", label: "Gender Identity" },
@@ -22,12 +22,12 @@ const groups = [
   },
   {
     emoji: "🌸",
-    title: "Clients seeking integrative care",
-    desc: "Kelly works with clients who want evidence-based clinical therapy combined with spiritual practices. Sessions can include talk therapy, Reiki, chakra alignment, sound bowl healing, or any combination that serves the client's goals.",
+    title: "Clients Seeking Integrative Care",
+    desc: "Combining clinical therapy with spiritual practices to meet diverse needs.",
     tags: [
       { cls: "pill pt", label: "Integrative" },
       { cls: "pill pt", label: "Spiritual" },
-      { cls: "pill pt", label: "Couples" },
+      { cls: "pill pt", label: "Holistic" },
     ],
   },
 ];

@@ -21,15 +21,15 @@ export function Philosophy() {
             <div className="ppillars">
               <div className="ppillar">
                 <div className="pdot" style={{ background: "var(--teal)" }} />
-                <div><strong>Clinical foundation.</strong> Kelly draws on CBT, DBT, trauma-focused care, and psychodynamic therapy, selecting and adapting methods to fit each client's specific goals.</div>
+                <div><strong>Clinical Foundation.</strong> Kelly draws on CBT, DBT, trauma-focused care, and psychodynamic therapy, selecting methods tailored to each client's specific goals.</div>
               </div>
               <div className="ppillar">
                 <div className="pdot" style={{ background: "var(--lav)" }} />
-                <div><strong>Spiritual practice.</strong> Sessions can include chakra alignment, Reiki, and sound bowl healing for clients who want to address emotional and energetic dimensions of their wellbeing.</div>
+                <div><strong>Spiritual Practices.</strong> Sessions can include chakra alignment, Reiki, and sound bowl healing, addressing emotional and energetic aspects of wellbeing.</div>
               </div>
               <div className="ppillar">
                 <div className="pdot" style={{ background: "var(--amb)" }} />
-                <div><strong>Client strengths.</strong> Kelly's work builds on the insight, resilience, and capacity for growth that clients already bring, developing skills and understanding that carry forward after sessions end.</div>
+                <div><strong>Client Strengths.</strong> Kelly builds on the insight and resilience clients already possess, developing skills that carry forward after sessions.</div>
               </div>
             </div>
           </div>

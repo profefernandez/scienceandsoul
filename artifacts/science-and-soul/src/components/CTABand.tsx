@@ -5,10 +5,10 @@ export function CTABand() {
         <div className="ctainner">
           <div className="ctaeye">✦ Begin Your Journey</div>
           <h2 className="ctatitle">
-            Your Soul Has Been<br />Waiting for This
+            Begin Your<br />Healing Journey
           </h2>
           <p className="ctadesc">
-            Book a free 15-minute consultation. No commitment required &mdash; just an honest conversation about where you are and where you want to go.
+            Book a free 15-minute consultation &mdash; just an honest conversation about where you are and where you want to go.
           </p>
           <div className="ctaacts">
             <a href="tel:8325011687" className="btn btnw btnlg">📞 Call (832) 501-1687</a>
