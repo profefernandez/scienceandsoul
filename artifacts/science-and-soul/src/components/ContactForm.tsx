@@ -148,7 +148,7 @@ export function ContactForm() {
   if (submitted) {
     return (
       <div style={{ textAlign: "center", padding: "2rem" }}>
-        <div style={{ fontSize: "3rem", marginBottom: "var(--sp4)" }}>🌸</div>
+        <div style={{ fontSize: "var(--tx-2xl)", marginBottom: "var(--sp4)" }}>🌸</div>
         <h4 style={{ fontFamily: "var(--fd)", fontSize: "var(--tx-xl)", marginBottom: "var(--sp3)", color: "var(--teal)" }}>
           Thank you for reaching out.
         </h4>

@@ -186,7 +186,7 @@ section{padding:clamp(3rem,8vw,6rem) 0}
 .scard-desc{font-size:var(--tx-base);color:var(--inkm);line-height:1.8;margin-bottom:var(--sp4)}
 .scard-bens{list-style:none;padding:0;display:flex;flex-direction:column;gap:var(--sp2)}
 .scard-bens li{font-size:var(--tx-sm);color:var(--inkm);display:flex;align-items:flex-start;gap:var(--sp2);max-width:100%}
-.scard-bens li::before{content:"\2726";color:var(--teal);font-size:.65em;flex-shrink:0;margin-top:.35em}
+.scard-bens li::before{content:"\2726";color:var(--teal);font-size:var(--tx-xs);flex-shrink:0;margin-top:.35em}
 .sc-teal{border-top:4px solid var(--teal)}
 .sc-lav{border-top:4px solid var(--lav)}
 .sc-sage{border-top:4px solid var(--sage)}
@@ -330,7 +330,7 @@ section{padding:clamp(3rem,8vw,6rem) 0}
 .orbmd a{color:var(--teal);text-decoration:underline}
 .orbmd strong{font-weight:700;color:var(--ink)}
 .orbmd h1,.orbmd h2,.orbmd h3{font-family:var(--fd);font-size:var(--tx-base);margin:var(--sp2) 0 var(--sp1)}
-.orbmd code{background:var(--off);padding:1px 5px;border-radius:var(--rsm);font-size:.85em}
+.orbmd code{background:var(--off);padding:1px 5px;border-radius:var(--rsm);font-size:var(--tx-sm)}
 .orbtyping{display:flex;align-items:center;gap:5px;width:fit-content}
 .orbtyping span{width:7px;height:7px;border-radius:50%;background:var(--inkm);opacity:.5;animation:orbblink 1.2s infinite ease-in-out}
 .orbtyping span:nth-child(2){animation-delay:.2s}
