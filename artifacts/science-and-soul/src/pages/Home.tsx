@@ -24,7 +24,7 @@ const structuredData = JSON.stringify({
   logo: OG_IMAGE_URL,
   image: OG_IMAGE_URL,
   telephone: "+18325011687",
-  email: "kelly@scienceandsoulcounseling.com",
+  email: "Kelly@scienceandsoulcounseling.com",
   address: {
     "@type": "PostalAddress",
     streetAddress: "9950 Cypresswood Dr, Suite 203",

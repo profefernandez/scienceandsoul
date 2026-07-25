@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { useFocusTrap } from "../hooks/useFocusTrap";
 
-export const KELLY_EMAIL = "kelly@scienceandsoulcounseling.com";
+export const KELLY_EMAIL = "Kelly@scienceandsoulcounseling.com";
 const SUBJECT = "New Client Inquiry — Science & Soul Counseling";
 const SUBJECT_ENC = encodeURIComponent(SUBJECT);
 

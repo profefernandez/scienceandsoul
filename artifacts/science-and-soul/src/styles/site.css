@@ -2050,6 +2050,14 @@ html.a11y-contrast .washbg {
 }
 
 /* ===== Accessibility widget ===== */
+/* Desktop only — hide the widget on phones and tablets. Mirrors the site's
+   1025px desktop breakpoint used elsewhere in this stylesheet. */
+@media (max-width: 1024px) {
+   .a11y-root {
+      display: none !important
+   }
+}
+
 .a11y-root {
    position: fixed;
    bottom: clamp(16px, 4vw, 32px);

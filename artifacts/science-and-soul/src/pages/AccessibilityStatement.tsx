@@ -118,7 +118,7 @@ export default function AccessibilityStatement() {
         9950 Cypresswood Dr, Suite 203<br />
         Houston, TX 77070<br />
         Phone: <a href="tel:8325011687">(832) 501-1687</a><br />
-        Email: <a href="mailto:kelly@scienceandsoulcounseling.com">kelly@scienceandsoulcounseling.com</a>
+        Email: <a href="mailto:Kelly@scienceandsoulcounseling.com">Kelly@scienceandsoulcounseling.com</a>
       </p>
       <p>
         We aim to respond to accessibility feedback within 2 business days.
