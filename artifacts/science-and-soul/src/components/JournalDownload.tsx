@@ -11,32 +11,32 @@ const PAGES: { src: string; title: string; alt: string }[] = [
   {
     src: coverPage,
     title: "Cover",
-    alt: "Journal cover — “My Sacred Journey: A Spiritual Journal” with a meditating woman before a full moon, surrounded by flowers and crystals",
+    alt: "Journal cover: My Sacred Journey: A Spiritual Journal with a meditating woman before a full moon, surrounded by flowers and crystals",
   },
   {
     src: welcomePage,
     title: "Welcome",
-    alt: "“Welcome to Your Sacred Journey” page with seven chakra singing bowls and the prompt: what brings you here today, and what does healing look like to you?",
+    alt: "Welcome to Your Sacred Journey page with seven chakra singing bowls and the prompt: what brings you here today, and what does healing look like to you?",
   },
   {
     src: approachPage,
     title: "My Approach",
-    alt: "“My Approach to Your Healing” page with a flower-of-life mandala and the prompt: what areas of your life feel most out of balance right now?",
+    alt: "My Approach to Your Healing page with a flower-of-life mandala and the prompt: what areas of your life feel most out of balance right now?",
   },
   {
     src: expectPage,
     title: "What You Can Expect",
-    alt: "“What You Can Expect” page with candles, crystals, and a lotus, and the prompt: what is one belief about yourself you would like to release on this journey?",
+    alt: "What You Can Expect page with candles, crystals, and a lotus, and the prompt: what is one belief about yourself you would like to release on this journey?",
   },
   {
     src: intentionsPage,
     title: "Setting Your Intentions",
-    alt: "“Setting Your Intentions” page with an open journal, quill, and candles, and space to write three intentions for your healing journey",
+    alt: "Setting Your Intentions page with an open journal, quill, and candles, and space to write three intentions for your healing journey",
   },
   {
     src: strengthPage,
     title: "Your Power and Strength",
-    alt: "“Your Power and Your Strength” page with a lotus mandala, butterflies, and hummingbirds, and the prompt: who or what has been your greatest source of strength?",
+    alt: "Your Power and Your Strength page with a lotus mandala, butterflies, and hummingbirds, and the prompt: who or what has been your greatest source of strength?",
   },
   {
     src: backPage,
@@ -47,7 +47,6 @@ const PAGES: { src: string; title: string; alt: string }[] = [
 
 async function buildPdf(): Promise<void> {
   const { jsPDF } = await import("jspdf");
-  // Letter portrait in points: 612 x 792
   const pdf = new jsPDF({ unit: "pt", format: "letter", orientation: "portrait" });
   const pageW = pdf.internal.pageSize.getWidth();
   const pageH = pdf.internal.pageSize.getHeight();
@@ -68,7 +67,6 @@ async function buildPdf(): Promise<void> {
     ctx.drawImage(img, 0, 0);
     const jpeg = canvas.toDataURL("image/jpeg", 0.92);
 
-    // Fit at natural (square) proportions, centered — never stretch or crop.
     const ratio = img.naturalWidth / img.naturalHeight;
     const maxW = pageW - margin * 2;
     const maxH = pageH - margin * 2;
@@ -89,26 +87,29 @@ async function buildPdf(): Promise<void> {
 }
 
 export function JournalDownload() {
+  const [current, setCurrent] = useState(0);
   const [lightbox, setLightbox] = useState<number | null>(null);
   const [building, setBuilding] = useState(false);
   const [pdfError, setPdfError] = useState<string | null>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const lastTriggerRef = useRef<HTMLElement | null>(null);
 
-  const close = useCallback(() => {
+  const prev = useCallback(() => setCurrent((i) => (i + PAGES.length - 1) % PAGES.length), []);
+  const next = useCallback(() => setCurrent((i) => (i + 1) % PAGES.length), []);
+
+  const closeLightbox = useCallback(() => {
     setLightbox(null);
     lastTriggerRef.current?.focus();
   }, []);
 
+  // Lightbox keyboard
   useEffect(() => {
     if (lightbox === null) return;
     closeRef.current?.focus();
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") close();
-      if (e.key === "ArrowRight")
-        setLightbox((i) => (i === null ? i : (i + 1) % PAGES.length));
-      if (e.key === "ArrowLeft")
-        setLightbox((i) => (i === null ? i : (i + PAGES.length - 1) % PAGES.length));
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowRight") setLightbox((i) => (i === null ? i : (i + 1) % PAGES.length));
+      if (e.key === "ArrowLeft") setLightbox((i) => (i === null ? i : (i + PAGES.length - 1) % PAGES.length));
     };
     window.addEventListener("keydown", onKey);
     document.body.style.overflow = "hidden";
@@ -116,7 +117,18 @@ export function JournalDownload() {
       window.removeEventListener("keydown", onKey);
       document.body.style.overflow = "";
     };
-  }, [lightbox, close]);
+  }, [lightbox, closeLightbox]);
+
+  // Gallery keyboard (when lightbox is closed)
+  useEffect(() => {
+    if (lightbox !== null) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight") next();
+      if (e.key === "ArrowLeft") prev();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [lightbox, next, prev]);
 
   const download = async () => {
     if (building) return;
@@ -125,9 +137,7 @@ export function JournalDownload() {
     try {
       await buildPdf();
     } catch {
-      setPdfError(
-        "The journal couldn't be assembled just now. Please refresh the page and try again.",
-      );
+      setPdfError("The journal couldn't be assembled just now. Please refresh the page and try again.");
     } finally {
       setBuilding(false);
     }
@@ -147,26 +157,65 @@ export function JournalDownload() {
           </p>
         </div>
 
-        <ul className="jrnstrip">
+        {/* Inline gallery */}
+        <div className="jrngal" role="region" aria-label="Journal page gallery">
+          <button
+            type="button"
+            className="jrngal-arr jrngal-prev"
+            onClick={prev}
+            aria-label="Previous journal page"
+          >
+            ‹
+          </button>
+
+          <div className="jrngal-stage">
+            <button
+              type="button"
+              className="jrngal-main"
+              onClick={(e) => {
+                lastTriggerRef.current = e.currentTarget;
+                setLightbox(current);
+              }}
+              aria-label={`View full screen: ${PAGES[current].title}`}
+            >
+              <img
+                src={PAGES[current].src}
+                alt={PAGES[current].alt}
+                width={1024}
+                height={1024}
+                loading="eager"
+                decoding="async"
+              />
+            </button>
+            <p className="jrngal-cap" aria-live="polite">
+              {PAGES[current].title} &mdash; {current + 1} / {PAGES.length}
+            </p>
+          </div>
+
+          <button
+            type="button"
+            className="jrngal-arr jrngal-next"
+            onClick={next}
+            aria-label="Next journal page"
+          >
+            ›
+          </button>
+        </div>
+
+        {/* Dot indicators */}
+        <div className="jrngal-dots" role="tablist" aria-label="Jump to journal page">
           {PAGES.map((p, i) => (
-            <li key={p.title} className="jrnthumb-item">
-              <button
-                type="button"
-                className="jrnthumb"
-                onClick={(e) => {
-                  lastTriggerRef.current = e.currentTarget;
-                  setLightbox(i);
-                }}
-                aria-label={`Preview page ${i + 1} of ${PAGES.length}: ${p.title}`}
-              >
-                <img src={p.src} alt={p.alt} loading="lazy" width={1024} height={1024} />
-                <span className="jrnthumb-cap" aria-hidden="true">
-                  {p.title}
-                </span>
-              </button>
-            </li>
+            <button
+              key={p.title}
+              type="button"
+              role="tab"
+              className={`jrngal-dot${i === current ? " is-active" : ""}`}
+              onClick={() => setCurrent(i)}
+              aria-label={`Page ${i + 1}: ${p.title}`}
+              aria-selected={i === current}
+            />
           ))}
-        </ul>
+        </div>
 
         <div className="jrnact fi">
           <button
@@ -175,14 +224,10 @@ export function JournalDownload() {
             onClick={() => void download()}
             disabled={building}
           >
-            {building
-              ? "Preparing your journal…"
-              : "Download the free journal (PDF)"}
+            {building ? "Preparing your journal…" : "Download the free journal (PDF)"}
           </button>
           {pdfError && (
-            <p className="jrnerr" role="alert">
-              {pdfError}
-            </p>
+            <p className="jrnerr" role="alert">{pdfError}</p>
           )}
           <p className="jrnpriv">
             Nothing you color or write is sent to or stored by this website.
@@ -190,6 +235,7 @@ export function JournalDownload() {
         </div>
       </div>
 
+      {/* Full-screen lightbox */}
       {lightbox !== null && (
         <div
           className="jrnlb"
@@ -201,7 +247,7 @@ export function JournalDownload() {
             ref={closeRef}
             type="button"
             className="jrnlb-x"
-            onClick={close}
+            onClick={closeLightbox}
             aria-label="Close preview"
           >
             ✕
@@ -209,9 +255,7 @@ export function JournalDownload() {
           <button
             type="button"
             className="jrnlb-arr jrnlb-prev"
-            onClick={() =>
-              setLightbox((i) => (i === null ? i : (i + PAGES.length - 1) % PAGES.length))
-            }
+            onClick={() => setLightbox((i) => (i === null ? i : (i + PAGES.length - 1) % PAGES.length))}
             aria-label="Previous page"
           >
             ‹
@@ -225,9 +269,7 @@ export function JournalDownload() {
           <button
             type="button"
             className="jrnlb-arr jrnlb-next"
-            onClick={() =>
-              setLightbox((i) => (i === null ? i : (i + 1) % PAGES.length))
-            }
+            onClick={() => setLightbox((i) => (i === null ? i : (i + 1) % PAGES.length))}
             aria-label="Next page"
           >
             ›

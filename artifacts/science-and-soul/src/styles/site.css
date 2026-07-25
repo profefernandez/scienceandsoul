@@ -341,12 +341,17 @@ body{line-height:var(--lh-md);letter-spacing:.05em;word-spacing:.06em}
 @media(max-width:480px){.orbpanel{width:calc(100vw - 2rem);height:calc(100dvh - 6rem)}}
 
 /* ===== Coloring Journal Download ===== */
-.jrnstrip{list-style:none;padding:var(--sp2) var(--sp1) var(--sp4);margin:0;display:flex;gap:var(--sp5);overflow-x:auto;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;justify-content:flex-start}
-.jrnthumb-item{flex:0 0 auto;scroll-snap-align:center;max-width:100%}
-.jrnthumb{display:flex;flex-direction:column;gap:var(--sp2);width:clamp(150px,16vw,210px);background:var(--sf);border:1.5px solid var(--dv);border-radius:var(--rxl);box-shadow:var(--shsm);padding:var(--sp3);cursor:zoom-in;transition:transform var(--tr),box-shadow var(--tr),border-color var(--tr)}
-.jrnthumb:hover{transform:translateY(-3px);box-shadow:var(--shmd);border-color:var(--teal)}
-.jrnthumb img{width:100%;height:auto;aspect-ratio:1/1;border-radius:var(--rmd);background:#fff;border:1px solid var(--dv)}
-.jrnthumb-cap{font-size:var(--tx-xs);font-weight:700;color:var(--inkm);text-align:center;letter-spacing:.04em}
+.jrngal{display:flex;align-items:center;gap:var(--sp4);justify-content:center}
+.jrngal-stage{flex:1;max-width:520px;display:flex;flex-direction:column;align-items:center;gap:var(--sp4)}
+.jrngal-main{display:block;width:100%;background:none;border:none;padding:0;cursor:zoom-in;border-radius:var(--r2xl);overflow:hidden;box-shadow:var(--shlg);transition:transform var(--tr),box-shadow var(--tr)}
+.jrngal-main:hover{transform:scale(1.015);box-shadow:0 16px 48px rgba(0,0,0,.18)}
+.jrngal-main img{width:100%;height:auto;aspect-ratio:1/1;display:block;background:#fff}
+.jrngal-cap{font-size:var(--tx-sm);font-weight:700;color:var(--inkm);letter-spacing:.04em;text-align:center}
+.jrngal-arr{flex-shrink:0;width:52px;height:52px;border-radius:var(--rfull);background:var(--sf);color:var(--ink);border:1.5px solid var(--dv);display:flex;align-items:center;justify-content:center;font-size:2rem;line-height:1;box-shadow:var(--shmd);transition:background var(--tr),transform var(--tr)}
+.jrngal-arr:hover{background:var(--sf2);transform:scale(1.08)}
+.jrngal-dots{display:flex;justify-content:center;gap:var(--sp2);margin-top:var(--sp5)}
+.jrngal-dot{width:10px;height:10px;border-radius:var(--rfull);border:2px solid var(--teal);background:transparent;padding:0;cursor:pointer;transition:background var(--tr),transform var(--tr)}
+.jrngal-dot.is-active{background:var(--teal);transform:scale(1.3)}
 .jrnact{display:flex;flex-direction:column;align-items:center;gap:var(--sp4);margin-top:var(--sp8);text-align:center}
 .jrnact .btn:disabled{opacity:.6;cursor:progress}
 .jrnpriv{font-size:var(--tx-sm);color:var(--inkm);max-width:52ch;margin:0}
@@ -359,10 +364,9 @@ body{line-height:var(--lh-md);letter-spacing:.05em;word-spacing:.06em}
 .jrnlb-x:hover{background:var(--sf2)}
 .jrnlb-arr{flex-shrink:0;width:44px;height:44px;border-radius:var(--rfull);background:var(--sf);color:var(--ink);border:1.5px solid var(--dv);display:flex;align-items:center;justify-content:center;font-size:var(--tx-xl);line-height:1;box-shadow:var(--shmd);transition:background var(--tr)}
 .jrnlb-arr:hover{background:var(--sf2)}
-@media(max-width:1024px){.jrnthumb{width:clamp(150px,22vw,200px)}}
-@media(max-width:768px){.jrnstrip{gap:var(--sp4)}.jrnthumb{width:170px}}
-@media(max-width:480px){.jrnthumb{width:150px}.jrnlb{gap:var(--sp2);padding:var(--sp3)}.jrnlb-fig{max-width:calc(100vw - 6.5rem)}}
-@media(max-width:360px){.jrnthumb{width:136px}.jrnlb-arr,.jrnlb-x{width:40px;height:40px}}
+@media(max-width:768px){.jrngal{gap:var(--sp2)}.jrngal-arr{width:40px;height:40px;font-size:1.6rem}.jrngal-stage{max-width:100%}}
+@media(max-width:480px){.jrnlb{gap:var(--sp2);padding:var(--sp3)}.jrnlb-fig{max-width:calc(100vw - 6.5rem)}}
+@media(max-width:360px){.jrnlb-arr,.jrnlb-x{width:40px;height:40px}}
 
 /* Legal pages (Privacy Policy, HIPAA Notice) */
 .legal{padding:clamp(2.5rem,7vw,5rem) 0}
