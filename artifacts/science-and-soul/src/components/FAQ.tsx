@@ -13,7 +13,7 @@ const faqs = [
   },
   {
     q: "Who does Kelly work with?",
-    a: "Kelly works with pre-teens, adolescents, adults, families, and the LGBTQIA+ community, offering individual, family, and group therapy.",
+    a: "Kelly works with pre-teens, adolescents, adults, families, and the LGBTQIA+ community, offering individual, family, and couples therapy.",
   },
   {
     q: "What happens in a first session?",

@@ -19,7 +19,7 @@ const structuredData = JSON.stringify({
   name: "Science and Soul Counseling & Wellness, PLLC",
   alternateName: SITE_NAME,
   description:
-    "Holistic therapy practice in Houston, Texas where evidence-based therapy meets spiritual healing. Individual and group counseling, chakra alignment, Reiki, and sound bowl healing with Kelly Nelson, LCSW-S.",
+    "Holistic therapy practice in Houston, Texas where evidence-based therapy meets spiritual healing. Individual and couples counseling, chakra alignment, Reiki, and sound bowl healing with Kelly Nelson, LCSW-S.",
   url: SITE_URL,
   logo: OG_IMAGE_URL,
   image: OG_IMAGE_URL,
@@ -58,7 +58,7 @@ export default function Home() {
     <main id="main">
       <Seo
         title="Science and Soul Counseling & Wellness | Kelly Nelson, LCSW | Houston, TX"
-        description="Where evidence-based therapy meets spiritual healing. Kelly Nelson, LCSW-S, Houston, TX. Individual and group therapy, chakra alignment, Reiki, sound bowl healing, holistic mental health."
+        description="Where evidence-based therapy meets spiritual healing. Kelly Nelson, LCSW-S, Houston, TX. Individual and couples therapy, chakra alignment, Reiki, sound bowl healing, holistic mental health."
         path="/"
       />
       <Helmet>

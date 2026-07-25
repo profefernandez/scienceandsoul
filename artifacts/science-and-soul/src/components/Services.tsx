@@ -28,7 +28,7 @@ const services = [
   {
     accent: "sc-teal",
     img: "services-group",
-    imgAlt: "Illustration of a therapist and a small group of clients seated in a circle in a calming, plant-filled therapy office, engaged in conversation — representing evidence-based individual and group therapy sessions",
+    imgAlt: "Illustration of a therapist and clients seated in a calming, plant-filled therapy office, engaged in conversation — representing evidence-based individual and couples therapy sessions",
     pill: { cls: "pill pt", label: "Evidence-Based Therapy" },
     title: "Evidence-based therapy",
     desc: "Kelly's clinical work draws on CBT, DBT, psychodynamic therapy, person-centered approaches, and mindfulness. She selects and combines methods based on what each client is working through and what has traction.",
@@ -42,7 +42,7 @@ export function Services() {
         <div style={{ textAlign: "center", marginBottom: "3rem" }}>
           {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */}
           <h2 className="stitle" style={{ marginInline: "auto" }} tabIndex={0}>
-            Individual therapy, group therapy,<br /><em>&amp; integrative care</em>
+            Individual therapy, couples therapy,<br /><em>&amp; integrative care</em>
           </h2>
           <p className="sdesc" style={{ marginInline: "auto", textAlign: "center" }}>
             Kelly offers personalized therapy sessions, integrating spiritual modalities. Each session is customized to your unique goals and needs.
