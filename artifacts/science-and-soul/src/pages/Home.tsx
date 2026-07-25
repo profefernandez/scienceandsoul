@@ -1,5 +1,4 @@
 import { Hero } from "../components/Hero";
-import { ChakraStrip } from "../components/ChakraStrip";
 import { Philosophy } from "../components/Philosophy";
 import { Services } from "../components/Services";
 import { Approach } from "../components/Approach";
@@ -17,7 +16,6 @@ export default function Home() {
     <main id="main">
       <Hero />
       <About />
-      <ChakraStrip />
       <Philosophy />
       <Services />
       <Approach />

@@ -155,32 +155,8 @@ section{padding:clamp(2.5rem,8vw,6rem) 0}
 .band{background:color-mix(in srgb,var(--sf2) 62%,transparent)}
 main>section+section{border-top:1.5px solid var(--dv)}
 .bandnb{border-bottom:none}
-.cstrip{padding:var(--sp10) 0}
-.cshead{text-align:center;max-width:620px;margin:0 auto var(--sp8)}
-.cstitle{font-family:var(--fd);font-size:var(--tx-2xl);font-weight:700;color:var(--ink);line-height:var(--lh-tight);margin-bottom:var(--sp3)}
-.cssub{font-size:var(--tx-base);color:var(--inkm);line-height:var(--lh-body);margin:0 auto;max-width:54ch}
 /* Chakra carousel */
-@keyframes cfall{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-.ccar{display:flex;justify-content:center;padding:var(--sp2) 0}
-.cccard{width:min(560px,100%);background:var(--sf);border:2px solid var(--ci-glow,var(--dv));border-radius:var(--r2xl);overflow:hidden;box-shadow:var(--shmd);transition:border-color var(--tr),box-shadow var(--tr)}
-.cccard-a{box-shadow:0 0 0 3px color-mix(in oklch,var(--ci-glow,var(--teal)) 35%,transparent),var(--shmd)}
-.ccslide{animation:cfall .2s ease}
-.cchead{padding:var(--sp10) var(--sp6);display:flex;justify-content:center;align-items:center}
-.ccorb{width:96px;height:96px;border-radius:var(--rfull);display:flex;align-items:center;justify-content:center;font-size:var(--tx-2xl);border:2px solid;flex-shrink:0;box-shadow:0 4px 20px rgba(0,0,0,.08)}
-.ccbody{padding:var(--sp6) var(--sp8) var(--sp8);text-align:center}
-.ccskr{font-family:var(--fh);font-size:var(--tx-base);color:var(--inkm);margin-bottom:var(--sp2)}
-.ccname{font-family:var(--fd);font-size:var(--tx-xl);font-weight:700;color:var(--ink);line-height:var(--lh-heading);margin-bottom:var(--sp3)}
-.ccmean{font-size:var(--tx-lg);color:var(--inkm);line-height:var(--lh-body);margin-bottom:var(--sp8)}
-.ccact{width:100%}
 /* Nav row */
-.ccnav{display:flex;align-items:center;justify-content:center;gap:var(--sp5);padding-top:var(--sp6)}
-.ccarr{background:var(--sf);border:1.5px solid var(--dv);border-radius:var(--rfull);width:44px;height:44px;display:flex;align-items:center;justify-content:center;font-size:var(--tx-xl);line-height:1;cursor:pointer;color:var(--ink);flex-shrink:0;transition:all var(--tr);padding:0}
-.ccarr:hover{background:var(--sf2);transform:translateY(-1px);box-shadow:var(--shmd)}
-.ccarr:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
-.ccdots{display:flex;gap:var(--sp2);align-items:center}
-.ccdot{width:10px;height:10px;border-radius:var(--rfull);background:var(--dv);border:none;cursor:pointer;padding:0;transition:all .2s ease;flex-shrink:0}
-.ccdot-a{background:var(--teal);transform:scale(1.4)}
-.ccdot:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
 .philos-inner{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
 .philos-img img{border-radius:var(--r2xl);box-shadow:var(--shlg);border:3px solid var(--dv)}
 .pquote{font-family:var(--fd);font-style:italic;font-size:var(--tx-xl);color:var(--teal);line-height:var(--lh-md);margin-bottom:var(--sp6);padding-left:var(--sp6);border-left:4px solid var(--teal)}
@@ -467,8 +443,7 @@ body{line-height:var(--lh-md);letter-spacing:.05em;word-spacing:.06em}
 .legalbody a{color:var(--teal);font-weight:600}
 /* Windows High Contrast / forced colors */
 @media(forced-colors:active){
-.btn,.btnp,.btno,.btnw,.btngw,.tt,.burg,.mnav-x,.ccarr,.jrnthumb,.jrnlb-x,.jrnlb-arr{border:1px solid ButtonText!important}
-.ccdot{border:1px solid ButtonText!important}
+.btn,.btnp,.btno,.btnw,.btngw,.tt,.burg,.mnav-x,.jrnthumb,.jrnlb-x,.jrnlb-arr{border:1px solid ButtonText!important}
 .skiplink:focus{outline:2px solid Highlight}
 .pill{border:1px solid CanvasText}
 }
