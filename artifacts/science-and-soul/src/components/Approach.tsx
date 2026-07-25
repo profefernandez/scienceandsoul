@@ -5,10 +5,10 @@ export function Approach() {
     <section id="approach" className="band">
       <div className="ww">
         <div className="apprgrid">
-          <h2 className="stitle ghead fi">
-            A structured process,<br /><em>tailored to each person</em>
-          </h2>
-          <div className="gtext fi">
+          <div className="gsplit fi">
+            <h2 className="stitle">
+              A structured process,<br /><em>tailored to each person</em>
+            </h2>
             <p style={{ fontSize: "var(--tx-base)", color: "var(--inkm)", lineHeight: "var(--lh-relaxed)", marginBottom: "2rem", maxWidth: "52ch" }}>
               Each treatment plan starts with a thorough understanding of the client's history, goals, and existing strengths. Kelly selects clinical and integrative methods based on what each person needs at each stage of the work.
             </p>

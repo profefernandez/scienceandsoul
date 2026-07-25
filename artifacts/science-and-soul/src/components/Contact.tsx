@@ -6,9 +6,6 @@ export function Contact() {
     <section id="contact">
       <div className="ww">
         <div className="contactgrid">
-          <h2 className="stitle ghead fi">
-            Schedule a free <em>15-minute consultation</em>
-          </h2>
           <div className="contactimg gimg fi">
             <img
               src={healingArt}
@@ -19,7 +16,10 @@ export function Contact() {
               decoding="async"
             />
           </div>
-          <div className="gtext fi">
+          <div className="gsplit fi">
+            <h2 className="stitle">
+              Schedule a free <em>15-minute consultation</em>
+            </h2>
             <p className="contacttext">
               Reach out to get started — Kelly can answer questions about scheduling, services, and fit before a first appointment. She typically responds within 24 hours.
             </p>
