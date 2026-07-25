@@ -6,9 +6,16 @@ const sessionRates = [
 
 const insurance = [
   "Aetna",
-  "Blue Cross",
+  "Ascension",
+  "Blue Cross and Blue Shield of Texas",
+  "Blue Cross Blue Shield of Massachusetts",
+  "Carelon Behavioral Health",
   "Cigna",
-  "UnitedHealthcare",
+  "Horizon Blue Cross and Blue Shield of New Jersey",
+  "Independence Blue Cross Pennsylvania – Virtual National Network",
+  "Oscar",
+  "Oxford",
+  "United Healthcare",
 ];
 
 export function Fees() {
