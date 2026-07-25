@@ -179,14 +179,17 @@ main>section+section{border-top:1.5px solid var(--dv)}
 .sc-lav{border-top:4px solid var(--lav)}
 .sc-sage{border-top:4px solid var(--sage)}
 .sc-amb{border-top:4px solid var(--amb)}
-.apprgrid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.apprgrid{display:grid;grid-template-columns:1fr 1fr;grid-template-areas:"head img" "text img";gap:0 4rem;align-items:center}
+.ghead{grid-area:head;align-self:end;margin-bottom:var(--sp4)}
+.gtext{grid-area:text;align-self:start}
+.gimg{grid-area:img}
 .apprimg img{border-radius:var(--r2xl);box-shadow:var(--shlg);border:3px solid var(--dv)}
 .serveart{display:flex;justify-content:center}
 .serveart img{width:min(575px,100%);height:auto;border-radius:var(--r2xl);box-shadow:var(--shlg)}
-.contactgrid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.contactgrid{display:grid;grid-template-columns:1fr 1fr;grid-template-areas:"img head" "img text";gap:0 4rem;align-items:center}
 .contactimg img{width:min(575px,100%);height:auto;border-radius:var(--r2xl);box-shadow:var(--shlg);display:block;margin-inline:auto}
 .contacttext{color:var(--inkm);line-height:var(--lh-relaxed);max-width:48ch;margin:0 0 var(--sp6)}
-.aboutgrid{display:grid;grid-template-columns:480px 1fr;gap:4rem;align-items:center}
+.aboutgrid{display:grid;grid-template-columns:480px 1fr;grid-template-areas:"img head" "img text";gap:0 4rem;align-items:center}
 .aboutportrait{position:relative}
 .aboutframe{border-radius:var(--r2xl);overflow:hidden;box-shadow:var(--shlg);background:var(--sf2)}
 .aboutframe img{width:100%;height:auto}
@@ -238,8 +241,9 @@ html.a11y-simple .washbg,html.a11y-contrast .washbg{display:none}
 .fbotlinks{display:flex;gap:var(--sp4);list-style:none}
 .fbotlinks a{font-size:var(--tx-xs);color:var(--inkf)}
 @media(max-width:1024px){
-.aboutgrid{grid-template-columns:1fr}
-.contactgrid{grid-template-columns:1fr}
+.aboutgrid,.contactgrid{grid-template-columns:1fr;grid-template-areas:"head" "img" "text";gap:0}
+.aboutgrid .ghead,.contactgrid .ghead{align-self:auto;margin-bottom:var(--sp6)}
+.aboutgrid .gimg,.contactgrid .gimg{margin-bottom:var(--sp6)}
 .footerinner{grid-template-columns:1fr 1fr}
 }
 @media(max-width:768px){
@@ -252,8 +256,9 @@ body{line-height:var(--lh-md);letter-spacing:.05em;word-spacing:.06em}
 .nact .btn{white-space:nowrap;padding:var(--sp3) var(--sp4)}
 .philos-inner{grid-template-columns:1fr}
 .svcgrid{grid-template-columns:1fr}
-.apprgrid{grid-template-columns:1fr}
-.apprimg{order:-1}
+.apprgrid{grid-template-columns:1fr;grid-template-areas:"head" "img" "text";gap:0}
+.apprgrid .ghead{align-self:auto;margin-bottom:var(--sp6)}
+.apprgrid .gimg{margin-bottom:var(--sp6)}
 .feesgrid{grid-template-columns:1fr}
 .frow{grid-template-columns:1fr}
 }

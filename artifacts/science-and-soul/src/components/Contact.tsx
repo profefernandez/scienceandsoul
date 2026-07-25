@@ -6,7 +6,10 @@ export function Contact() {
     <section id="contact">
       <div className="ww">
         <div className="contactgrid">
-          <div className="contactimg fi">
+          <h2 className="stitle ghead fi">
+            Schedule a free <em>15-minute consultation</em>
+          </h2>
+          <div className="contactimg gimg fi">
             <img
               src={healingArt}
               alt="Watercolor illustration titled Healing Is For Everyone showing practitioners offering Reiki, sound bowl, and chakra healing to a diverse group of people"
@@ -16,10 +19,7 @@ export function Contact() {
               decoding="async"
             />
           </div>
-          <div className="fi">
-            <h2 className="stitle">
-              Schedule a free <em>15-minute consultation</em>
-            </h2>
+          <div className="gtext fi">
             <p className="contacttext">
               Reach out to get started — Kelly can answer questions about scheduling, services, and fit before a first appointment. She typically responds within 24 hours.
             </p>
