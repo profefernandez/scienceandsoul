@@ -1,6 +1,6 @@
 import { logger } from "./logger";
 
-const DEFAULT_BASE_URL = "https://sip.launchlemonade.app/api/1.1/wf";
+const DEFAULT_BASE_URL = "https://sip.launchlemonade.app/version-live/api/1.1/wf";
 const REQUEST_TIMEOUT_MS = 90_000;
 const POLL_INTERVAL_MS = 10_000;
 const POLL_DEADLINE_MS = 70_000;
@@ -138,20 +138,24 @@ export async function sendLemonadeChat(
 ): Promise<LemonadeChatResult> {
   const { apiKey, assistantId, baseUrl } = getConfig();
 
+  const body: Record<string, string> = {
+    assistant_id: assistantId,
+    input: message,
+  };
+  if (conversationId && conversationId.trim() !== "") {
+    body["conversation_id"] = conversationId;
+  }
+
   const raw = await postJson<RunAssistantResponse>(
     `${baseUrl}/run_assistant`,
     apiKey,
-    {
-      assistant_id: assistantId,
-      conversation_id: conversationId ?? "",
-      input: message,
-    },
+    body,
     REQUEST_TIMEOUT_MS,
   );
 
   const data = unwrapResponse(raw);
 
-  if (data.Error === "Yes") {
+  if (data.Error?.toLowerCase() === "yes") {
     const reason = data.Error_Reason?.trim() ?? "";
     logger.error({ reason }, "LaunchLemonade returned an error");
     const isRateLimited =

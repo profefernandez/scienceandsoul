@@ -1,0 +1,51 @@
+Here's exactly how the chat API works end to end:
+
+Request: POST /api/chat
+
+{ "message": "I need help", "sessionId": "abc123", "elementId": null }
+
+What happens step by step:
+
+Validates the body — uses Zod schema SendChatBody. Rejects if missing or message > 4,000 chars.
+
+Checks if admin — calls isAdminRequest(req) server-side. Never trusts the body's mode field.
+
+Tile context — if elementId is sent, loads that tile from the DB (promptText, name, description, etc.) and replaces the message with the tile's promptText. aiGuidance is only included if the caller is admin.
+
+Prompt injection scan — runs scanUserInput() on the user's typed message. If blocked → returns the canned BLOCKED_REPLY without ever calling the upstream. If a soft signal accumulated across turns hits SEVER_THRESHOLD, the conversation lineage is cut (no conversation_id forwarded).
+
+Budget check — checks a durable DB-backed daily + per-minute budget via reserveChatBudget(). Returns 429 if exceeded.
+
+Concurrency gate — acquireUpstreamSlot(). Rejects immediately if too many parallel upstream calls are in flight.
+
+Upstream call — POST https://sip.launchlemonade.app/version-live/api/1.1/wf/run_assistant
+
+{
+  "assistant_id": "<LAUNCH_LEMONADE_ID>",
+  "input": "[SESSION CONTEXT...]\n\n<<user-input-start>>\nI need help\n<<user-input-end>>",
+  "conversation_id": "abc123"   // omitted if fresh conversation
+}
+
+Auth header: Authorization: Bearer <LAUNCH_LEMONADE_API_KEY>
+
+Upstream response shape:
+{
+  "Conversation_ID": "abc123",
+  "Response": "Hi! I'd be happy to help...",
+  "Error": "no",
+  "Error_Reason": ""
+}
+
+(Sometimes nested under a "response" key — the server handles both.)
+
+Output sanitized via sanitizeReply() to strip any leaked context.
+
+Tile matching — if it was a free-text turn (no elementId), runs matchServiceTiles(message, allTiles) to surface relevant tiles inline.
+
+Response:
+
+{
+  "reply": "Hi! I'd be happy to help...",
+  "sessionId": "abc123",
+  "tiles": []
+}
