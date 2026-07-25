@@ -1,20 +1,4 @@
-const groups = [
-  {
-    emoji: "🌱",
-    title: "Teens & Adults",
-    desc: "Support for trauma, anxiety, ADHD/ADD, grief, and more.",
-  },
-  {
-    emoji: "🌈",
-    title: "LGBTQIA+ Community",
-    desc: "Affirming care addressing identity, family dynamics, and unique stressors.",
-  },
-  {
-    emoji: "🌸",
-    title: "Clients Seeking Integrative Care",
-    desc: "Combining clinical therapy with spiritual practices to meet diverse needs.",
-  },
-];
+import circleArt from "@assets/image_1784943568728.png";
 
 export function WhoWeServe() {
   return (
@@ -25,14 +9,15 @@ export function WhoWeServe() {
             Teens, adults, and the<br /><em>LGBTQIA+ community</em>
           </h2>
         </div>
-        <div className="servegrid">
-          {groups.map((g) => (
-            <div className="svcard fi" key={g.title}>
-              <div className="svicon">{g.emoji}</div>
-              <h3 className="svtitle">{g.title}</h3>
-              <p className="svdesc">{g.desc}</p>
-            </div>
-          ))}
+        <div className="serveart fi">
+          <img
+            src={circleArt}
+            alt="Watercolor illustration of a therapist guiding a diverse circle of teens and adults seated in meditation, framed by lotus flowers, vines, and crystals"
+            width={575}
+            height={633}
+            loading="lazy"
+            decoding="async"
+          />
         </div>
       </div>
     </section>

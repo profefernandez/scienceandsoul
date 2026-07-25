@@ -2,7 +2,6 @@ import { Hero } from "../components/Hero";
 import { Philosophy } from "../components/Philosophy";
 import { Services } from "../components/Services";
 import { Approach } from "../components/Approach";
-import { Methods } from "../components/Methods";
 import { WhoWeServe } from "../components/WhoWeServe";
 import { JournalDownload } from "../components/JournalDownload";
 import { About } from "../components/About";
@@ -19,7 +18,6 @@ export default function Home() {
       <Philosophy />
       <Services />
       <Approach />
-      <Methods />
       <WhoWeServe />
       <JournalDownload />
       <Fees />
