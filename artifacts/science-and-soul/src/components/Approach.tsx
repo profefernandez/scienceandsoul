@@ -1,32 +1,5 @@
 import { imgSrc, imgSrcSet } from "../lib/img";
 
-const steps = [
-  {
-    iconStyle: { background: "var(--teall)", color: "var(--teal)" },
-    emoji: "🔬",
-    title: "Start with the Full Picture",
-    desc: "Understanding your history and goals.",
-  },
-  {
-    iconStyle: { background: "var(--lavl)", color: "var(--lav)" },
-    emoji: "✨",
-    title: "Apply Clinical Methods",
-    desc: "Adapting CBT, DBT, and mindfulness based on what works for you.",
-  },
-  {
-    iconStyle: { background: "var(--sagel)", color: "var(--sage)" },
-    emoji: "🌿",
-    title: "Add Spiritual Practices When Useful",
-    desc: "Integrating Reiki, chakra alignment, and sound bowl healing as needed.",
-  },
-  {
-    iconStyle: { background: "var(--ambl)", color: "var(--amb)" },
-    emoji: "⚡",
-    title: "Build Skills That Last",
-    desc: "Developing coping strategies and self-understanding that empower you beyond therapy.",
-  },
-];
-
 export function Approach() {
   return (
     <section id="approach" className="band">
@@ -54,18 +27,6 @@ export function Approach() {
             />
           </div>
         </div>
-        <ol className="apprsteps">
-          {steps.map((s, i) => (
-            <li className="apprstep fi" key={s.title}>
-              <div className="apprstep-head">
-                <span className="apprstep-num" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
-                <div className="appricon" style={s.iconStyle} aria-hidden="true">{s.emoji}</div>
-              </div>
-              <div className="apprititle">{s.title}</div>
-              <p className="appridesc">{s.desc}</p>
-            </li>
-          ))}
-        </ol>
       </div>
     </section>
   );
