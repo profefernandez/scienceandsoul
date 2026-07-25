@@ -12,7 +12,7 @@ export function Footer({ linkPrefix = "" }: FooterProps) {
         <div className="footerinner">
           <div>
             <div className="nlogo" style={{ marginBottom: 0 }}>
-              <Logo size={36} />
+              <Logo size={52} />
               <div style={{ display: "flex", flexDirection: "column", lineHeight: "var(--lh-tight)" }}>
                 <span className="ntitle">Science &amp; Soul</span>
                 <span className="nsub">Counseling &amp; Wellness, PLLC</span>
@@ -52,7 +52,7 @@ export function Footer({ linkPrefix = "" }: FooterProps) {
         <div className="fdev">
           <a href="https://60wattsofclarity.com" target="_blank" rel="noopener noreferrer" className="fdevlink">
             <span>This website was developed by</span>
-            <img src={sixtyWattsLogo} alt="" aria-hidden="true" width={44} height={50} loading="lazy" decoding="async" />
+            <img src={sixtyWattsLogo} alt="" aria-hidden="true" width={28} height={32} loading="lazy" decoding="async" />
             <span>60 Watts of Clarity</span>
           </a>
         </div>

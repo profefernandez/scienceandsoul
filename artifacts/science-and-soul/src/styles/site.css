@@ -241,7 +241,7 @@ html.a11y-simple .washbg,html.a11y-contrast .washbg{display:none}
 .fdev{display:flex;justify-content:center;margin-top:var(--sp6)}
 .fdevlink{display:inline-flex;align-items:center;gap:var(--sp2);font-size:var(--tx-xs);color:var(--inkf);font-weight:600;transition:color var(--tr)}
 .fdevlink:hover{color:var(--teal)}
-.fdevlink img{width:44px;height:auto;border-radius:6px}
+.fdevlink img{width:28px;height:auto;border-radius:6px}
 @media(max-width:1024px){
 .aboutgrid,.contactgrid{grid-template-columns:1fr;gap:var(--sp6)}
 .aboutgrid .gsplit,.contactgrid .gsplit{display:contents}
