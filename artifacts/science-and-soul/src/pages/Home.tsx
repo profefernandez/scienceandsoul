@@ -66,11 +66,11 @@ export default function Home() {
       </Helmet>
       <Hero />
       <About />
+      <JournalDownload />
       <Philosophy />
       <Services />
       <Approach />
       <WhoWeServe />
-      <JournalDownload />
       <Fees />
       <GoodFaith />
       <FAQ />

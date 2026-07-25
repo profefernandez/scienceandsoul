@@ -21,7 +21,7 @@ export function About() {
             {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */}
             <h2 className="stitle" tabIndex={0}>Meet Your <em>Therapist</em></h2>
             <p className="aboutbio">
-              Kelly Nelson, LCSW-S, brings eight years of clinical practice to her Houston-based work. She earned her BA from Auburn University and her MSW from Simmons University in 2018, and works with pre-teens, adolescents, adults, families, and the LGBTQIA+ community using a blend of evidence-based and spiritual practices. Her style is warm, holistic, and open-minded — and late-evening appointments are available for flexible scheduling.
+              Kelly Nelson, LCSW-S, brings eight years of clinical practice to her Houston-based work. She earned her BA from Auburn University and her MSW from Simmons University in 2018, and works with pre-teens, adolescents, adults, families, and the LGBTQIA+ community using a blend of evidence-based and spiritual practices. Her style is warm, holistic, and open-minded — and Kelly offers late-evening and late-night appointments for clients whose work keeps them busy during the day.
             </p>
           </div>
         </div>

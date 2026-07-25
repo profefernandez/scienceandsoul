@@ -24,8 +24,8 @@ const faqs = [
     a: "Not at all. Chakra alignment, Reiki, and sound bowl healing are always optional. Kelly's clinical foundation — CBT, DBT, trauma-focused care, and more — stands fully on its own, and every treatment plan is tailored to your comfort level.",
   },
   {
-    q: "Do you offer evening appointments?",
-    a: "Yes. Late-evening appointments are available for individuals with demanding schedules.",
+    q: "Do you offer evening or late-night appointments?",
+    a: "Yes. Kelly offers late-evening and late-night appointments for clients who work long hours or nontraditional schedules — so therapy fits your life, not the other way around.",
   },
   {
     q: "How do I get started?",

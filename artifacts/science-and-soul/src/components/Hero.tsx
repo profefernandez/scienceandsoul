@@ -33,7 +33,7 @@ export function Hero() {
             />
           </figure>
           <p className="hdesc hcdesc">
-            Individual, family, and couples therapy in Houston — evidence-based care that honors mind, body, and spirit. Serving pre-teens, adolescents, adults, families, and the LGBTQIA+ community.
+            Individual, family, and couples therapy in Houston — evidence-based care that honors mind, body, and spirit. Serving pre-teens, adolescents, adults, families, and the LGBTQIA+ community. <strong>Late-evening and late-night appointments available for clients who work long or nontraditional hours.</strong>
           </p>
           <div className="hacts hcacts">
             <a href="#contact" className="btn btnp btnlg">Book a Free Consult</a>

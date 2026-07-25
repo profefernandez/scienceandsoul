@@ -6,28 +6,30 @@ export const KELLY_EMAIL = "Kelly@scienceandsoulcounseling.com";
 const SUBJECT = "New Client Inquiry — Science & Soul Counseling";
 const SUBJECT_ENC = encodeURIComponent(SUBJECT);
 
-const emailOptions = [
+interface EmailOption {
+  label: string;
+  icon: string | null;
+  href: string;
+}
+
+const emailOptions: EmailOption[] = [
   {
     label: "Gmail",
-    bg: "#EA4335",
-    icon: "https://www.google.com/s2/favicons?sz=64&domain=gmail.com",
+    icon: "/img/email/gmail.png",
     href: `https://mail.google.com/mail/?view=cm&to=${KELLY_EMAIL}&su=${SUBJECT_ENC}`,
   },
   {
     label: "Outlook",
-    bg: "#0078D4",
-    icon: "https://www.google.com/s2/favicons?sz=64&domain=outlook.com",
+    icon: "/img/email/outlook.png",
     href: `https://outlook.live.com/mail/0/deeplink/compose?to=${KELLY_EMAIL}&subject=${SUBJECT_ENC}`,
   },
   {
     label: "Yahoo Mail",
-    bg: "#6001D2",
-    icon: "https://www.google.com/s2/favicons?sz=64&domain=mail.yahoo.com",
+    icon: "/img/email/yahoo.png",
     href: `https://compose.mail.yahoo.com/?to=${KELLY_EMAIL}&subject=${SUBJECT_ENC}`,
   },
   {
     label: "Other / Default",
-    bg: "#4A7C59",
     icon: null,
     href: `mailto:${KELLY_EMAIL}?subject=${SUBJECT_ENC}`,
   },
@@ -72,11 +74,11 @@ function ProviderModal({ onClose }: { onClose: () => void }) {
               rel="noopener noreferrer"
               onClick={onClose}
             >
-              <span className="epprov-ico" style={{ background: opt.bg }}>
+              <span className="epprov-ico">
                 {opt.icon ? (
-                  <img src={opt.icon} alt={opt.label} width={32} height={32} />
+                  <img src={opt.icon} alt="" loading="lazy" decoding="async" />
                 ) : (
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="1.8">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#4A7C59" strokeWidth="1.8" aria-hidden>
                     <rect x="2" y="4" width="20" height="16" rx="2" />
                     <path d="M2 7l10 7 10-7" />
                   </svg>
