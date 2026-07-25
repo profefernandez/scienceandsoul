@@ -121,6 +121,14 @@ export default function AccessibilityStatement() {
         Email: <a href="mailto:Kelly@scienceandsoulcounseling.com">Kelly@scienceandsoulcounseling.com</a>
       </p>
       <p>
+        For website-specific accessibility concerns, you may also contact the site&rsquo;s technical maintainer:
+      </p>
+      <p className="legalcontact">
+        Jason Fernandez, MA, LMSW<br />
+        60 Watts of Clarity<br />
+        Email: <a href="mailto:accessibility@60wattsofclarity.com">accessibility@60wattsofclarity.com</a>
+      </p>
+      <p>
         We aim to respond to accessibility feedback within 2 business days.
       </p>
 
