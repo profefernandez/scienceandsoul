@@ -11,6 +11,13 @@ import { useOrbChat, useCreateInquiry } from "@workspace/api-client-react";
 import { CHAKRAS } from "../data/chakras";
 import { imgSrc, imgSrcSet } from "../lib/img";
 import { useChakraGuide } from "../context/ChakraGuideContext";
+import {
+  EMAIL_RE,
+  MESSAGE_MAX,
+  NAME_MAX,
+  sanitize,
+  useSubmitCooldown,
+} from "../lib/form-validation";
 const SECTION_HINTS: Record<string, string> = {
   home: "Welcome — ask me anything about Kelly's practice.",
   philosophy: "You're reading Kelly's philosophy. Want me to explain it?",
@@ -46,6 +53,8 @@ export function ChakraOrb() {
   const [lead, setLead] = useState({ name: "", email: "", message: "" });
   const [leadSent, setLeadSent] = useState(false);
   const [leadError, setLeadError] = useState<string | null>(null);
+  const { cooldownSecs: leadCooldownSecs, checkRateLimit: checkLeadRateLimit } =
+    useSubmitCooldown();
 
   const threadRef = useRef<HTMLDivElement>(null);
   const launcherRef = useRef<HTMLButtonElement>(null);
@@ -169,16 +178,33 @@ export function ChakraOrb() {
   const submitLead = async (e: FormEvent) => {
     e.preventDefault();
     setLeadError(null);
+    if (leadCooldownSecs > 0) return;
     if (!lead.name.trim() || !lead.email.trim() || !lead.message.trim()) {
       setLeadError("Please fill in your name, email, and a short message.");
+      return;
+    }
+    if (!EMAIL_RE.test(lead.email.trim())) {
+      setLeadError("Please enter a valid email address.");
+      return;
+    }
+    if (lead.name.trim().length > NAME_MAX) {
+      setLeadError("That name looks too long — please shorten it.");
+      return;
+    }
+    if (lead.message.trim().length > MESSAGE_MAX) {
+      setLeadError("Your note is a bit too long — please keep it under 5,000 characters.");
+      return;
+    }
+    if (!checkLeadRateLimit()) {
+      setLeadError("You're sending notes a little fast — please wait a moment and try again.");
       return;
     }
     try {
       await createInquiry.mutateAsync({
         data: {
-          name: lead.name.trim(),
-          email: lead.email.trim(),
-          message: lead.message.trim(),
+          name: sanitize(lead.name),
+          email: sanitize(lead.email),
+          message: sanitize(lead.message),
           source: chakra ? `orb:${chakra.id}` : "orb",
           conversationId,
         },

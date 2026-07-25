@@ -21,13 +21,18 @@ export const HealthCheckResponse = zod.object({
  * Proxies a visitor message to the AI guide and returns its reply.
  * @summary Send a message to the Chakra Orb AI guide
  */
+export const orbChatBodyMessageMax = 5000;
+
+export const orbChatBodyConversationIdMax = 100;
+
+export const orbChatBodyChakraMax = 100;
 
 
 
 export const OrbChatBody = zod.object({
-  "message": zod.string().min(1),
-  "conversationId": zod.string().nullish(),
-  "chakra": zod.string().nullish()
+  "message": zod.string().min(1).max(orbChatBodyMessageMax),
+  "conversationId": zod.string().max(orbChatBodyConversationIdMax).nullish(),
+  "chakra": zod.string().max(orbChatBodyChakraMax).nullish()
 })
 
 export const OrbChatResponse = zod.object({
@@ -40,19 +45,30 @@ export const OrbChatResponse = zod.object({
  * Stores a visitor inquiry (name, email, message) for Kelly.
  * @summary Submit a contact inquiry
  */
+export const createInquiryBodyNameMax = 120;
 
 export const createInquiryBodyEmailMin = 3;
+export const createInquiryBodyEmailMax = 320;
+
+export const createInquiryBodyMessageMax = 5000;
+
+export const createInquiryBodySourceMax = 100;
+
+export const createInquiryBodyConversationIdMax = 100;
+
+export const createInquiryBodyImageDataUrlMax = 1500000;
 
 
+export const createInquiryBodyImageDataUrlRegExp = new RegExp('^data:image\/(png|jpeg|webp);base64,');
 
 
 export const CreateInquiryBody = zod.object({
-  "name": zod.string().min(1),
-  "email": zod.string().min(createInquiryBodyEmailMin),
-  "message": zod.string().min(1),
-  "source": zod.string().optional(),
-  "conversationId": zod.string().nullish(),
-  "imageDataUrl": zod.string().nullish()
+  "name": zod.string().min(1).max(createInquiryBodyNameMax),
+  "email": zod.string().email().min(createInquiryBodyEmailMin).max(createInquiryBodyEmailMax),
+  "message": zod.string().min(1).max(createInquiryBodyMessageMax),
+  "source": zod.string().max(createInquiryBodySourceMax).optional(),
+  "conversationId": zod.string().max(createInquiryBodyConversationIdMax).nullish(),
+  "imageDataUrl": zod.string().max(createInquiryBodyImageDataUrlMax).regex(createInquiryBodyImageDataUrlRegExp).nullish()
 })
 
 

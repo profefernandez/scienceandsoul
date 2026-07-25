@@ -1,0 +1,76 @@
+Prompt 1 → findings 1, 2, 3, 4, 5 (all server-side, all in
+api-server
++
+api-zod
+)
+Prompt 2 → finding 6 (frontend only)
+Prompt 3 → finding 7 (dependency bumps — isolated because version bumps are the most likely to break the build)
+The Info finding (chart.tsx) → skip, the agent's reasoning is sound.
+One thing before you run Prompt 1: replace
+<YOUR-LIVE-DOMAIN>
+in the CORS section. If you don't have a custom domain yet, use your
+replit.app
+URL instead.
+
+Run these as separate tasks, in this order — Prompt 1 first, since rate limiting is what protects your 200/day AI quota.
+
+Prompt 1 — API server hardening:
+
+Harden the API server per the completed security audit. Touch only the files listed below. No frontend changes.
+
+SCOPE — exactly four fixes:
+
+1. Rate limiting (highest priority)
+- Add express-rate-limit middleware in artifacts/api-server.
+- POST /api/orb/chat: max 30 requests per IP per 10 minutes.
+- POST /api/inquiries: max 5 requests per IP per hour.
+- Over the limit returns HTTP 429 with a short JSON error message.
+- IMPORTANT: the app sits behind Replit's proxy, so set app.set('trust proxy', 1) — otherwise per-IP limiting won't work correctly.
+
+2. CORS restriction
+- In artifacts/api-server/src/app.ts (line ~28), replace the bare cors() with an origin allowlist:
+  - https://<YOUR-LIVE-DOMAIN> (plus www. variant if applicable)
+  - the Replit preview/dev origins this project already runs on
+  - requests with no Origin header (same-origin, server-to-server, curl)
+- Allow methods POST and OPTIONS only. No credentials.
+
+3. Input validation
+- The zod schemas live in generated code (lib/api-zod/src/generated/api.ts). If they are generated from a spec file, edit the SOURCE spec and regenerate — do not hand-edit generated output.
+- Add: email → proper .email() format, max 320 chars; name ≤ 120; message ≤ 5,000; conversationId / source / chakra ≤ 100 chars each; imageDataUrl → must match data:image/(png|jpeg|webp);base64 with a max length sized for genuine uploads.
+- Lower the express.json body limit (app.ts) from 12mb to the smallest value that still fits a real imageDataUrl upload. State what you chose and why.
+
+4. Security headers as real HTTP headers
+- Wherever serves the frontend HTML in production: send Content-Security-Policy as a response header mirroring the existing policy in vite.config.ts:35-53 exactly, PLUS frame-ancestors 'self'.
+- Add X-Content-Type-Options: nosniff as a real header.
+- Add Strict-Transport-Security (max-age=31536000) only when the request is HTTPS / NODE_ENV is production.
+- Then REMOVE the CSP meta tag from the HTML so only one policy exists.
+- If the static frontend is NOT served by this server in production, stop and report that before changing anything.
+
+DO NOT TOUCH: anything in artifacts/science-and-soul/ (frontend), gemini-chat.ts, launchlemonade.ts, the inquiries email HTML-escaping, or any other routes. No new endpoints. No refactors beyond these four fixes.
+
+DEFINITION OF DONE:
+- 31st chat request from one IP within 10 min → 429
+- 6th inquiry from one IP within an hour → 429
+- Browser fetch from a non-allowlisted origin → blocked
+- 5,001-char message or malformed email → 400
+- curl -I on the preview URL shows CSP (with frame-ancestors) and nosniff as headers
+- Chat widget and inquiry form still work end-to-end in the preview
+Prompt 2 — orb lead form validation:
+
+Fix the orb lead form validation gap from the security audit. Frontend only.
+
+- In artifacts/science-and-soul/src/components/ChakraOrb.tsx, the lead form currently only checks required fields. Give it the same client-side validation, sanitization, and submit cooldown that ContactForm.tsx (lines ~100-124) already has.
+- To avoid duplicating logic: extract those helpers from ContactForm.tsx into a shared module (your choice of location under src/lib/ or src/utils/) and import them in both components.
+- ContactForm.tsx: change ONLY what's needed to extract and import the helpers — its UI, copy, and behavior must stay identical.
+- Do not touch any other component, the API server, or the orb's chat logic.
+
+Definition of done: the orb lead form rejects malformed emails and over-long messages and enforces the same resubmission cooldown as the contact form; the contact form behaves exactly as before.
+Prompt 3 — dependency patches:
+
+Fix the 4 high-severity dev-dependency advisories from the security audit: postcss 8.5.14 → ≥8.5.18, vite 7.3.3 → ≥7.3.5, brace-expansion 5.0.6 → ≥5.0.8 and the 1.1.16 instance → a patched version.
+
+- Plan first: list the exact version/lockfile changes you intend to make, including any npm overrides or parent-package bumps needed for brace-expansion 1.x. Wait for my go-ahead before changing anything.
+- After I approve: make only those dependency changes. Do not touch application code.
+- If a fix requires a major version bump of vite or a parent package, flag it and wait instead of proceeding.
+
+Definition of done: npm audit shows 0 high-severity advisories; the production build succeeds; the preview loads and the chat widget works.

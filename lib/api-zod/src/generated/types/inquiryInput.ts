@@ -7,15 +7,32 @@
  */
 
 export interface InquiryInput {
-  /** @minLength 1 */
+  /**
+     * @minLength 1
+     * @maxLength 120
+     */
   name: string;
-  /** @minLength 3 */
+  /**
+     * @minLength 3
+     * @maxLength 320
+     */
   email: string;
-  /** @minLength 1 */
+  /**
+     * @minLength 1
+     * @maxLength 5000
+     */
   message: string;
+  /** @maxLength 100 */
   source?: string;
-  /** @nullable */
+  /**
+     * @maxLength 100
+     * @nullable
+     */
   conversationId?: string | null;
-  /** @nullable */
+  /**
+     * @maxLength 1500000
+     * @nullable
+     * @pattern ^data:image/(png|jpeg|webp);base64,
+     */
   imageDataUrl?: string | null;
 }

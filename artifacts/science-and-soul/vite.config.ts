@@ -28,10 +28,12 @@ if (!basePath) {
 function cspPlugin(mode: string): Plugin {
   const isProd = mode === "production";
 
+  // In production the Express server sends CSP / nosniff / Referrer-Policy as
+  // real HTTP response headers (see artifacts/api-server/src/app.ts), so we
+  // skip the meta tags entirely to avoid two competing policies.
   // In development, Vite and @vitejs/plugin-react inject inline scripts for HMR
-  // and React Fast Refresh — these require 'unsafe-inline'. Production builds
-  // output no inline scripts, so we enforce a strict 'self'-only policy there.
-  const scriptSrc = isProd ? "script-src 'self'" : "script-src 'self' 'unsafe-inline'";
+  // and React Fast Refresh — these require 'unsafe-inline'.
+  const scriptSrc = "script-src 'self' 'unsafe-inline'";
 
   const csp = [
     "default-src 'self'",
@@ -47,6 +49,7 @@ function cspPlugin(mode: string): Plugin {
   return {
     name: "csp-meta",
     transformIndexHtml() {
+      if (isProd) return [];
       return [
         {
           tag: "meta",

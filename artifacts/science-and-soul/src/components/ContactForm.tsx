@@ -1,5 +1,6 @@
-import { useState, useRef, useEffect, type FormEvent, type ChangeEvent } from "react";
+import { useState, type FormEvent, type ChangeEvent } from "react";
 import { useCreateInquiry } from "@workspace/api-client-react";
+import { EMAIL_RE, sanitize, useSubmitCooldown } from "@/lib/form-validation";
 
 interface FormFields {
   firstName: string;
@@ -12,13 +13,6 @@ interface FormFields {
 
 type FormErrors = Partial<Record<keyof FormFields, string>>;
 
-const RATE_LIMIT = 3;
-const RATE_WINDOW_MS = 60_000;
-
-function sanitize(str: string): string {
-  return str.replace(/<[^>]*>/g, "").trim();
-}
-
 function validate(fields: FormFields): FormErrors {
   const errors: FormErrors = {};
   if (!fields.firstName.trim()) {
@@ -26,7 +20,7 @@ function validate(fields: FormFields): FormErrors {
   }
   if (!fields.email.trim()) {
     errors.email = "Email address is required.";
-  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fields.email)) {
+  } else if (!EMAIL_RE.test(fields.email)) {
     errors.email = "Please enter a valid email address.";
   }
   if (!fields.message.trim()) {
@@ -48,44 +42,8 @@ export function ContactForm() {
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitted, setSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
-  const [cooldownSecs, setCooldownSecs] = useState(0);
-  const submissionTimes = useRef<number[]>([]);
-  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const { cooldownSecs, checkRateLimit } = useSubmitCooldown();
   const createInquiry = useCreateInquiry();
-
-  useEffect(() => {
-    return () => {
-      if (timerRef.current) clearInterval(timerRef.current);
-    };
-  }, []);
-
-  function startCooldown(remainingMs: number) {
-    setCooldownSecs(Math.ceil(remainingMs / 1000));
-    if (timerRef.current) clearInterval(timerRef.current);
-    timerRef.current = setInterval(() => {
-      setCooldownSecs((prev) => {
-        if (prev <= 1) {
-          if (timerRef.current) clearInterval(timerRef.current);
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
-  }
-
-  function checkRateLimit(): boolean {
-    const now = Date.now();
-    const windowStart = now - RATE_WINDOW_MS;
-    submissionTimes.current = submissionTimes.current.filter((t) => t > windowStart);
-    if (submissionTimes.current.length >= RATE_LIMIT) {
-      const oldestInWindow = submissionTimes.current[0];
-      const msUntilFree = oldestInWindow + RATE_WINDOW_MS - now;
-      startCooldown(msUntilFree);
-      return false;
-    }
-    submissionTimes.current.push(now);
-    return true;
-  }
 
   function handleChange(e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
     const { name, value } = e.target;

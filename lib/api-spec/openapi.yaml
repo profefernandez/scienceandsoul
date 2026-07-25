@@ -81,10 +81,13 @@ components:
         message:
           type: string
           minLength: 1
+          maxLength: 5000
         conversationId:
           type: ["string", "null"]
+          maxLength: 100
         chakra:
           type: ["string", "null"]
+          maxLength: 100
     OrbChatReply:
       type: object
       required:
@@ -104,18 +107,26 @@ components:
         name:
           type: string
           minLength: 1
+          maxLength: 120
         email:
           type: string
+          format: email
           minLength: 3
+          maxLength: 320
         message:
           type: string
           minLength: 1
+          maxLength: 5000
         source:
           type: string
+          maxLength: 100
         conversationId:
           type: ["string", "null"]
+          maxLength: 100
         imageDataUrl:
           type: ["string", "null"]
+          pattern: "^data:image/(png|jpeg|webp);base64,"
+          maxLength: 1500000
     Inquiry:
       type: object
       required:

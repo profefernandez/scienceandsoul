@@ -7,10 +7,19 @@
  */
 
 export interface OrbChatInput {
-  /** @minLength 1 */
+  /**
+     * @minLength 1
+     * @maxLength 5000
+     */
   message: string;
-  /** @nullable */
+  /**
+     * @maxLength 100
+     * @nullable
+     */
   conversationId?: string | null;
-  /** @nullable */
+  /**
+     * @maxLength 100
+     * @nullable
+     */
   chakra?: string | null;
 }
