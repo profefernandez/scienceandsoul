@@ -48,6 +48,20 @@ export function ChakraOrb() {
   const [leadError, setLeadError] = useState<string | null>(null);
 
   const threadRef = useRef<HTMLDivElement>(null);
+  const launcherRef = useRef<HTMLButtonElement>(null);
+
+  // Close on Escape and return focus to the launcher button.
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setOpen(false);
+        launcherRef.current?.focus();
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open, setOpen]);
 
   const orbChat = useOrbChat();
   const createInquiry = useCreateInquiry();
@@ -340,6 +354,7 @@ export function ChakraOrb() {
               <form className="orbcompose" onSubmit={onSubmit}>
                 <input
                   className="orbinp"
+                  aria-label="Type your message"
                   placeholder="Ask me anything…"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
@@ -368,6 +383,7 @@ export function ChakraOrb() {
       )}
 
       <button
+        ref={launcherRef}
         className={`orbbtn orbbtn-haslogo${open ? " is-open" : ""}`}
         onClick={toggleOpen}
         aria-label={open ? "Close the chakra guide chat" : "Open the chakra guide chat"}
@@ -376,11 +392,11 @@ export function ChakraOrb() {
           className="orbbtn-logo"
           src={imgSrc("logo", 96)}
           srcSet={imgSrcSet("logo", [96, 192])}
-          sizes="64px"
+          sizes="52px"
           alt=""
           aria-hidden="true"
-          width={64}
-          height={64}
+          width={52}
+          height={52}
           loading="lazy"
           decoding="async"
         />
