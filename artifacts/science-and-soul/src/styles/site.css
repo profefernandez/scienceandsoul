@@ -149,12 +149,11 @@ section{padding:clamp(2.5rem,8vw,6rem) 0}
 @media(min-width:1024px){.hfeatimg{max-height:74vh;object-fit:cover;object-position:center 42%}}
 .hcdesc{margin:var(--sp8) auto 0;max-width:56ch;text-align:center}
 .hcacts{justify-content:center;margin-top:var(--sp6)}
-.slabel{display:inline-flex;align-items:center;gap:var(--sp2);font-family:var(--fh);font-size:var(--tx-base);color:var(--inkm);margin-bottom:var(--sp3)}
-.slabel::before,.slabel::after{content:"";display:block;height:1px;width:24px;background:var(--dv)}
 .stitle{font-family:var(--fd);font-size:var(--tx-2xl);font-weight:700;color:var(--ink);line-height:var(--lh-tight);margin-bottom:var(--sp4)}
 .stitle em{font-style:italic}
 .sdesc{font-size:var(--tx-base);color:var(--inkm);line-height:var(--lh-relaxed);max-width:58ch;margin-bottom:var(--sp10)}
-.band{background:color-mix(in srgb,var(--sf2) 62%,transparent);border-top:1.5px solid var(--dv);border-bottom:1.5px solid var(--dv)}
+.band{background:color-mix(in srgb,var(--sf2) 62%,transparent)}
+main>section+section{border-top:1.5px solid var(--dv)}
 .bandnb{border-bottom:none}
 .cstrip{padding:var(--sp10) 0}
 .cshead{text-align:center;max-width:620px;margin:0 auto var(--sp8)}

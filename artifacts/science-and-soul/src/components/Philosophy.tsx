@@ -19,7 +19,6 @@ export function Philosophy() {
             />
           </div>
           <div className="fi">
-            <div className="slabel">Our Philosophy</div>
             <h2 className="stitle">
               Clinical rigor and spiritual<br />practice, <em>working together</em>
             </h2>

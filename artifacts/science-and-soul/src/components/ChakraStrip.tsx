@@ -14,7 +14,6 @@ export function ChakraStrip() {
     <section className="cstrip band" id="guides" aria-label="Choose your chakra guide">
       <div className="ww">
         <div className="cshead">
-          <div className="slabel" style={{ justifyContent: "center" }}>Your AI Companion</div>
           <h2 className="cstitle">Choose a chakra <em>guide</em></h2>
           <p className="cssub">
             Each chakra represents a different part of your wellbeing. Browse with the arrows, then open a gentle AI guide to ask questions about Kelly's practice.

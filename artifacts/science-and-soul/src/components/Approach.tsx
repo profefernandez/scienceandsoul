@@ -33,7 +33,6 @@ export function Approach() {
       <div className="ww">
         <div className="apprgrid">
           <div className="fi">
-            <div className="slabel">The Process</div>
             <h2 className="stitle">
               A structured process,<br /><em>tailored to each person</em>
             </h2>

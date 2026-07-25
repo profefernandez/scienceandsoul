@@ -40,7 +40,6 @@ export function Services() {
     <section id="services">
       <div className="ww">
         <div style={{ textAlign: "center", marginBottom: "3rem" }}>
-          <div className="slabel" style={{ justifyContent: "center" }}>Services Offered</div>
           <h2 className="stitle" style={{ marginInline: "auto" }}>
             Individual therapy, group therapy,<br /><em>&amp; integrative care</em>
           </h2>

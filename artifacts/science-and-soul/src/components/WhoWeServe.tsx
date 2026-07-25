@@ -37,7 +37,6 @@ export function WhoWeServe() {
     <section id="serve">
       <div className="ww">
         <div style={{ textAlign: "center", marginBottom: "var(--sp10)" }}>
-          <div className="slabel" style={{ justifyContent: "center" }}>Who Kelly Works With</div>
           <h2 className="stitle" style={{ marginInline: "auto" }}>
             Teens, adults, and the<br /><em>LGBTQIA+ community</em>
           </h2>

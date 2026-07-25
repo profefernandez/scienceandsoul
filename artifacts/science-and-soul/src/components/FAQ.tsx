@@ -38,7 +38,6 @@ export function FAQ() {
     <section id="faq">
       <div className="ww">
         <div style={{ textAlign: "center", marginBottom: "var(--sp10)" }}>
-          <div className="slabel" style={{ justifyContent: "center" }}>Common Questions</div>
           <h2 className="stitle" style={{ marginInline: "auto" }}>
             Frequently Asked <em>Questions</em>
           </h2>

@@ -58,7 +58,6 @@ export function Methods() {
             />
           </div>
           <div className="fi">
-            <div className="slabel">Therapy Methods, Explained</div>
             <h2 className="stitle">
               How Kelly works, in <em>plain language</em>
             </h2>

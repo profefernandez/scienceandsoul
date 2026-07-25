@@ -35,7 +35,6 @@ export function About() {
             </div>
           </div>
           <div className="fi">
-            <div className="slabel">About Kelly</div>
             <h2 className="stitle">Kelly Nelson, <em>LCSW-S</em></h2>
             <div className="stats">
               <div className="stat">

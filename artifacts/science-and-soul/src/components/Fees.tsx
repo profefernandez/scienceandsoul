@@ -16,7 +16,6 @@ export function Fees() {
     <section id="fees" className="band">
       <div className="ww">
         <div style={{ textAlign: "center", marginBottom: "var(--sp10)" }}>
-          <div className="slabel" style={{ justifyContent: "center" }}>Invest in Your Healing</div>
           <h2 className="stitle" style={{ marginInline: "auto" }}>
             Fees &amp; <em>Insurance</em>
           </h2>

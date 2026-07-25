@@ -137,9 +137,6 @@ export function JournalDownload() {
     <section id="journal" className="jrn band">
       <div className="ww">
         <div style={{ textAlign: "center", marginBottom: "var(--sp10)" }}>
-          <div className="slabel" style={{ justifyContent: "center" }}>
-            A Gift for Your Journey
-          </div>
           <h2 className="stitle" style={{ marginInline: "auto" }}>
             Color with <em>Feeling and Intention</em>
           </h2>

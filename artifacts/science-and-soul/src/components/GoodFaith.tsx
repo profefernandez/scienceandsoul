@@ -6,7 +6,6 @@ export function GoodFaith() {
       <div className="ww">
         <div className="philos-inner">
           <div className="fi">
-            <div className="slabel">Transparency</div>
             <h2 className="stitle">
               Good Faith <em>Estimate</em>
             </h2>

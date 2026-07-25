@@ -6,7 +6,6 @@ export function Contact() {
     <section id="contact">
       <div className="ww">
         <div className="fi" style={{ textAlign: "center", marginBottom: "var(--sp10)" }}>
-          <div className="slabel" style={{ justifyContent: "center" }}>Get in Touch</div>
           <h2 className="stitle" style={{ marginInline: "auto" }}>
             Schedule a free <em>15-minute consultation</em>
           </h2>
