@@ -183,9 +183,9 @@ main>section+section{border-top:1.5px solid var(--dv)}
 .apprimg img{border-radius:var(--r2xl);box-shadow:var(--shlg);border:3px solid var(--dv)}
 .serveart{display:flex;justify-content:center}
 .serveart img{width:min(575px,100%);height:auto;border-radius:var(--r2xl);box-shadow:var(--shlg)}
-.contactart{display:flex;flex-direction:column;align-items:center;gap:var(--sp6);text-align:center}
-.contactart img{width:min(575px,100%);height:auto;border-radius:var(--r2xl);box-shadow:var(--shlg)}
-.contacttext{color:var(--inkm);line-height:var(--lh-body);max-width:44ch;margin:0}
+.contactgrid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.contactimg img{width:min(575px,100%);height:auto;border-radius:var(--r2xl);box-shadow:var(--shlg);display:block;margin-inline:auto}
+.contacttext{color:var(--inkm);line-height:var(--lh-relaxed);max-width:48ch;margin:0 0 var(--sp6)}
 .aboutgrid{display:grid;grid-template-columns:480px 1fr;gap:4rem;align-items:center}
 .aboutportrait{position:relative}
 .aboutframe{border-radius:var(--r2xl);overflow:hidden;box-shadow:var(--shlg);background:var(--sf2)}
@@ -239,6 +239,7 @@ html.a11y-simple .washbg,html.a11y-contrast .washbg{display:none}
 .fbotlinks a{font-size:var(--tx-xs);color:var(--inkf)}
 @media(max-width:1024px){
 .aboutgrid{grid-template-columns:1fr}
+.contactgrid{grid-template-columns:1fr}
 .footerinner{grid-template-columns:1fr 1fr}
 }
 @media(max-width:768px){
