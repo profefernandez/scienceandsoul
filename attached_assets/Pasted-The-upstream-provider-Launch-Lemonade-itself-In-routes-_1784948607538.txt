@@ -1,0 +1,18 @@
+The upstream provider (Launch Lemonade) itself. In routes/chat.ts, if Launch Lemonade returns a 429 or an error mentioning "rate limit / quota", your server relays a friendly "assistant has reached its usage limit" message. This is their account-level quota — it can trip even if nobody touched your site today (e.g., plan quota exhausted on their side). This is the most likely culprit for "limit hit with zero usage."
+
+Your durable daily budget (database-backed). chatBudget.ts keeps a counter per UTC day (default 2,000 calls, CHAT_DAILY_MAX) in the database. Key points:
+
+It's global, not per-person. Your /api/chat is public — bots, crawlers, and random traffic all consume the same daily budget. "I haven't used it" doesn't mean nobody has.
+It survives restarts and redeploys by design (that's the point of it being in the DB).
+It resets at UTC midnight, not your local midnight — so "today's limit" can feel wrong depending on your timezone.
+If someone set CHAT_DAILY_MAX env var to a tiny value by accident, it would trip instantly.
+The in-memory per-minute limits (chatRateLimit.ts: 15/min per IP, 120/min global, 6 concurrent). These reset every minute and on every restart, so they can't explain "limited on first message of the day" — I checked the window-reset logic and it's correct.
+
+What "done incorrectly" would look like (and one real gotcha)
+The classic bugs — never resetting the window, checking after incrementing, sharing one counter for all IPs — aren't present in your code. But there is one behavior worth knowing: rejected requests still increment the daily counter (bumpAndGet increments before the check, with no refund). So if bot traffic pins the counter past 2,000, even checking keeps it pinned. That's standard fixed-window behavior, but it means an attacker or bot flood earlier in the day silently burns your budget before you ever type a message.
+
+How to tell which one hit you
+Message says "try again tomorrow" → your daily DB budget (scope daily). Check the rate_counters table for today's chat:daily:... row — if its count is huge, you had bot traffic.
+Message says "usage limit for the moment" → Launch Lemonade's own quota, nothing on your side.
+Your audit log records rate_limit_breach events with a scope (chat-daily, chat-global, chat-ip) and the IP — that tells you exactly who/what consumed the budget.
+If you'd like, I can plan a small task to add an admin-visible view of these counters and breach events (so you can see at a glance who used the budget and which limit fired) — just say the word.
