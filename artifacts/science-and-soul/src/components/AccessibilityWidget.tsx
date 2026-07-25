@@ -187,9 +187,10 @@ export function AccessibilityWidget() {
         aria-haspopup="dialog"
         aria-label="Accessibility options"
       >
+        {/* International Symbol of Access (wheelchair), white on blue */}
         <svg
-          width="28"
-          height="28"
+          width="30"
+          height="30"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -198,10 +199,10 @@ export function AccessibilityWidget() {
           strokeLinejoin="round"
           aria-hidden="true"
         >
-          <circle cx="12" cy="4.5" r="2" fill="currentColor" stroke="none" />
-          <path d="M4.5 8.5c2.5.7 5 1 7.5 1s5-.3 7.5-1" />
-          <path d="M12 9.5v4l-2.5 6" />
-          <path d="M12 13.5l2.5 6" />
+          <circle cx="12" cy="3.5" r="1.9" fill="currentColor" stroke="none" />
+          <path d="M12 6.5v5.5h5l2.4 5.4" />
+          <path d="M11.5 9.5h4.5" />
+          <path d="M8.5 11.2a5.5 5.5 0 1 0 7.3 7.3" />
         </svg>
       </button>
     </div>
