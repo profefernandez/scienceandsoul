@@ -186,6 +186,7 @@ main>section+section{border-top:1.5px solid var(--dv)}
 .contactgrid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
 .contactimg img{width:min(575px,100%);height:auto;border-radius:var(--r2xl);box-shadow:var(--shlg);display:block;margin-inline:auto}
 .contacttext{color:var(--inkm);line-height:var(--lh-relaxed);max-width:48ch;margin:0 0 var(--sp6)}
+.contactcta{text-align:center}
 .aboutgrid{display:grid;grid-template-columns:480px 1fr;gap:4rem;align-items:center}
 .aboutportrait{position:relative}
 .aboutframe{border-radius:var(--r2xl);overflow:hidden;box-shadow:var(--shlg);background:var(--sf2)}

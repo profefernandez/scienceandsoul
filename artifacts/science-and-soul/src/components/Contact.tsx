@@ -23,7 +23,9 @@ export function Contact() {
             <p className="contacttext">
               Reach out to get started — Kelly can answer questions about scheduling, services, and fit before a first appointment. She typically responds within 24 hours.
             </p>
-            <EmailKellyButton btnClass="btn btnp btnlg" label="Schedule Now" />
+            <div className="contactcta">
+              <EmailKellyButton btnClass="btn btnp btnlg" label="Schedule Now" />
+            </div>
           </div>
         </div>
       </div>
