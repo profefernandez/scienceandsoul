@@ -224,9 +224,9 @@ main>section+section{border-top:1.5px solid var(--dv)}
 .svtags{display:flex;flex-wrap:wrap;gap:4px;margin-top:auto}
 .aboutgrid{display:grid;grid-template-columns:380px 1fr;gap:4rem;align-items:start}
 .aboutportrait{position:relative}
-.aboutframe{border-radius:var(--r2xl);overflow:hidden;border:3px solid var(--dv);box-shadow:var(--shlg);aspect-ratio:3/4;background:var(--sf2)}
+.aboutframe{border-radius:var(--r2xl);overflow:hidden;border:3px solid var(--dv);box-shadow:var(--shlg);aspect-ratio:1/1;background:var(--sf2)}
 .aboutframe img{width:100%;height:100%;object-fit:cover}
-.aboutcred{position:absolute;bottom:var(--sp4);left:var(--sp4);right:var(--sp4);background:color-mix(in oklch,var(--sf) 95%,transparent);backdrop-filter:blur(8px);border:1.5px solid var(--dv);border-radius:var(--rxl);padding:var(--sp3) var(--sp4)}
+.aboutcred{margin-top:var(--sp4);text-align:center}
 .aboutcname{font-family:var(--fd);font-weight:700;font-size:var(--tx-base);color:var(--ink)}
 .aboutctitle{font-size:var(--tx-xs);color:var(--inkm);font-weight:600;letter-spacing:.04em}
 .aboutbio{font-size:var(--tx-base);color:var(--inkm);line-height:var(--lh-relaxed);margin-bottom:var(--sp5)}
