@@ -59,8 +59,8 @@ export function Approach() {
           {steps.map((s, i) => (
             <li className="apprstep fi" key={s.title}>
               <div className="apprstep-head">
-                <div className="appricon" style={s.iconStyle} aria-hidden="true">{s.emoji}</div>
                 <span className="apprstep-num" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
+                <div className="appricon" style={s.iconStyle} aria-hidden="true">{s.emoji}</div>
               </div>
               <div className="apprititle">{s.title}</div>
               <p className="appridesc">{s.desc}</p>
