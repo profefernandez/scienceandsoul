@@ -1,4 +1,4 @@
-import { imgSrc, imgSrcSet } from "../lib/img";
+import goodFaithArt from "@assets/image_1784943938334.png";
 
 export function GoodFaith() {
   return (
@@ -38,12 +38,10 @@ export function GoodFaith() {
           </div>
           <div className="philos-img fi">
             <img
-              src={imgSrc("goodfaith", 1024)}
-              srcSet={imgSrcSet("goodfaith", [480, 768, 1024, 1280])}
-              sizes="(min-width: 768px) 50vw, 100vw"
-              alt="Watercolor illustration of a therapist warmly handing a client a written cost estimate in a cozy counseling office"
-              width={1024}
-              height={768}
+              src={goodFaithArt}
+              alt="Watercolor illustration of a therapist and client talking together in a cozy office decorated with botanical art, books, and warm lamps"
+              width={501}
+              height={370}
               loading="lazy"
               decoding="async"
               style={{ borderRadius: "var(--r2xl)", boxShadow: "var(--shlg)", width: "100%", height: "auto" }}
