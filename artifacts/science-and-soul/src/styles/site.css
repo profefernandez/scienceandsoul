@@ -349,6 +349,36 @@ body{line-height:var(--lh-md);letter-spacing:.05em;word-spacing:.06em}
 @media(max-width:480px){.orbroot{right:.75rem;left:.75rem;align-items:flex-end}.orbpanel{width:100%;height:min(72dvh,520px)}}
 @media(prefers-reduced-motion:reduce){.orbpanel{animation:none}.orbtyping span{animation:none}}
 
+/* ===== Desktop cursor-orb chakra guide ===== */
+/* Full-viewport layer that never blocks the page; only orb + bubble are interactive */
+.corb-layer{position:fixed;inset:0;z-index:320;pointer-events:none}
+.corb-follow{position:absolute;top:0;left:0;will-change:transform}
+.corb-orb{pointer-events:auto;width:28px;height:28px;border-radius:var(--rfull);border:none;cursor:pointer;display:block;background:radial-gradient(circle at 35% 30%,color-mix(in oklch,var(--orb-glow) 92%,#fff),var(--orb-deep));box-shadow:0 0 12px 3px color-mix(in oklch,var(--orb-glow) 55%,transparent),0 0 28px 8px color-mix(in oklch,var(--orb-glow) 28%,transparent);animation:corbpulse 2.6s ease-in-out infinite;transition:transform var(--tr)}
+.corb-orb:hover{transform:scale(1.15)}
+.corb-orb.is-open{animation:none;transform:scale(1.1)}
+.corb-orb:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+.corb-core{display:block;width:100%;height:100%;border-radius:var(--rfull)}
+@keyframes corbpulse{0%,100%{box-shadow:0 0 12px 3px color-mix(in oklch,var(--orb-glow) 55%,transparent),0 0 28px 8px color-mix(in oklch,var(--orb-glow) 28%,transparent)}50%{box-shadow:0 0 16px 5px color-mix(in oklch,var(--orb-glow) 70%,transparent),0 0 36px 12px color-mix(in oklch,var(--orb-glow) 38%,transparent)}}
+.corb-bubble{pointer-events:auto;position:absolute;left:36px;top:8px;width:300px;max-height:340px;display:flex;flex-direction:column;background:var(--sf);border:1px solid var(--dv);border-radius:var(--rxl);box-shadow:var(--shlg);overflow:hidden;animation:orbin 180ms cubic-bezier(.16,1,.3,1) both}
+.corb-bubble.corb-left{left:auto;right:36px}
+.corb-bubble.corb-up{top:auto;bottom:8px}
+.corb-head{display:flex;align-items:center;justify-content:space-between;gap:var(--sp2);padding:var(--sp2) var(--sp3);background:linear-gradient(135deg,color-mix(in oklch,var(--orb-glow) 18%,var(--sf)),var(--sf));border-bottom:1px solid var(--dv)}
+.corb-title{font-family:var(--fd);font-weight:700;font-size:var(--tx-xs);color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.corb-acts{display:flex;gap:var(--sp1);flex-shrink:0}
+.corb-act{padding:2px var(--sp2);border-radius:var(--rfull);border:1px solid var(--dv);background:var(--sf);color:var(--inkm);font-size:var(--tx-xs);font-weight:700;cursor:pointer;transition:all var(--tr);white-space:nowrap}
+.corb-act:hover{background:var(--sf2);color:var(--ink);border-color:var(--orb-glow)}
+.corb-act:focus-visible{outline:2px solid var(--teal);outline-offset:1px}
+.corb-hint{font-size:var(--tx-xs);color:var(--inkm);padding:var(--sp1) var(--sp3);background:var(--sf2);border-bottom:1px solid var(--dv);line-height:var(--lh-md)}
+.corb-thread{flex:1;min-height:80px;overflow-y:auto;padding:var(--sp3);display:flex;flex-direction:column;gap:var(--sp2)}
+.corb-compose{display:flex;gap:var(--sp2);padding:var(--sp2) var(--sp3);border-top:1px solid var(--dv);align-items:center}
+/* Reduced motion: orb docks bottom-right instead of following the cursor */
+.corb-docked .corb-orb{animation:none}
+@media(prefers-reduced-motion:reduce){.corb-bubble{animation:none}.corb-orb{animation:none;transition:none}}
+@media(forced-colors:active){.corb-orb,.corb-act{border:1px solid ButtonText!important}}
+html.a11y-simple .corb-layer{display:none!important}
+html.a11y-motion .corb-orb{animation:none!important}
+@media print{.corb-layer{display:none!important}}
+
 /* ===== Coloring Journal Download ===== */
 .jrngal{display:flex;align-items:center;gap:var(--sp4);justify-content:center}
 .jrngal-stage{flex:1;max-width:520px;display:flex;flex-direction:column;align-items:center;gap:var(--sp4)}

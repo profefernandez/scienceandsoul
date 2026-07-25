@@ -11,6 +11,8 @@ import { useOrbChat, useCreateInquiry } from "@workspace/api-client-react";
 import { CHAKRAS } from "../data/chakras";
 import { imgSrc, imgSrcSet } from "../lib/img";
 import { useChakraGuide } from "../context/ChakraGuideContext";
+import { CursorOrb } from "./CursorOrb";
+
 import {
   EMAIL_RE,
   MESSAGE_MAX,
@@ -18,6 +20,24 @@ import {
   sanitize,
   useSubmitCooldown,
 } from "../lib/form-validation";
+
+// Desktop = large screen with a fine pointer (mouse), where the cursor-orb
+// experience makes sense. Touch/small screens keep the widget as-is.
+const DESKTOP_MQ = "(min-width: 1024px) and (pointer: fine)";
+const REDUCED_MOTION_MQ = "(prefers-reduced-motion: reduce)";
+
+function useMediaQuery(query: string): boolean {
+  const [matches, setMatches] = useState(
+    () => typeof window !== "undefined" && window.matchMedia(query).matches,
+  );
+  useEffect(() => {
+    const mql = window.matchMedia(query);
+    const onChange = () => setMatches(mql.matches);
+    mql.addEventListener("change", onChange);
+    return () => mql.removeEventListener("change", onChange);
+  }, [query]);
+  return matches;
+}
 const SECTION_HINTS: Record<string, string> = {
   home: "Welcome — ask me anything about Kelly's practice.",
   philosophy: "You're reading Kelly's philosophy. Want me to explain it?",
@@ -45,6 +65,11 @@ export function ChakraOrb() {
     toggleOpen,
   } = useChakraGuide();
   const [visible, setVisible] = useState(false);
+  const isDesktop = useMediaQuery(DESKTOP_MQ);
+  const reducedMotion = useMediaQuery(REDUCED_MOTION_MQ);
+  // On desktop, choosing a guide switches to the cursor-orb experience.
+  // The visitor can return to the standard panel at any time.
+  const [cursorMode, setCursorMode] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [conversationId, setConversationId] = useState<string | null>(null);
@@ -133,9 +158,34 @@ export function ChakraOrb() {
     setLeadError(null);
   }, [chakra?.id]);
 
+  // Entering cursor mode: on desktop, picking a guide closes the fixed panel
+  // and hands the experience to the cursor orb. Leaving desktop (resize /
+  // device change) always exits cursor mode so the widget behaves normally.
+  useEffect(() => {
+    if (!isDesktop && cursorMode) {
+      setCursorMode(false);
+      setOpen(true);
+    }
+  }, [isDesktop, cursorMode, setOpen]);
+
+  useEffect(() => {
+    if (!chakra) setCursorMode(false);
+  }, [chakra]);
+
+  const enterCursorMode = useCallback(() => {
+    setCursorMode(true);
+    setOpen(false);
+  }, [setOpen]);
+
+  const backToWidget = useCallback(() => {
+    setCursorMode(false);
+    setOpen(true);
+  }, [setOpen]);
+
   const switchGuide = useCallback(() => {
     setChakra(null);
-  }, [setChakra]);
+    setOpen(true);
+  }, [setChakra, setOpen]);
 
   const sendMessage = useCallback(
     async (text: string) => {
@@ -227,6 +277,23 @@ export function ChakraOrb() {
     [accent, accentDeep],
   );
 
+  if (cursorMode && chakra && isDesktop) {
+    return (
+      <CursorOrb
+        chakra={chakra}
+        messages={messages}
+        input={input}
+        setInput={setInput}
+        sendMessage={(t) => void sendMessage(t)}
+        pending={orbChat.isPending}
+        sectionHint={sectionHint}
+        reducedMotion={reducedMotion}
+        onSwitchGuide={switchGuide}
+        onBackToWidget={backToWidget}
+      />
+    );
+  }
+
   if (!visible && !open) return null;
 
   return (
@@ -278,7 +345,10 @@ export function ChakraOrb() {
                   <button
                     key={c.id}
                     className="orbpick-orb"
-                    onClick={() => setChakra(c)}
+                    onClick={() => {
+                      setChakra(c);
+                      if (isDesktop) enterCursorMode();
+                    }}
                     style={
                       {
                         "--orb-glow": c.glow,
