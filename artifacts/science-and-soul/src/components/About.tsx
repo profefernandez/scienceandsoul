@@ -26,9 +26,6 @@ export function About() {
             <p className="aboutbio">
               Kelly Nelson, LCSW-S, brings eight years of clinical practice to her Houston-based work. She earned her BA from Auburn University and her MSW from Simmons University in 2018, and works with pre-teens, adolescents, adults, families, and the LGBTQIA+ community using a blend of evidence-based and spiritual practices. Her style is warm, holistic, and open-minded — and late-evening appointments are available for flexible scheduling.
             </p>
-            <blockquote className="aboutbio" style={{ borderLeft: "3px solid var(--teal)", paddingLeft: "var(--sp4)", fontStyle: "italic", color: "var(--inkm)" }}>
-              &ldquo;I believe we each hold the key to our own healing, though we often lose touch with it through life&rsquo;s experiences. My work is to help you peel back the layers &mdash; hopelessness, depression, trauma, negative beliefs &mdash; to reconnect with who you already are.&rdquo;
-            </blockquote>
           </div>
         </div>
       </div>
