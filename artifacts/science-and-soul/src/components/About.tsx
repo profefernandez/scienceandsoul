@@ -1,16 +1,5 @@
 import { imgSrc, imgSrcSet } from "../lib/img";
 
-const modalities = [
-  { cls: "pill pt", label: "CBT" },
-  { cls: "pill pt", label: "DBT" },
-  { cls: "pill pl", label: "Psychodynamic" },
-  { cls: "pill pl", label: "Mindfulness" },
-  { cls: "pill ps", label: "Person-Centered" },
-  { cls: "pill ps", label: "Spirituality" },
-  { cls: "pill pa", label: "Trauma Focused" },
-  { cls: "pill pa", label: "Energy Psychology" },
-];
-
 export function About() {
   return (
     <section id="about">
@@ -56,11 +45,6 @@ export function About() {
             <blockquote className="aboutbio" style={{ borderLeft: "3px solid var(--teal)", paddingLeft: "var(--sp4)", fontStyle: "italic", color: "var(--inkm)" }}>
               &ldquo;I believe we each hold the key to our own healing, though we often lose touch with it through life&rsquo;s experiences. My work is to help you peel back the layers &mdash; hopelessness, depression, trauma, negative beliefs &mdash; to reconnect with who you already are.&rdquo;
             </blockquote>
-            <div className="modcloud">
-              {modalities.map((m) => (
-                <span className={m.cls} key={m.label}>{m.label}</span>
-              ))}
-            </div>
           </div>
         </div>
       </div>
