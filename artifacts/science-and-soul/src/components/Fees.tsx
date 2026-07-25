@@ -1,22 +1,5 @@
-const sessionRates = [
-  { label: "Individual Session (50 min)", price: "$150" },
-  { label: "Couples Session (50 min)", price: "$200" },
-  { label: "Free Consultation (15 min)", price: "$0" },
-];
-
-const insurance = [
-  "Aetna",
-  "Ascension",
-  "Blue Cross and Blue Shield of Texas",
-  "Blue Cross Blue Shield of Massachusetts",
-  "Carelon Behavioral Health",
-  "Cigna",
-  "Horizon Blue Cross and Blue Shield of New Jersey",
-  "Independence Blue Cross Pennsylvania – Virtual National Network",
-  "Oscar",
-  "Oxford",
-  "United Healthcare",
-];
+import sessionRatesImg from "@assets/image_1784945903256.png";
+import insuranceImg from "@assets/image_1784945930828.png";
 
 export function Fees() {
   return (
@@ -28,34 +11,20 @@ export function Fees() {
           </h2>
         </div>
         <div className="feesgrid">
-          <div className="fcard fi">
-            <h3 className="fcardtitle">Session Rates</h3>
-            <table className="ftable">
-              <tbody>
-                {sessionRates.map((r) => (
-                  <tr key={r.label}>
-                    <th scope="row" style={{ textAlign: "left", fontWeight: 400, padding: "var(--sp3) 0", borderBottom: "1px solid var(--dv)", fontSize: "var(--tx-base)" }}>{r.label}</th>
-                    <td>{r.price}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-            <div style={{ marginTop: "var(--sp6)", padding: "var(--sp4)", background: "var(--teall)", borderRadius: "var(--rlg)" }}>
-              <div style={{ fontSize: "var(--tx-sm)", color: "var(--teal)", fontWeight: 700, marginBottom: "var(--sp1)" }}>🌙 Late Night Availability</div>
-              <div style={{ fontSize: "var(--tx-sm)", color: "var(--inkm)" }}>Evening appointments available for individuals with demanding schedules.</div>
-            </div>
-          </div>
-          <div className="fcard fi">
-            <h3 className="fcardtitle">Accepted Insurance</h3>
-            <ul className="inslist" role="list">
-              {insurance.map((ins) => (
-                <li key={ins}>{ins}</li>
-              ))}
-            </ul>
-            <div style={{ marginTop: "var(--sp6)", fontSize: "var(--tx-sm)", color: "var(--inkm)" }}>
-              Don&rsquo;t see your insurance? Contact us &mdash; we&rsquo;ll verify your benefits and explore all available options.
-            </div>
-          </div>
+          <img
+            src={sessionRatesImg}
+            alt="Session Rates — Individual Session 50 min $150, Couples Session 50 min $200, Free Consultation 15 min $0. Late Night Availability: evening appointments available for individuals with demanding schedules."
+            className="feesimg"
+            loading="lazy"
+            decoding="async"
+          />
+          <img
+            src={insuranceImg}
+            alt="Accepted Insurance: Aetna, United Healthcare, Ascension, Blue Cross and Blue Shield of Texas, Blue Cross Blue Shield of Massachusetts, Carelon Behavioral Health, Cigna, Horizon Blue Cross and Blue Shield of New Jersey, Independence Blue Cross Pennsylvania Virtual National Network, Oscar, Oxford. Don't see your insurance? Contact us — we'll verify your benefits and explore all available options."
+            className="feesimg"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
       </div>
     </section>

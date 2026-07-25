@@ -192,17 +192,9 @@ main>section+section{border-top:1.5px solid var(--dv)}
 .aboutframe img{width:100%;height:auto}
 .aboutbio{font-size:var(--tx-base);color:var(--inkm);line-height:var(--lh-relaxed);margin-bottom:var(--sp5)}
 .modcloud{display:flex;flex-wrap:wrap;gap:var(--sp2)}
-.feesgrid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.feesgrid{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:start}
 .feesgrid>*{min-width:0}
-.fcard{background:var(--sf);border:1.5px solid var(--dv);border-radius:var(--r2xl);padding:2rem}
-.fcardtitle{font-family:var(--fd);font-size:var(--tx-xl);font-weight:700;margin-bottom:var(--sp6);color:var(--ink)}
-.ftable{width:100%;border-collapse:collapse}
-.ftable td{padding:var(--sp3) 0;border-bottom:1px solid var(--dv);font-size:var(--tx-base)}
-.ftable td:last-child{text-align:right;font-weight:700;color:var(--teal);font-family:var(--fd);font-size:var(--tx-lg)}
-.ftable tr:last-child td{border-bottom:none}
-.inslist{list-style:none;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:var(--sp3)}
-.inslist li{font-size:var(--tx-sm);color:var(--inkm);display:flex;align-items:center;gap:var(--sp2);max-width:100%}
-.inslist li::before{content:"";width:8px;height:8px;border-radius:var(--rfull);background:var(--sage);flex-shrink:0}
+.feesimg{width:100%;height:auto;border-radius:var(--r2xl)}
 /* Envelope contact card */
 /* Standard site-wide section background: the watercolor wash (env-bg asset).
    RULE: this is THE standard background — new sections inherit it automatically.
@@ -270,12 +262,10 @@ body{line-height:var(--lh-md);letter-spacing:.05em;word-spacing:.06em}
 .hacts{flex-direction:column;align-items:stretch}
 .footerinner{grid-template-columns:1fr}
 .nsub{letter-spacing:.03em;font-size:var(--tx-xs)}
-.inslist{grid-template-columns:1fr}
 }
 @media(max-width:360px){
 .nsub{display:none}
 .nlogo img{display:none}
-.fcard{padding:var(--sp5)}
 }
 
 /* ===== Chakra Orb AI Guide ===== */
