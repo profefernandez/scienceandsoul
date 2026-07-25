@@ -17,10 +17,6 @@ export function Footer({ linkPrefix = "" }: FooterProps) {
                 <span className="nsub">Counseling &amp; Wellness, PLLC</span>
               </div>
             </div>
-            <p className="fbranddesc">
-              Kelly Nelson, LCSW-S<br />
-              Texas License #67591
-            </p>
           </div>
           <div>
             <div className="fcoltitle">Business Information</div>
