@@ -222,7 +222,7 @@ main>section+section{border-top:1.5px solid var(--dv)}
 .svtitle{font-family:var(--fd);font-size:var(--tx-lg);font-weight:700;color:var(--ink);line-height:var(--lh-heading)}
 .svdesc{font-size:var(--tx-sm);color:var(--inkm);line-height:var(--lh-body);max-width:100%}
 .svtags{display:flex;flex-wrap:wrap;gap:4px;margin-top:auto}
-.aboutgrid{display:grid;grid-template-columns:480px 1fr;gap:4rem;align-items:start}
+.aboutgrid{display:grid;grid-template-columns:480px 1fr;gap:4rem;align-items:center}
 .aboutportrait{position:relative}
 .aboutframe{border-radius:var(--r2xl);overflow:hidden;box-shadow:var(--shlg);background:var(--sf2)}
 .aboutframe img{width:100%;height:auto}
