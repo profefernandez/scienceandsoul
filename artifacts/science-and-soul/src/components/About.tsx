@@ -1,4 +1,4 @@
-import kellyPhoto from "@assets/Serene_Focus_1784942061905.png";
+import kellyCard from "@assets/image_1784943079984.png";
 
 export function About() {
   return (
@@ -8,17 +8,13 @@ export function About() {
           <div className="aboutportrait fi">
             <div className="aboutframe">
               <img
-                src={kellyPhoto}
-                alt="Kelly Nelson meditating cross-legged in a sunlit forest, eyes closed with hands resting gently together"
-                width={1024}
-                height={1024}
+                src={kellyCard}
+                alt="Illustrated card of Kelly Nelson, LCSW-S, Texas License #67591, meditating in a sunlit forest framed by watercolor lotus flowers, vines, and crystals"
+                width={823}
+                height={1023}
                 loading="lazy"
                 decoding="async"
               />
-            </div>
-            <div className="aboutcred">
-              <div className="aboutcname">Kelly Nelson, LCSW-S</div>
-              <div className="aboutctitle">Texas License #67591</div>
             </div>
           </div>
           <div className="fi">
