@@ -50,18 +50,21 @@ export function ChakraOrb() {
   const threadRef = useRef<HTMLDivElement>(null);
   const launcherRef = useRef<HTMLButtonElement>(null);
 
-  // Close on Escape and return focus to the launcher button.
+  // Close the panel and return focus to the launcher button.
+  const closePanel = useCallback(() => {
+    setOpen(false);
+    launcherRef.current?.focus();
+  }, [setOpen]);
+
+  // Close on Escape.
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setOpen(false);
-        launcherRef.current?.focus();
-      }
+      if (e.key === "Escape") closePanel();
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [open, setOpen]);
+  }, [open, closePanel]);
 
   const orbChat = useOrbChat();
   const createInquiry = useCreateInquiry();
@@ -230,7 +233,7 @@ export function ChakraOrb() {
               )}
               <button
                 className="orbpanel-x"
-                onClick={() => setOpen(false)}
+                onClick={closePanel}
                 aria-label="Close chat"
               >
                 ✕
@@ -288,6 +291,7 @@ export function ChakraOrb() {
                   </p>
                   <input
                     className="orbinp"
+                    aria-label="Your name"
                     placeholder="Your name"
                     value={lead.name}
                     onChange={(e) => setLead({ ...lead, name: e.target.value })}
@@ -295,12 +299,14 @@ export function ChakraOrb() {
                   <input
                     className="orbinp"
                     type="email"
+                    aria-label="Your email"
                     placeholder="Your email"
                     value={lead.email}
                     onChange={(e) => setLead({ ...lead, email: e.target.value })}
                   />
                   <textarea
                     className="orbinp orbtxt"
+                    aria-label="What's on your mind?"
                     placeholder="What's on your mind?"
                     value={lead.message}
                     onChange={(e) =>
