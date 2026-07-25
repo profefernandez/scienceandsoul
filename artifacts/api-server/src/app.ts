@@ -47,8 +47,12 @@ if (process.env.NODE_ENV === "production") {
     "default-src 'self'",
     "script-src 'self' https://chat.launchlemonade.app https://*.launchlemonade.app",
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://chat.launchlemonade.app https://*.launchlemonade.app",
-    "font-src 'self' https://fonts.gstatic.com",
-    "img-src 'self' https://www.google.com https://user-gen-media-assets.s3.amazonaws.com https://chat.launchlemonade.app https://*.launchlemonade.app data: blob:",
+    // font-src / img-src are relaxed to any HTTPS source so third-party
+    // embeds (Launch Lemonade chat widget on Bubble.io) can display avatars
+    // and icons without us hardcoding every CDN they use. All script,
+    // frame, and connect targets remain explicitly listed.
+    "font-src 'self' https: data:",
+    "img-src 'self' https: data: blob:",
     "connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com https://chat.launchlemonade.app https://*.launchlemonade.app wss://*.launchlemonade.app",
     "frame-src https://chat.launchlemonade.app https://*.launchlemonade.app",
     "frame-ancestors 'self'",
