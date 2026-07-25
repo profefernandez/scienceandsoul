@@ -1,6 +1,6 @@
 import { logger } from "./logger";
 
-const DEFAULT_BASE_URL = "https://sip.launchlemonade.app/version-live/api/1.1/wf";
+const DEFAULT_BASE_URL = "https://sip.launchlemonade.app/api/1.1/wf";
 const REQUEST_TIMEOUT_MS = 90_000;
 const POLL_INTERVAL_MS = 10_000;
 const POLL_DEADLINE_MS = 70_000;
