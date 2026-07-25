@@ -2,8 +2,6 @@ import { logger } from "./logger";
 
 const DEFAULT_BASE_URL = "https://sip.launchlemonade.app/version-live/api/1.1/wf";
 const REQUEST_TIMEOUT_MS = 90_000;
-const POLL_INTERVAL_MS = 10_000;
-const POLL_DEADLINE_MS = 70_000;
 
 export interface LemonadeChatResult {
   reply: string;
@@ -26,10 +24,6 @@ interface RunAssistantResponse {
     Error?: string;
     Error_Reason?: string;
   };
-}
-
-interface GetRunAssistantResponse {
-  Response?: string;
 }
 
 function getConfig(): { apiKey: string; assistantId: string; baseUrl: string } {
@@ -107,31 +101,6 @@ async function postJson<T>(
   return (await res.json().catch(() => ({}))) as T;
 }
 
-async function pollForResponse(
-  baseUrl: string,
-  apiKey: string,
-  responseId: string,
-): Promise<string> {
-  const deadline = Date.now() + POLL_DEADLINE_MS;
-  const url = `${baseUrl}/get_run_assistant`;
-
-  while (Date.now() < deadline) {
-    await new Promise((resolve) => setTimeout(resolve, POLL_INTERVAL_MS));
-    const data = await postJson<GetRunAssistantResponse>(
-      url,
-      apiKey,
-      { response_id: responseId },
-      30_000,
-    );
-    const reply = data.Response;
-    if (typeof reply === "string" && reply.trim() !== "") {
-      return reply;
-    }
-  }
-
-  throw new LemonadeUpstreamError("The AI guide took too long to respond");
-}
-
 export async function sendLemonadeChat(
   message: string,
   conversationId?: string | null,
@@ -171,11 +140,7 @@ export async function sendLemonadeChat(
   }
 
   const newConversationId = data.Conversation_ID ?? conversationId ?? null;
-  let reply = data.Response;
-
-  if ((typeof reply !== "string" || reply.trim() === "") && data.Response_ID) {
-    reply = await pollForResponse(baseUrl, apiKey, data.Response_ID);
-  }
+  const reply = data.Response;
 
   if (typeof reply !== "string" || reply.trim() === "") {
     logger.error({ data }, "LaunchLemonade returned an empty reply");

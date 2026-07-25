@@ -1,0 +1,42 @@
+ys that misfires with zero usage:
+
+Any upstream error whose text merely contains one of those words. An invalid/expired API key error, a deleted/renamed assistant, a Bubble maintenance or Cloudflare HTML error page — if the response body anywhere contains "too many", "quota", or "rate limit" (even in a footer, docs link, or unrelated phrasing like "too many tokens"), your site reports it as a usage limit. The real problem gets hidden behind a rate-limit costume.
+
+The provider quota may not be daily at all. Launch Lemonade runs on Bubble, and Bubble apps have capacity/workload-unit and monthly plan credit quotas. If your Launch Lemonade plan's monthly credits are exhausted, every request fails with a quota error from message one of the day — "I haven't used it today" is irrelevant to a monthly counter. Same if the Launch Lemonade app itself is over its Bubble capacity because of other customers.
+
+A 429 from any layer between you and the assistant (Bubble's own infrastructure throttling, not your chat allowance) is also displayed as "usage limit."
+
+How to get the real answer
+The good news: the code logs the true reason before masking it — req.log.warn({ reason }, "Launch Lemonade rate limit reached") and the HTTP status. So your production server logs contain the exact upstream error text. That one string will tell you definitively whether it's daily messages, monthly credits, a dead API key, or something else. Right now that truth is only in logs — the visitor-facing (and owner-facing) message flattens everything into "usage limit."
+
+Proposed fix I can plan
+A task to make this diagnosable and stop the false positives:
+
+Tighten classification — only treat it as a rate limit on explicit, strong signals (HTTP 429 with a matching structured reason), not any body text containing "quota"/"too many".
+Capture the raw upstream status + error text into the audit trail so it's visible without shell access to logs.
+Admin-only diagnostics — when you're signed in as admin, the chat error shows the real upstream reason instead of the friendly mask, so you can see instantly what actually failed.
+Want me to write that up as a task? Or if you can paste what the server logs say around the time you hit the limit, I can tell you exactly which case this is.
+
+
+Worked for 47 seconds
+NBo. i need you to find out in hisotry tha change in our chat when we talked aobut his and find otu how to fix it
+
+3 minutes ago
+
+9 actions
+Now I can reconstruct the story. Here's what actually happened in your history:
+
+The change that fixed it (commit f858e11 — "Update chat integration to directly call the assistant")
+During that session, your chat went through three versions:
+
+First it called Launch Lemonade's /v1/chat endpoint.
+Then it was reworked to a polling flow — start a run, then repeatedly poll for the result. That's the version that hit rate limits: every single visitor message cost multiple API calls (1 to start + several polls). With Launch Lemonade's quota of 20 calls per minute / 200 per day, a handful of chat messages burned through it almost instantly — which is exactly the "rate limited when I barely used it" symptom.
+The fix: commit f858e11 switched to the synchronous run_assistant endpoint — its own commit message says it was "eliminating the need for polling." One user message = exactly one API call. The rate limits stopped because the call volume dropped ~5-10x, not because any limit was raised.
+The important part for you now
+I checked your current chat.ts — it still uses the fixed pattern: one run_assistant call per message, no polling, no retries. So the historical fix is still in place; the code hasn't regressed.
+
+That means if you're seeing rate limits again today, the call multiplication isn't coming from this server route. The remaining suspects, in order of likelihood:
+
+The 200/day pool is genuinely being consumed — by dev-environment testing (same API key as production), public visitors, or bots hitting your live site. 200/day is small; even modest real traffic exhausts it.
+Something on the frontend or a script fires duplicate requests per message (e.g., double-submit, a retry loop, or automated tests hitting the endpoint).
+The quota is monthly/credits-based on your Launch Lemonade plan, not daily — so it stays exhausted across days.
