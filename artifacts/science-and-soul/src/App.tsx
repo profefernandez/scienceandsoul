@@ -54,18 +54,6 @@ export default function App() {
     <HelmetProvider>
       <Helmet>
         <html lang="en" data-theme={theme} />
-        <title>Science and Soul Counseling &amp; Wellness | Kelly Nelson, LCSW</title>
-        <meta
-          name="description"
-          content="Where evidence-based therapy meets spiritual healing. Kelly Nelson, LCSW, Houston, TX. Chakra alignment, Reiki, sound bowl healing, holistic mental health."
-        />
-        <meta name="robots" content="index, follow" />
-        <meta property="og:title" content="Science and Soul Counseling & Wellness | Kelly Nelson, LCSW" />
-        <meta property="og:description" content="Where evidence-based therapy meets spiritual healing. Kelly Nelson, LCSW, Houston, TX." />
-        <meta property="og:type" content="website" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Science and Soul Counseling & Wellness | Kelly Nelson, LCSW" />
-        <meta name="twitter:description" content="Where evidence-based therapy meets spiritual healing. Kelly Nelson, LCSW, Houston, TX." />
       </Helmet>
 
       <Router base={basePath}>

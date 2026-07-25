@@ -8,6 +8,7 @@ export default function PrivacyPolicy() {
       subtitle="How we collect, use, and protect your information on this website and in our care."
       updated="June 19, 2026"
       metaDescription="Privacy Policy for Science and Soul Counseling & Wellness, PLLC (Kelly Nelson, LCSW-S, Houston, TX) — how we collect, use, and protect your information."
+      path="/privacy"
     >
       <p>
         Science and Soul Counseling &amp; Wellness, PLLC (&ldquo;Science and Soul,&rdquo; &ldquo;we,&rdquo; &ldquo;us,&rdquo;

@@ -7,6 +7,7 @@ export default function HipaaNotice() {
       subtitle="THIS NOTICE DESCRIBES HOW MEDICAL INFORMATION ABOUT YOU MAY BE USED AND DISCLOSED, AND HOW YOU CAN GET ACCESS TO THIS INFORMATION. PLEASE REVIEW IT CAREFULLY."
       updated="June 19, 2026"
       metaDescription="HIPAA Notice of Privacy Practices for Science and Soul Counseling & Wellness, PLLC (Kelly Nelson, LCSW-S, Houston, TX) — how your protected health information is used and your rights."
+      path="/hipaa"
     >
       <h2>Our commitment to your privacy</h2>
       <p>

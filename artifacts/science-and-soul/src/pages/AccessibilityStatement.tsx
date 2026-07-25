@@ -6,7 +6,8 @@ export default function AccessibilityStatement() {
       title="Accessibility Statement"
       subtitle="Our commitment to making this website usable by everyone."
       updated="July 24, 2026"
-      metaDescription="Accessibility Statement for Science and Soul Counseling &amp; Wellness, PLLC — our WCAG AAA conformance commitment, what we've done, and how to report issues."
+      metaDescription="Accessibility Statement for Science and Soul Counseling & Wellness, PLLC — our WCAG AAA conformance commitment, what we've done, and how to report issues."
+      path="/accessibility"
     >
       <p>
         Science and Soul Counseling &amp; Wellness, PLLC is committed to ensuring this website is accessible to all

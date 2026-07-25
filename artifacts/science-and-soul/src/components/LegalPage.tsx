@@ -1,26 +1,24 @@
 import { useEffect, type ReactNode } from "react";
 import { Link } from "wouter";
-import { Helmet } from "react-helmet-async";
+import { Seo, SITE_NAME } from "./Seo";
 
 interface LegalPageProps {
   title: string;
   subtitle?: string;
   updated: string;
   metaDescription: string;
+  path: string;
   children: ReactNode;
 }
 
-export function LegalPage({ title, subtitle, updated, metaDescription, children }: LegalPageProps) {
+export function LegalPage({ title, subtitle, updated, metaDescription, path, children }: LegalPageProps) {
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
   }, []);
 
   return (
     <main id="main">
-      <Helmet>
-        <title>{`${title} | Science and Soul Counseling & Wellness`}</title>
-        <meta name="description" content={metaDescription} />
-      </Helmet>
+      <Seo title={`${title} | ${SITE_NAME}`} description={metaDescription} path={path} />
       <section className="legal">
         <div className="w">
           <div className="legalhead fi">

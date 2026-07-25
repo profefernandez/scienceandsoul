@@ -1,13 +1,15 @@
 import { Link } from "wouter";
-import { Helmet } from "react-helmet-async";
+import { Seo, SITE_NAME } from "../components/Seo";
 
 export default function NotFound() {
   return (
     <main id="main">
-      <Helmet>
-        <title>Page Not Found | Science and Soul Counseling & Wellness</title>
-        <meta name="robots" content="noindex" />
-      </Helmet>
+      <Seo
+        title={`Page Not Found | ${SITE_NAME}`}
+        description="The page you're looking for could not be found."
+        path="/404"
+        noindex
+      />
       <section className="nf404">
         <div className="wn nf404-inner">
           <p className="nf404-eyebrow">Oops, a wrong turn</p>

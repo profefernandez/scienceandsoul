@@ -3,3 +3,4 @@
 - [Launch Lemonade API](launchlemonade-api.md) — use sip.launchlemonade.app wf endpoints (api.launchlemonade.app is dead); user owns the AI prompt/KB, server must not inject persona.
 - [Headless verification](playwright-verification.md) — test via direct Vite port, not :80 proxy path (404s in headless); verify styles via evaluate, not element screenshots.
 - [Helmet title entity bug](helmet-title-entity-bug.md) — react-helmet-async titles must be a single string; HTML entities split children and render an empty document title.
+- [SPA SEO meta management](spa-seo-meta-management.md) — per-page meta is DOM-upserted by Seo.tsx, not Helmet (Helmet duplicates static index.html tags); deep-link share cards need prerender/SSR.
