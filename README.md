@@ -3,13 +3,13 @@ Website for Kelly Nelson, LCSW — evidence-based therapy in Houston, Texas.
 Built with React + Vite (frontend) and Express (API server) in a pnpm monorepo.
 ---
 ## Tech Stack
-| Layer | Technology |
-|---|---|
-| Frontend | React 18, Vite 7, TypeScript |
-| Styling | Vanilla CSS (custom design system, no Tailwind) |
-| API | Express, TypeScript |
-| Package manager | pnpm (workspace monorepo) |
-| Deployment | Replit |
+| Layer           | Technology                                      |
+| --------------- | ----------------------------------------------- |
+| Frontend        | React 18, Vite 7, TypeScript                    |
+| Styling         | Vanilla CSS (custom design system, no Tailwind) |
+| API             | Express, TypeScript                             |
+| Package manager | pnpm (workspace monorepo)                       |
+| Deployment      | sPanel VPS                                      |
 ---
 ## Project Structure
 
@@ -39,7 +39,7 @@ Built with React + Vite (frontend) and Express (API server) in a pnpm monorepo.
 pnpm install
 
 Run in development
-# Frontend (http://localhost:4181 by default on Replit)
+# Frontend (set PORT and BASE_PATH for your environment)
 pnpm --filter @workspace/science-and-soul run dev
 # API server
 pnpm --filter @workspace/api-server run dev
@@ -54,15 +54,10 @@ Accessibility (WCAG 2.1 AA+) — axe-core clean on all routes; keyboard-navigabl
 Accessibility widget — built-in panel for text size, high contrast, reduced motion, highlight links, and reading mask
 SEO — per-page meta/OG tags, JSON-LD (LocalBusiness + Therapist), sitemap.xml, robots.txt (AI-crawler rules included)
 Legal pages — Privacy Policy, HIPAA Notice, Good Faith Estimate, Accessibility Statement
-Contact form — powered by Resend email API
 Coloring journal download — gated email capture, delivers PDF
-Booking — "Book Now" button integrates with Jane App scheduling
+Booking — "Schedule Now" opens the visitor's preferred email provider
 Environment Variables
-Create a .env file in artifacts/api-server/ (never commit this):
-
-RESEND_API_KEY=re_...        # Resend — contact form & journal delivery emails
-
-On Replit, set these in the Secrets pane (not .env).
+See `.env.example` for production server configuration. Never commit `.env`.
 
 Accessibility Validation
 Automated axe-core checks run against all routes:
@@ -75,8 +70,9 @@ bash artifacts/science-and-soul/scripts/a11y-validate.sh /accessibility 4184
 All routes must pass with zero violations before merging.
 
 Deployment
-Hosted on Replit. Push to main — the Replit environment serves the built app automatically.
-The frontend is served by Vite in dev; for production, run pnpm build and serve the dist/ folder.
+Hosted on an sPanel VPS. Push to main, pull the changes on the server, rebuild,
+and restart the application. The frontend is served by Vite in development; in
+production the Express server serves the built frontend.
 
 License
 © 2026 Science and Soul Counseling & Wellness, PLLC. All rights reserved.

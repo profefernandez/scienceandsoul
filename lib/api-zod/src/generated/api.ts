@@ -17,34 +17,3 @@ export const HealthCheckResponse = zod.object({
 })
 
 
-/**
- * Stores a visitor inquiry (name, email, message) for Kelly.
- * @summary Submit a contact inquiry
- */
-export const createInquiryBodyNameMax = 120;
-
-export const createInquiryBodyEmailMin = 3;
-export const createInquiryBodyEmailMax = 320;
-
-export const createInquiryBodyMessageMax = 5000;
-
-export const createInquiryBodySourceMax = 100;
-
-export const createInquiryBodyConversationIdMax = 100;
-
-export const createInquiryBodyImageDataUrlMax = 1500000;
-
-
-export const createInquiryBodyImageDataUrlRegExp = new RegExp('^data:image\/(png|jpeg|webp);base64,');
-
-
-export const CreateInquiryBody = zod.object({
-  "name": zod.string().min(1).max(createInquiryBodyNameMax),
-  "email": zod.string().email().min(createInquiryBodyEmailMin).max(createInquiryBodyEmailMax),
-  "message": zod.string().min(1).max(createInquiryBodyMessageMax),
-  "source": zod.string().max(createInquiryBodySourceMax).optional(),
-  "conversationId": zod.string().max(createInquiryBodyConversationIdMax).nullish(),
-  "imageDataUrl": zod.string().max(createInquiryBodyImageDataUrlMax).regex(createInquiryBodyImageDataUrlRegExp).nullish()
-})
-
-

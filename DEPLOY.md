@@ -20,9 +20,9 @@ Apache/nginx beyond a plain reverse proxy.
 
 ## 2. Get the code onto the server
 
-Either connect this Repl to GitHub and `git clone` on the server, or download
-the project as a zip from Replit and upload/extract it via sPanel's file
-manager. The whole repo goes to something like `/home/YOURUSER/app`.
+Clone the GitHub repository on the server, or download the repository as a zip
+from GitHub and upload/extract it via sPanel's file manager. The whole repo goes
+to something like `/home/YOURUSER/app`.
 
 ## 3. Build
 
@@ -46,16 +46,13 @@ nano .env
 ```
 
 Fill in:
-- `DATABASE_URL` — your Postgres credentials, port 6543
-- `ALLOWED_ORIGINS` — **must** list the exact live origin(s), including the
-  `www` variant if used, e.g.
-  `https://scienceandsoulcounseling.com,https://www.scienceandsoulcounseling.com`.
-  If this is wrong, the chat and contact form will be blocked in the browser.
-- `RESEND_API_KEY` — copy its value from the Replit Secrets pane
-  (Tools → Secrets). Never put it anywhere else. It is used to send
-  contact-form email notifications.
+- `DATABASE_URL` — optional Postgres credentials on port 6543, reserved for
+  future server features. The current website does not store visitor data.
 
-## 5. Create the database tables
+## 5. Database schema (optional)
+
+The current website does not require database tables. When a future feature
+adds a schema, apply it with:
 
 ```bash
 DATABASE_URL='postgresql://...:6543/...' pnpm --filter @workspace/db run push
@@ -135,5 +132,5 @@ internet directly.
 
 ## Updating the site later
 
-Rebuild on Replit, push/upload the changes, rerun step 3, then `pm2 restart
-science-and-soul`.
+Push the changes to GitHub, pull them on the server, rerun step 3, then
+`pm2 restart science-and-soul`.

@@ -1,0 +1,74 @@
+# -----------------------------------------------------------------------------
+# Science & Soul Counseling — Apache config for sPanel static hosting.
+# Vite copies this file verbatim from public/ into dist/public/ at build time,
+# and the deploy workflow rsyncs it into ~/public_html on the VPS.
+#
+# The site is a static SPA that talks to Launch Lemonade externally, so all
+# security headers, SPA fallback, and cache rules must come from Apache
+# (there is no Node process in front of the site on this host).
+# -----------------------------------------------------------------------------
+
+# --- Force HTTPS (Let's Encrypt is issued in sPanel) --------------------------
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Redirect any http:// hit to https://
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !=https
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+  # SPA fallback: if the requested file/directory does not exist, serve
+  # index.html so client-side routes like /privacy, /hipaa, /accessibility work
+  # when someone refreshes or lands on them directly.
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^ index.html [L]
+</IfModule>
+
+# --- Security headers (mirror what the Node server would send) ---------------
+<IfModule mod_headers.c>
+  # Content Security Policy — mirrors artifacts/api-server/src/app.ts
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' https://chat.launchlemonade.app https://*.launchlemonade.app; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://chat.launchlemonade.app https://*.launchlemonade.app; font-src 'self' https://fonts.gstatic.com; img-src 'self' https://www.google.com https://user-gen-media-assets.s3.amazonaws.com https://chat.launchlemonade.app https://*.launchlemonade.app data: blob:; connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com https://chat.launchlemonade.app https://*.launchlemonade.app wss://*.launchlemonade.app; frame-src https://chat.launchlemonade.app https://*.launchlemonade.app; frame-ancestors 'self'"
+
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Strict-Transport-Security "max-age=31536000"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+</IfModule>
+
+# --- Caching -----------------------------------------------------------------
+<IfModule mod_headers.c>
+  # index.html: never cache (so users see new deploys immediately).
+  <FilesMatch "^index\.html$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+    Header set Pragma "no-cache"
+    Header set Expires "0"
+  </FilesMatch>
+
+  # Hashed assets under /assets/: cache for a year (filename changes each build).
+  <FilesMatch "\.(?:js|css|woff2?|png|jpg|jpeg|gif|svg|webp|ico)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+</IfModule>
+
+# --- Compression -------------------------------------------------------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json image/svg+xml
+</IfModule>
+
+<IfModule mod_brotli.c>
+  AddOutputFilterByType BROTLI_COMPRESS text/html text/css text/javascript application/javascript application/json image/svg+xml
+</IfModule>
+
+# --- Correct MIME types (belt & suspenders) ----------------------------------
+<IfModule mod_mime.c>
+  AddType application/javascript .mjs
+  AddType image/webp             .webp
+  AddType image/svg+xml          .svg
+</IfModule>
+
+# --- Prevent directory listing -----------------------------------------------
+Options -Indexes
+
+# --- Custom 404: hand off to the SPA so React renders the "not found" page ---
+ErrorDocument 404 /index.html

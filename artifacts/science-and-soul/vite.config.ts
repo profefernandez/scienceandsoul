@@ -1,7 +1,6 @@
 import { defineConfig, Plugin } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
-import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 
 const rawPort = process.env.PORT;
 
@@ -43,7 +42,7 @@ function cspPlugin(mode: string): Plugin {
     // React inline style={} props are applied via JS (DOM API) and do not require this.
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://chat.launchlemonade.app https://*.launchlemonade.app",
     "font-src 'self' https://fonts.gstatic.com",
-    "img-src 'self' https://user-gen-media-assets.s3.amazonaws.com https://chat.launchlemonade.app https://*.launchlemonade.app data: blob:",
+    "img-src 'self' https://www.google.com https://user-gen-media-assets.s3.amazonaws.com https://chat.launchlemonade.app https://*.launchlemonade.app data: blob:",
     "connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com https://chat.launchlemonade.app https://*.launchlemonade.app wss://*.launchlemonade.app",
     "frame-src https://chat.launchlemonade.app https://*.launchlemonade.app",
   ].join("; ");
@@ -76,25 +75,11 @@ function cspPlugin(mode: string): Plugin {
   };
 }
 
-export default defineConfig(async ({ mode }) => ({
+export default defineConfig(({ mode }) => ({
   base: basePath,
   plugins: [
     react(),
     cspPlugin(mode),
-    runtimeErrorOverlay(),
-    ...(process.env.NODE_ENV !== "production" &&
-    process.env.REPL_ID !== undefined
-      ? [
-          await import("@replit/vite-plugin-cartographer").then((m) =>
-            m.cartographer({
-              root: path.resolve(import.meta.dirname, ".."),
-            }),
-          ),
-          await import("@replit/vite-plugin-dev-banner").then((m) =>
-            m.devBanner(),
-          ),
-        ]
-      : []),
   ],
   resolve: {
     alias: {

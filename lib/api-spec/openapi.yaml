@@ -10,8 +10,6 @@ servers:
 tags:
   - name: health
     description: Health operations
-  - name: inquiries
-    description: Contact inquiry operations
 paths:
   /healthz:
     get:
@@ -26,25 +24,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
-  /inquiries:
-    post:
-      operationId: createInquiry
-      tags: [inquiries]
-      summary: Submit a contact inquiry
-      description: Stores a visitor inquiry (name, email, message) for Kelly.
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/InquiryInput"
-      responses:
-        "201":
-          description: Inquiry stored
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Inquiry"
 components:
   schemas:
     HealthStatus:
@@ -54,61 +33,3 @@ components:
           type: string
       required:
         - status
-    InquiryInput:
-      type: object
-      required:
-        - name
-        - email
-        - message
-      properties:
-        name:
-          type: string
-          minLength: 1
-          maxLength: 120
-        email:
-          type: string
-          format: email
-          minLength: 3
-          maxLength: 320
-        message:
-          type: string
-          minLength: 1
-          maxLength: 5000
-        source:
-          type: string
-          maxLength: 100
-        conversationId:
-          type: ["string", "null"]
-          maxLength: 100
-        imageDataUrl:
-          type: ["string", "null"]
-          pattern: "^data:image/(png|jpeg|webp);base64,"
-          maxLength: 1500000
-    Inquiry:
-      type: object
-      required:
-        - id
-        - name
-        - email
-        - message
-        - source
-        - createdAt
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        email:
-          type: string
-        message:
-          type: string
-        source:
-          type: string
-        conversationId:
-          type: ["string", "null"]
-        imageDataUrl:
-          type: ["string", "null"]
-        createdAt:
-          type: string
-          format: date-time
-

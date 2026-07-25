@@ -6,27 +6,21 @@
  * OpenAPI spec version: 0.1.0
  */
 import {
-  useMutation,
   useQuery
 } from '@tanstack/react-query';
 import type {
-  MutationFunction,
   QueryFunction,
   QueryKey,
-  UseMutationOptions,
-  UseMutationResult,
   UseQueryOptions,
   UseQueryResult
 } from '@tanstack/react-query';
 
 import type {
-  HealthStatus,
-  Inquiry,
-  InquiryInput
+  HealthStatus
 } from './api.schemas';
 
 import { customFetch } from '../custom-fetch';
-import type { ErrorType , BodyType } from '../custom-fetch';
+import type { ErrorType } from '../custom-fetch';
 
 type AwaitedInput<T> = PromiseLike<T> | T;
 
@@ -114,76 +108,4 @@ export function useHealthCheck<TData = Awaited<ReturnType<typeof healthCheck>>, 
 
 
 
-
-export const getCreateInquiryUrl = () => {
-
-
-
-
-  return `/api/inquiries`
-}
-
-/**
- * Stores a visitor inquiry (name, email, message) for Kelly.
- * @summary Submit a contact inquiry
- */
-export const createInquiry = async (inquiryInput: InquiryInput, options?: RequestInit): Promise<Inquiry> => {
-
-  return customFetch<Inquiry>(getCreateInquiryUrl(),
-  {
-    ...options,
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', ...options?.headers },
-    body: JSON.stringify(
-      inquiryInput,)
-  }
-);}
-
-
-
-
-export const getCreateInquiryMutationOptions = <TError = ErrorType<unknown>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof createInquiry>>, TError,{data: BodyType<InquiryInput>}, TContext>, request?: SecondParameter<typeof customFetch>}
-): UseMutationOptions<Awaited<ReturnType<typeof createInquiry>>, TError,{data: BodyType<InquiryInput>}, TContext> => {
-
-const mutationKey = ['createInquiry'];
-const {mutation: mutationOptions, request: requestOptions} = options ?
-      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
-      options
-      : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }, request: undefined};
-
-
-
-
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof createInquiry>>, {data: BodyType<InquiryInput>}> = (props) => {
-          const {data} = props ?? {};
-
-          return  createInquiry(data,requestOptions)
-        }
-
-
-
-
-
-
-  return  { mutationFn, ...mutationOptions }}
-
-    export type CreateInquiryMutationResult = NonNullable<Awaited<ReturnType<typeof createInquiry>>>
-    export type CreateInquiryMutationBody = BodyType<InquiryInput>
-    export type CreateInquiryMutationError = ErrorType<unknown>
-
-    /**
- * @summary Submit a contact inquiry
- */
-export const useCreateInquiry = <TError = ErrorType<unknown>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof createInquiry>>, TError,{data: BodyType<InquiryInput>}, TContext>, request?: SecondParameter<typeof customFetch>}
- ): UseMutationResult<
-        Awaited<ReturnType<typeof createInquiry>>,
-        TError,
-        {data: BodyType<InquiryInput>},
-        TContext
-      > => {
-      return useMutation(getCreateInquiryMutationOptions(options));
-    }
 

@@ -15,19 +15,16 @@
 
 ## Issues found and fixed
 
-| Issue | WCAG | Fix |
-|---|---|---|
-| Legal pages rendered an empty `<title>` (react-helmet-async received split children from an HTML entity) | 2.4.2 (A) | Title passed as a single template string in `LegalPage.tsx` |
-| No skip-to-content link | 2.4.1 (A) | Skip link added as first focusable element; `id="main"` on every page's `<main>` |
-| Mobile menu and email-provider modal lacked focus management | 2.1.2 (A), 2.4.3 (A) | Shared `useFocusTrap` hook: traps Tab, closes on Escape, restores focus to invoking control |
-| Form errors/status not announced to screen readers | 4.1.3 (AA) | `role="alert"` on errors, `role="status"` on success/loading, `aria-invalid` + `aria-describedby` on invalid fields (ContactForm, ColoringStudio) |
-| Focus not moved to first invalid field on failed submit | 3.3.1 (A) | Focus moved to first errored input in ContactForm |
-| Intent radio group had no group label | 1.3.1 (A) | `<fieldset>`/`<legend>` wrapper |
-| Missing autocomplete on personal fields | 1.3.5 (AA) | `autocomplete` attributes on name/email/phone fields |
-| Fees table used `<td>` for row headers | 1.3.1 (A) | `<th scope="row">` (Fees and Good Faith Estimate tables) |
-| In-prose links distinguishable by color only | 1.4.1 (A) | Underlines on prose/footer links |
-| No forced-colors (Windows High Contrast) support | Best practice | `@media (forced-colors: active)` rules |
-| No print stylesheet | Best practice | `@media print` rules (hides nav/orb/widget, readable typography) |
+| Issue                                                                                                    | WCAG                 | Fix                                                                                         |
+| -------------------------------------------------------------------------------------------------------- | -------------------- | ------------------------------------------------------------------------------------------- |
+| Legal pages rendered an empty `<title>` (react-helmet-async received split children from an HTML entity) | 2.4.2 (A)            | Title passed as a single template string in `LegalPage.tsx`                                 |
+| No skip-to-content link                                                                                  | 2.4.1 (A)            | Skip link added as first focusable element; `id="main"` on every page's `<main>`            |
+| Mobile menu and email-provider modal lacked focus management                                             | 2.1.2 (A), 2.4.3 (A) | Shared `useFocusTrap` hook: traps Tab, closes on Escape, restores focus to invoking control |
+| Form errors/status not announced to screen readers                                                       | 4.1.3 (AA)           | `role="alert"` on errors and `role="status"` on success/loading in ColoringStudio           |
+| Fees table used `<td>` for row headers                                                                   | 1.3.1 (A)            | `<th scope="row">` (Fees and Good Faith Estimate tables)                                    |
+| In-prose links distinguishable by color only                                                             | 1.4.1 (A)            | Underlines on prose/footer links                                                            |
+| No forced-colors (Windows High Contrast) support                                                         | Best practice        | `@media (forced-colors: active)` rules                                                      |
+| No print stylesheet                                                                                      | Best practice        | `@media print` rules (hides nav/orb/widget, readable typography)                            |
 
 ## Manual checklist verification (60-item)
 

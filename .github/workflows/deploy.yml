@@ -1,0 +1,121 @@
+name: Deploy to VPS
+
+# Triggers on every push to main, plus a manual "Run workflow" button.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Prevents two deploys from overlapping. A newer push cancels an older
+# in-progress deploy so the most recent commit always wins.
+concurrency:
+  group: production-deploy
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    env:
+      # Where the built site should land on the VPS.
+      REMOTE_PATH: /home/scienceandsoulcounselingcom/public_html
+      # Public base path of the site (root of the domain).
+      BASE_PATH: /
+      # Any value; only required so vite.config.ts starts. The dev server
+      # port is not used during `vite build`.
+      PORT: "8080"
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Verify required secrets are set
+        run: |
+          set -eu
+          missing=""
+          for name in SSH_HOST SSH_PORT SSH_USERNAME SSH_PRIVATE_KEY; do
+            eval "value=\${$name:-}"
+            if [ -z "$value" ]; then
+              missing="$missing $name"
+            fi
+          done
+          if [ -n "$missing" ]; then
+            echo "::error::Missing repository secret(s):$missing"
+            echo "Set them at: Settings → Secrets and variables → Actions."
+            exit 1
+          fi
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_PORT: ${{ secrets.SSH_PORT }}
+          SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build website
+        run: pnpm --filter @workspace/science-and-soul run build
+
+      - name: Sanity-check build output
+        run: |
+          set -eu
+          test -f artifacts/science-and-soul/dist/public/index.html \
+            || { echo "::error::Build produced no index.html"; exit 1; }
+          if [ ! -f artifacts/science-and-soul/dist/public/.htaccess ]; then
+            echo "::warning::No .htaccess in build output — SPA routes and security headers won't be applied by Apache."
+          fi
+          echo "Built files:"
+          ls -la artifacts/science-and-soul/dist/public/ | head -20
+
+      - name: Configure SSH
+        run: |
+          set -eu
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          printf '%s\n' "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          # Trust the VPS host key so rsync/ssh do not prompt.
+          ssh-keyscan -p "${{ secrets.SSH_PORT }}" -H "${{ secrets.SSH_HOST }}" \
+            >> ~/.ssh/known_hosts 2>/dev/null
+          chmod 600 ~/.ssh/known_hosts
+
+      - name: Ensure remote directory exists (first-time safe)
+        run: |
+          set -eu
+          ssh -i ~/.ssh/id_ed25519 -p "${{ secrets.SSH_PORT }}" \
+            "${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}" \
+            "mkdir -p '${REMOTE_PATH}' && echo 'remote dir OK: ${REMOTE_PATH}'"
+
+      - name: Upload site to VPS
+        run: |
+          set -eu
+          # -a  archive mode (recursive + preserve perms/timestamps)
+          # -v  verbose (each file shown in the workflow log)
+          # -z  compress in transit
+          # --delete  remove files on the server that no longer exist locally
+          # --exclude  leave sPanel-owned entries in public_html alone
+          rsync -avz --delete \
+            --exclude 'cgi-bin/' \
+            --exclude '.well-known/' \
+            --exclude 'error_log' \
+            -e "ssh -i ~/.ssh/id_ed25519 -p ${{ secrets.SSH_PORT }}" \
+            artifacts/science-and-soul/dist/public/ \
+            "${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:${REMOTE_PATH}/"
+
+      - name: Verify deployment
+        run: |
+          set -eu
+          ssh -i ~/.ssh/id_ed25519 -p "${{ secrets.SSH_PORT }}" \
+            "${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}" \
+            "ls -la '${REMOTE_PATH}/' | head -20 && echo '---' && wc -c '${REMOTE_PATH}/index.html'"

@@ -1,0 +1,19 @@
+// Copy to `ecosystem.config.cjs` in the repo root on the server, then run:
+//   pm2 start ecosystem.config.cjs && pm2 save && pm2 startup
+//
+// Requires `dotenv` to be installed once at the repo root:
+//   pnpm add -w dotenv     (or: npm i dotenv)
+
+require("dotenv").config({ path: __dirname + "/.env" });
+
+module.exports = {
+  apps: [
+    {
+      name: "science-and-soul",
+      cwd: __dirname + "/artifacts/api-server",
+      script: "dist/index.mjs",
+      node_args: "--enable-source-maps",
+      env: process.env,
+    },
+  ],
+};

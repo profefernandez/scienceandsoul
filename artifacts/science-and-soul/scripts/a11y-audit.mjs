@@ -63,7 +63,7 @@ for (const route of routes) {
       await page.addInitScript((t) => {
         try {
           localStorage.setItem("theme", t);
-        } catch {}
+        } catch { }
       }, theme);
       await page.goto(baseUrl + route, { waitUntil: "load", timeout: 30000 });
       await page.waitForSelector("main", { timeout: 15000 });
@@ -71,8 +71,7 @@ for (const route of routes) {
 
       const results = await new AxeBuilder({ page })
         .withTags(tags)
-        // dev-only overlays injected by Vite plugins, not shipped to production
-        .exclude("#replit-dev-banner")
+        // Dev-only Vite overlay, not shipped to production.
         .exclude("vite-error-overlay")
         .analyze();
 

@@ -25,8 +25,8 @@ export default function PrivacyPolicy() {
       <h2>Information we collect</h2>
       <ul>
         <li>
-          <strong>Information you provide.</strong> When you complete our contact form, request an appointment, or email or
-          call us, we may collect your name, email address, phone number, and the contents of your message.
+          <strong>Information you provide.</strong> When you request an appointment, email, or call us, we may collect your
+          name, email address, phone number, and the contents of your message.
         </li>
         <li>
           <strong>Clinical information.</strong> If you become a client, we collect health and treatment information necessary
