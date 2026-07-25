@@ -51,8 +51,9 @@ Fill in:
   `www` variant if used, e.g.
   `https://scienceandsoulcounseling.com,https://www.scienceandsoulcounseling.com`.
   If this is wrong, the chat and contact form will be blocked in the browser.
-- The four API keys — copy their values from the Replit Secrets pane
-  (Tools → Secrets). Never put them anywhere else.
+- `RESEND_API_KEY` — copy its value from the Replit Secrets pane
+  (Tools → Secrets). Never put it anywhere else. It is used to send
+  contact-form email notifications.
 
 ## 5. Create the database tables
 
