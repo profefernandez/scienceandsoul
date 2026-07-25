@@ -9,5 +9,3 @@
 export * from './healthStatus';
 export * from './inquiry';
 export * from './inquiryInput';
-export * from './orbChatInput';
-export * from './orbChatReply';

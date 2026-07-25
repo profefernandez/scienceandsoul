@@ -9,30 +9,6 @@ export interface HealthStatus {
   status: string;
 }
 
-export interface OrbChatInput {
-  /**
-     * @minLength 1
-     * @maxLength 5000
-     */
-  message: string;
-  /**
-     * @maxLength 100
-     * @nullable
-     */
-  conversationId?: string | null;
-  /**
-     * @maxLength 100
-     * @nullable
-     */
-  chakra?: string | null;
-}
-
-export interface OrbChatReply {
-  reply: string;
-  /** @nullable */
-  conversationId?: string | null;
-}
-
 export interface InquiryInput {
   /**
      * @minLength 1

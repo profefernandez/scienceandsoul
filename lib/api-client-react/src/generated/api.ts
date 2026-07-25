@@ -22,9 +22,7 @@ import type {
 import type {
   HealthStatus,
   Inquiry,
-  InquiryInput,
-  OrbChatInput,
-  OrbChatReply
+  InquiryInput
 } from './api.schemas';
 
 import { customFetch } from '../custom-fetch';
@@ -116,78 +114,6 @@ export function useHealthCheck<TData = Awaited<ReturnType<typeof healthCheck>>, 
 
 
 
-
-export const getOrbChatUrl = () => {
-
-
-
-
-  return `/api/orb/chat`
-}
-
-/**
- * Proxies a visitor message to the AI guide and returns its reply.
- * @summary Send a message to the Chakra Orb AI guide
- */
-export const orbChat = async (orbChatInput: OrbChatInput, options?: RequestInit): Promise<OrbChatReply> => {
-
-  return customFetch<OrbChatReply>(getOrbChatUrl(),
-  {
-    ...options,
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', ...options?.headers },
-    body: JSON.stringify(
-      orbChatInput,)
-  }
-);}
-
-
-
-
-export const getOrbChatMutationOptions = <TError = ErrorType<unknown>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof orbChat>>, TError,{data: BodyType<OrbChatInput>}, TContext>, request?: SecondParameter<typeof customFetch>}
-): UseMutationOptions<Awaited<ReturnType<typeof orbChat>>, TError,{data: BodyType<OrbChatInput>}, TContext> => {
-
-const mutationKey = ['orbChat'];
-const {mutation: mutationOptions, request: requestOptions} = options ?
-      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
-      options
-      : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }, request: undefined};
-
-
-
-
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof orbChat>>, {data: BodyType<OrbChatInput>}> = (props) => {
-          const {data} = props ?? {};
-
-          return  orbChat(data,requestOptions)
-        }
-
-
-
-
-
-
-  return  { mutationFn, ...mutationOptions }}
-
-    export type OrbChatMutationResult = NonNullable<Awaited<ReturnType<typeof orbChat>>>
-    export type OrbChatMutationBody = BodyType<OrbChatInput>
-    export type OrbChatMutationError = ErrorType<unknown>
-
-    /**
- * @summary Send a message to the Chakra Orb AI guide
- */
-export const useOrbChat = <TError = ErrorType<unknown>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof orbChat>>, TError,{data: BodyType<OrbChatInput>}, TContext>, request?: SecondParameter<typeof customFetch>}
- ): UseMutationResult<
-        Awaited<ReturnType<typeof orbChat>>,
-        TError,
-        {data: BodyType<OrbChatInput>},
-        TContext
-      > => {
-      return useMutation(getOrbChatMutationOptions(options));
-    }
 
 export const getCreateInquiryUrl = () => {
 

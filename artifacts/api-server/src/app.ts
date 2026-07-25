@@ -71,14 +71,6 @@ app.use(
 app.use(express.json({ limit: "2mb" }));
 app.use(express.urlencoded({ extended: true, limit: "2mb" }));
 
-const chatLimiter = rateLimit({
-  windowMs: 10 * 60 * 1000,
-  limit: 30,
-  standardHeaders: "draft-7",
-  legacyHeaders: false,
-  message: { error: "Too many chat messages from this address. Please wait a few minutes and try again." },
-});
-
 const inquiryLimiter = rateLimit({
   windowMs: 60 * 60 * 1000,
   limit: 5,
@@ -87,7 +79,6 @@ const inquiryLimiter = rateLimit({
   message: { error: "Too many inquiries from this address. Please try again later." },
 });
 
-app.use("/api/orb/chat", chatLimiter);
 app.use("/api/inquiries", inquiryLimiter);
 
 app.use("/api", router);
@@ -113,11 +104,12 @@ if (process.env.NODE_ENV === "production") {
 
   const csp = [
     "default-src 'self'",
-    "script-src 'self'",
-    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+    "script-src 'self' https://chat.launchlemonade.app https://*.launchlemonade.app",
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://chat.launchlemonade.app https://*.launchlemonade.app",
     "font-src 'self' https://fonts.gstatic.com",
-    "img-src 'self' https://user-gen-media-assets.s3.amazonaws.com data: blob:",
-    "connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com",
+    "img-src 'self' https://user-gen-media-assets.s3.amazonaws.com https://chat.launchlemonade.app https://*.launchlemonade.app data: blob:",
+    "connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com https://chat.launchlemonade.app https://*.launchlemonade.app wss://*.launchlemonade.app",
+    "frame-src https://chat.launchlemonade.app https://*.launchlemonade.app",
     "frame-ancestors 'self'",
   ].join("; ");
 

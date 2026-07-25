@@ -33,17 +33,19 @@ function cspPlugin(mode: string): Plugin {
   // skip the meta tags entirely to avoid two competing policies.
   // In development, Vite and @vitejs/plugin-react inject inline scripts for HMR
   // and React Fast Refresh — these require 'unsafe-inline'.
-  const scriptSrc = "script-src 'self' 'unsafe-inline'";
+  const scriptSrc =
+    "script-src 'self' 'unsafe-inline' https://chat.launchlemonade.app https://*.launchlemonade.app";
 
   const csp = [
     "default-src 'self'",
     scriptSrc,
     // 'unsafe-inline' for styles: Vite dev server injects <style> tags for HMR.
     // React inline style={} props are applied via JS (DOM API) and do not require this.
-    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://chat.launchlemonade.app https://*.launchlemonade.app",
     "font-src 'self' https://fonts.gstatic.com",
-    "img-src 'self' https://user-gen-media-assets.s3.amazonaws.com data: blob:",
-    "connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com",
+    "img-src 'self' https://user-gen-media-assets.s3.amazonaws.com https://chat.launchlemonade.app https://*.launchlemonade.app data: blob:",
+    "connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com https://chat.launchlemonade.app https://*.launchlemonade.app wss://*.launchlemonade.app",
+    "frame-src https://chat.launchlemonade.app https://*.launchlemonade.app",
   ].join("; ");
 
   return {

@@ -4,7 +4,6 @@ import { useDarkMode } from "./hooks/useDarkMode";
 import { Announcement } from "./components/Announcement";
 import { Nav } from "./components/Nav";
 import { Footer } from "./components/Footer";
-import { ChakraOrb } from "./components/ChakraOrb";
 import { AccessibilityWidget } from "./components/AccessibilityWidget";
 import Home from "./pages/Home";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
@@ -44,7 +43,6 @@ function AppLayout({ theme, toggle }: { theme: "light" | "dark"; toggle: () => v
       </Switch>
       <Footer linkPrefix={linkPrefix} />
       <AccessibilityWidget />
-      {isHome ? <ChakraOrb /> : null}
     </>
   );
 }

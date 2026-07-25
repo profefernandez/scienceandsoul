@@ -18,30 +18,6 @@ export const HealthCheckResponse = zod.object({
 
 
 /**
- * Proxies a visitor message to the AI guide and returns its reply.
- * @summary Send a message to the Chakra Orb AI guide
- */
-export const orbChatBodyMessageMax = 5000;
-
-export const orbChatBodyConversationIdMax = 100;
-
-export const orbChatBodyChakraMax = 100;
-
-
-
-export const OrbChatBody = zod.object({
-  "message": zod.string().min(1).max(orbChatBodyMessageMax),
-  "conversationId": zod.string().max(orbChatBodyConversationIdMax).nullish(),
-  "chakra": zod.string().max(orbChatBodyChakraMax).nullish()
-})
-
-export const OrbChatResponse = zod.object({
-  "reply": zod.string(),
-  "conversationId": zod.string().nullish()
-})
-
-
-/**
  * Stores a visitor inquiry (name, email, message) for Kelly.
  * @summary Submit a contact inquiry
  */
