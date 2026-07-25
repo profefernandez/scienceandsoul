@@ -10,12 +10,12 @@ createRoot(document.getElementById("root")!).render(<App />);
 // This lives here (not in index.html) so it is served from 'self' and
 // satisfies the CSP script-src rule without needing 'unsafe-inline'.
 if (
-  typeof window !== "undefined" &&
-  window.matchMedia("(min-width: 1025px)").matches
+    typeof window !== "undefined" &&
+    window.matchMedia("(min-width: 1025px)").matches
 ) {
-  const script = document.createElement("script");
-  script.src =
-    "https://chat.launchlemonade.app/embed/1761669078819x544112027171029000";
-  script.async = true;
-  document.body.appendChild(script);
+    const script = document.createElement("script");
+    script.src =
+        "https://chat.launchlemonade.app/embed/1761669078819x544112027171029000";
+    script.async = true;
+    document.body.appendChild(script);
 }
