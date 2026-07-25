@@ -227,7 +227,7 @@ html.a11y-simple .washbg,html.a11y-contrast .washbg{display:none}
 .fchoice:has(input:checked){border-color:var(--teal);background:var(--teall)}
 .fchoice input[type="radio"]{accent-color:var(--teal);width:18px;height:18px;flex-shrink:0;cursor:pointer}
 .footer{background:var(--sf2);border-top:1.5px solid var(--dv);padding:var(--sp10) 0 var(--sp8)}
-.footerinner{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:2rem;margin-bottom:var(--sp10)}
+.footerinner{display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem;margin-bottom:var(--sp8);align-items:start}
 .fbranddesc{font-size:var(--tx-sm);color:var(--inkm);line-height:var(--lh-body);max-width:28ch;margin:var(--sp3) 0 var(--sp4)}
 .fcoltitle{font-weight:700;font-size:var(--tx-sm);color:var(--ink);margin-bottom:var(--sp4);text-transform:uppercase;letter-spacing:.08em}
 .flinks{list-style:none;padding:0;display:flex;flex-direction:column;gap:var(--sp3)}
