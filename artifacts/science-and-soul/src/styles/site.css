@@ -326,6 +326,10 @@ body{line-height:var(--lh-md);letter-spacing:.05em;word-spacing:.06em}
 .orbsend:hover:not(:disabled){filter:brightness(1.12);transform:translateY(-1px)}
 .orbsend:disabled{opacity:.45;cursor:not-allowed}
 .orbsend:focus-visible{outline:2px solid var(--teal);outline-offset:1px}
+@media (pointer:coarse){
+.orbpanel-x,.orbsend,.orbswitch{position:relative}
+.orbpanel-x::after,.orbsend::after,.orbswitch::after{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:max(100%,44px);height:max(100%,44px);border-radius:inherit}
+}
 .orbleadlink{flex-shrink:0;align-self:center;font-size:var(--tx-xs);font-weight:600;color:var(--inkm);padding:0 0 var(--sp3);transition:color var(--tr);cursor:pointer}
 .orbleadlink:hover{color:var(--teal)}
 .orbleadlink:focus-visible{outline:2px solid var(--teal);outline-offset:1px;border-radius:var(--rsm)}
