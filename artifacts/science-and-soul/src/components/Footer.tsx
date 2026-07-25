@@ -1,4 +1,5 @@
 import { Logo } from "./Logo";
+import sixtyWattsLogo from "@assets/Screenshot_2026-07-10_225920_1784945345763.png";
 
 interface FooterProps {
   linkPrefix?: string;
@@ -47,6 +48,13 @@ export function Footer({ linkPrefix = "" }: FooterProps) {
             {" \u00b7 "}
             <a href={`${linkPrefix}accessibility`}>Accessibility</a>
           </div>
+        </div>
+        <div className="fdev">
+          <a href="https://60wattsofclarity.com" target="_blank" rel="noopener noreferrer" className="fdevlink">
+            <span>This website was developed by</span>
+            <img src={sixtyWattsLogo} alt="" aria-hidden="true" width={44} height={50} loading="lazy" decoding="async" />
+            <span>60 Watts of Clarity</span>
+          </a>
         </div>
       </div>
     </footer>
