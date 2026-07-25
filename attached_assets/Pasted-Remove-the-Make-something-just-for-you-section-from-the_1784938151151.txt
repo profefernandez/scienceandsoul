@@ -1,0 +1,19 @@
+Remove the "Make something just for you" section from the homepage entirely — its component file, its nav link if one exists, and any leftover CSS that only it used. Do not touch any other section.
+
+Build a new section in its place.
+
+STEP 1 — Locate and report, change nothing: find the five journal page images in the project's asset bucket (I'll confirm the exact filenames: [PASTE FILENAMES HERE]). Report the full paths and confirm all five are readable. Wait for my go-ahead before building.
+
+STEP 2 — After approval:
+
+1. Heading: "Color with Feeling and Intention"
+2. Intro copy (refine lightly for site voice, keep the meaning): "Download our free coloring journal to support your journey of self-discovery. Bring it to your first session to help me understand you — or keep it just for yourself."
+3. Section layout: copy the exact structure of the Fees.tsx section (grid, spacing, typography, section label style) — do not invent a new layout. It inherits the watercolor wash like all sections; translucent tints only.
+4. Preview: a horizontal strip of the 5 journal page thumbnails. Clicking one opens a larger preview (lightbox). Lazy-load them. On mobile, the strip scrolls horizontally. Follow existing breakpoints (1024/768/480/360) — no new ones.
+5. Download: a clear button — "Download the free journal (PDF)" — that assembles the 5 images into a single PDF, one image per page, entirely in the visitor's browser. Each image is centered on a Letter/A4 portrait page at its natural proportions (the pages are square — do NOT stretch or crop them to fill the page; white margin is correct). No cover page, no added text — the 5 pages are the complete book exactly as they are.
+6. No email required, no form, no tracking, nothing stored or sent anywhere. Add this line under the button: "Nothing you color or write is sent to or stored by this website."
+7. Dark mode: section and lightbox adapt via existing theme tokens. The PDF itself stays light (it's for printing and coloring).
+
+DO NOT touch: any other section, the nav (beyond removing a dead link if one existed), the floating widgets, the wash layer. No new image assets — reuse only the 5 confirmed files. Order the PDF pages by filename unless the filenames clearly indicate an order.
+
+Done when: the old section is gone site-wide, the new section shows the heading, intro, 5 preview thumbnails with lightbox, and a working download button producing a 5-page PDF on desktop and mobile; contrast/a11y checks pass; no new files added beyond the new section component.
