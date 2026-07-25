@@ -5,7 +5,7 @@ import { Services } from "../components/Services";
 import { Approach } from "../components/Approach";
 import { Methods } from "../components/Methods";
 import { WhoWeServe } from "../components/WhoWeServe";
-import { ColoringStudio } from "../components/ColoringStudio";
+import { JournalDownload } from "../components/JournalDownload";
 import { About } from "../components/About";
 import { Fees } from "../components/Fees";
 import { GoodFaith, EstimateRights } from "../components/GoodFaith";
@@ -23,7 +23,7 @@ export default function Home() {
       <Approach />
       <Methods />
       <WhoWeServe />
-      <ColoringStudio />
+      <JournalDownload />
       <Fees />
       <GoodFaith />
       <EstimateRights />

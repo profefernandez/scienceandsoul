@@ -31,8 +31,6 @@ function buildEmailHtml(data: {
       ? "Contact Form"
       : data.source === "orb"
       ? "Chakra Orb"
-      : data.source === "coloring"
-      ? "Coloring Studio"
       : data.source ?? "Website";
 
   const safeName = escapeHtml(data.name);
@@ -115,8 +113,6 @@ router.post("/inquiries", async (req, res): Promise<void> => {
         ? "Contact Form"
         : parsed.data.source === "orb"
         ? "Chakra Orb"
-        : parsed.data.source === "coloring"
-        ? "Coloring Studio"
         : "Website";
 
     resend.emails

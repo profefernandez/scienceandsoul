@@ -37,23 +37,6 @@ export const OrbChatResponse = zod.object({
 
 
 /**
- * Takes a feeling or theme and returns an AI-generated line-art coloring page as a PNG data URL.
- * @summary Generate a black-and-white line-art coloring page
- */
-export const generateColoringPageBodyPromptMax = 300;
-
-
-
-export const GenerateColoringPageBody = zod.object({
-  "prompt": zod.string().min(1).max(generateColoringPageBodyPromptMax)
-})
-
-export const GenerateColoringPageResponse = zod.object({
-  "imageDataUrl": zod.string()
-})
-
-
-/**
  * Stores a visitor inquiry (name, email, message) for Kelly.
  * @summary Submit a contact inquiry
  */

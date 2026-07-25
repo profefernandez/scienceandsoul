@@ -6,8 +6,6 @@
  * OpenAPI spec version: 0.1.0
  */
 
-export * from './coloringGenerateInput';
-export * from './coloringGenerateReply';
 export * from './healthStatus';
 export * from './inquiry';
 export * from './inquiryInput';
