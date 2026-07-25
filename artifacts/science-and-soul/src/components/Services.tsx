@@ -4,7 +4,7 @@ const services = [
   {
     accent: "sc-lav",
     img: "services-individual",
-    imgAlt: "Black woman meditation and chakra alignment illustration",
+    imgAlt: "Coloring-book style illustration of a Black woman seated in a meditative lotus pose with seven chakra energy points glowing in color along the center of her body, surrounded by lotus flowers and soft light — representing chakra alignment therapy",
     pill: { cls: "pill pl", label: "Chakra Alignment" },
     title: "Chakra alignment",
     desc: "Kelly works with chakra alignment to help clients address emotional patterns, stress responses, and energetic imbalances. Sessions explore the connection between energy centers and psychological wellbeing.",
@@ -12,7 +12,7 @@ const services = [
   {
     accent: "sc-amb",
     img: "sound-healing",
-    imgAlt: "Black woman with sound bowls in coloring-book style",
+    imgAlt: "Coloring-book style illustration of a Black woman sitting peacefully beside large Tibetan singing bowls, mallet in hand, surrounded by sound waves, lotus flowers, and amethyst crystals — representing sound bowl healing sessions",
     pill: { cls: "pill pa", label: "Sound Bowl Healing" },
     title: "Sound bowl healing",
     desc: "Tibetan singing bowls produce sustained tones that shift the nervous system toward rest. Kelly uses sound bowl sessions to support relaxation, stress reduction, and the integration of emotional material.",
@@ -20,7 +20,7 @@ const services = [
   {
     accent: "sc-sage",
     img: "kelly-portrait",
-    imgAlt: "Black woman receiving Reiki in coloring-book style",
+    imgAlt: "Illustrated portrait of Kelly Nelson, LCSW-S, seated calmly in a sunlit therapeutic space framed by watercolor lotus flowers, vines, and crystals — representing Reiki and energy work sessions",
     pill: { cls: "pill ps", label: "Reiki & Energy Work" },
     title: "Reiki & energy work",
     desc: "Reiki sessions channel life force energy to support physical, emotional, and mental wellbeing. Kelly integrates Reiki into broader treatment plans for clients seeking spiritual and energetic dimensions of care.",
@@ -28,7 +28,7 @@ const services = [
   {
     accent: "sc-teal",
     img: "services-group",
-    imgAlt: "Black woman therapist and client evidence-based therapy illustration",
+    imgAlt: "Illustration of a therapist and a small group of clients seated in a circle in a calming, plant-filled therapy office, engaged in conversation — representing evidence-based individual and group therapy sessions",
     pill: { cls: "pill pt", label: "Evidence-Based Therapy" },
     title: "Evidence-based therapy",
     desc: "Kelly's clinical work draws on CBT, DBT, psychodynamic therapy, person-centered approaches, and mindfulness. She selects and combines methods based on what each client is working through and what has traction.",
@@ -40,7 +40,8 @@ export function Services() {
     <section id="services">
       <div className="ww">
         <div style={{ textAlign: "center", marginBottom: "3rem" }}>
-          <h2 className="stitle" style={{ marginInline: "auto" }}>
+          {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */}
+          <h2 className="stitle" style={{ marginInline: "auto" }} tabIndex={0}>
             Individual therapy, group therapy,<br /><em>&amp; integrative care</em>
           </h2>
           <p className="sdesc" style={{ marginInline: "auto", textAlign: "center" }}>

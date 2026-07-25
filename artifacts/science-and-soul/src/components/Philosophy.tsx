@@ -10,7 +10,7 @@ export function Philosophy() {
               src={imgSrc("philosophy", 1024)}
               srcSet={imgSrcSet("philosophy", [480, 768, 1024])}
               sizes="(min-width: 768px) 50vw, 100vw"
-              alt="Coloring-book style illustration of Tibetan singing bowls surrounded by lotus flowers, amethyst crystals, and a mandala — representing sound bowl healing"
+              alt="Coloring-book style illustration of three large Tibetan singing bowls arranged on lotus petals, surrounded by amethyst crystals, flowering vines, and an intricate mandala pattern — representing the integration of spiritual practice and clinical therapy at Science and Soul"
               width={1024}
               height={1536}
               loading="lazy"
@@ -19,7 +19,8 @@ export function Philosophy() {
             />
           </div>
           <div className="fi">
-            <h2 className="stitle">
+            {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */}
+            <h2 className="stitle" tabIndex={0}>
               Clinical rigor and spiritual<br />practice, <em>working together</em>
             </h2>
             <div className="ppillars">

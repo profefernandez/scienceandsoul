@@ -5,7 +5,8 @@ export function WhoWeServe() {
     <section id="serve">
       <div className="ww">
         <div style={{ textAlign: "center", marginBottom: "var(--sp10)" }}>
-          <h2 className="stitle" style={{ marginInline: "auto" }}>
+          {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */}
+          <h2 className="stitle" style={{ marginInline: "auto" }} tabIndex={0}>
             Who Kelly <em>Works With</em>
           </h2>
           <p className="sdesc" style={{ marginInline: "auto", maxWidth: "48ch" }}>
