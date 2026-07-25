@@ -24,23 +24,9 @@ export function About() {
             </div>
           </div>
           <div className="fi">
-            <h2 className="stitle">Kelly Nelson, <em>LCSW-S</em></h2>
-            <div className="stats">
-              <div className="stat">
-                <div className="statv">8</div>
-                <div className="statl">Years in practice</div>
-              </div>
-              <div className="stat">
-                <div className="statv">2018</div>
-                <div className="statl">Simmons University MSW</div>
-              </div>
-              <div className="stat">
-                <div className="statv">77070</div>
-                <div className="statl">Houston office ZIP</div>
-              </div>
-            </div>
+            <h2 className="stitle">Meet Your <em>Therapist</em></h2>
             <p className="aboutbio">
-              Kelly earned her BA from Auburn University and her MSW from Simmons University in 2018. She works with pre-teens, adolescents, adults, families, and the LGBTQIA+ community using a blend of evidence-based and spiritual practices. Her style is warm, holistic, and open-minded — and late-evening appointments are available for flexible scheduling.
+              Kelly Nelson, LCSW-S, brings eight years of clinical practice to her Houston-based work. She earned her BA from Auburn University and her MSW from Simmons University in 2018, and works with pre-teens, adolescents, adults, families, and the LGBTQIA+ community using a blend of evidence-based and spiritual practices. Her style is warm, holistic, and open-minded — and late-evening appointments are available for flexible scheduling.
             </p>
             <blockquote className="aboutbio" style={{ borderLeft: "3px solid var(--teal)", paddingLeft: "var(--sp4)", fontStyle: "italic", color: "var(--inkm)" }}>
               &ldquo;I believe we each hold the key to our own healing, though we often lose touch with it through life&rsquo;s experiences. My work is to help you peel back the layers &mdash; hopelessness, depression, trauma, negative beliefs &mdash; to reconnect with who you already are.&rdquo;

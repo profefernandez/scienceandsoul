@@ -230,10 +230,6 @@ main>section+section{border-top:1.5px solid var(--dv)}
 .aboutcname{font-family:var(--fd);font-weight:700;font-size:var(--tx-base);color:var(--ink)}
 .aboutctitle{font-size:var(--tx-xs);color:var(--inkm);font-weight:600;letter-spacing:.04em}
 .aboutbio{font-size:var(--tx-base);color:var(--inkm);line-height:var(--lh-relaxed);margin-bottom:var(--sp5)}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp4);margin-bottom:2rem}
-.stat{text-align:center;padding:var(--sp4);background:var(--sf);border:1.5px solid var(--dv);border-radius:var(--rxl)}
-.statv{font-family:var(--fd);font-size:var(--tx-2xl);font-weight:700;color:var(--teal);line-height:1;margin-bottom:var(--sp1)}
-.statl{font-size:var(--tx-xs);color:var(--inkm);font-weight:600;text-transform:uppercase;letter-spacing:.06em}
 .modcloud{display:flex;flex-wrap:wrap;gap:var(--sp2)}
 .feesgrid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
 .feesgrid>*{min-width:0}
@@ -317,7 +313,6 @@ body{line-height:var(--lh-md);letter-spacing:.05em;word-spacing:.06em}
 }
 @media(max-width:480px){
 .hacts{flex-direction:column;align-items:stretch}
-.stats{grid-template-columns:1fr 1fr}
 .footerinner{grid-template-columns:1fr}
 .nsub{letter-spacing:.03em;font-size:var(--tx-xs)}
 .inslist{grid-template-columns:1fr}
