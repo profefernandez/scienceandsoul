@@ -125,9 +125,6 @@ jobs:
               --exclude '.well-known/' \
               --exclude 'error_log' \
               '${STAGING_PATH}/' '${REMOTE_PATH}/'"
-          ssh -i ~/.ssh/id_ed25519 -p "${{ secrets.SSH_PORT }}" \
-            "${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}" \
-            "rm -rf '${STAGING_PATH}'"
 
       - name: Verify deployment
         run: |
@@ -135,3 +132,11 @@ jobs:
           ssh -i ~/.ssh/id_ed25519 -p "${{ secrets.SSH_PORT }}" \
             "${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}" \
             "ls -la '${REMOTE_PATH}/' | head -20 && echo '---' && wc -c '${REMOTE_PATH}/index.html'"
+
+      - name: Cleanup staging directory
+        if: ${{ always() }}
+        run: |
+          set -eu
+          ssh -i ~/.ssh/id_ed25519 -p "${{ secrets.SSH_PORT }}" \
+            "${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}" \
+            "rm -rf '${STAGING_PATH}'"
