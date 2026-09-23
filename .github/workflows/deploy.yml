@@ -106,7 +106,7 @@ jobs:
           # --delay-updates  apply changed files at end of transfer
           # --delete-delay   delete stale files after transfers finish
           # --exclude  leave sPanel-owned entries in public_html alone
-          rsync -avz --delay-updates --delete-delay --delete \
+          rsync -avz --delay-updates --delete-delay \
             --exclude 'cgi-bin/' \
             --exclude '.well-known/' \
             --exclude 'error_log' \
