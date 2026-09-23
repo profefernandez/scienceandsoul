@@ -6,11 +6,11 @@ on:
     branches: [main]
   workflow_dispatch:
 
-# Prevents two deploys from overlapping. A newer push cancels an older
-# in-progress deploy so the most recent commit always wins.
+# Prevent overlapping deploys. Queue newer runs instead of canceling an
+# in-progress rsync to avoid partial live-directory updates.
 concurrency:
   group: production-deploy
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build-and-deploy:
@@ -19,6 +19,8 @@ jobs:
     env:
       # Where the built site should land on the VPS.
       REMOTE_PATH: /home/scienceandsoulcounselingcom/public_html
+      # Unique non-live staging dir for each run to avoid cross-run collisions.
+      STAGING_PATH: /home/scienceandsoulcounselingcom/public_html.staging-${{ github.run_id }}-${{ github.run_attempt }}
       # Public base path of the site (root of the domain).
       BASE_PATH: /
       # Any value; only required so vite.config.ts starts. The dev server
@@ -95,15 +97,15 @@ jobs:
           set -eu
           ssh -i ~/.ssh/id_ed25519 -p "${{ secrets.SSH_PORT }}" \
             "${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}" \
-            "mkdir -p '${REMOTE_PATH}' && echo 'remote dir OK: ${REMOTE_PATH}'"
+          "mkdir -p '${REMOTE_PATH}' '${STAGING_PATH}' && echo 'remote dirs OK: ${REMOTE_PATH} and ${STAGING_PATH}'"
 
-      - name: Upload site to VPS
+      - name: Upload site to VPS staging directory
         run: |
           set -eu
           # -a  archive mode (recursive + preserve perms/timestamps)
           # -v  verbose (each file shown in the workflow log)
           # -z  compress in transit
-          # --delete  remove files on the server that no longer exist locally
+          # --delete remove stale files in the non-live staging dir
           # --exclude  leave sPanel-owned entries in public_html alone
           rsync -avz --delete \
             --exclude 'cgi-bin/' \
@@ -111,7 +113,18 @@ jobs:
             --exclude 'error_log' \
             -e "ssh -i ~/.ssh/id_ed25519 -p ${{ secrets.SSH_PORT }}" \
             artifacts/science-and-soul/dist/public/ \
-            "${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:${REMOTE_PATH}/"
+            "${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:${STAGING_PATH}/"
+
+      - name: Promote staged site to live directory
+        run: |
+          set -eu
+          ssh -i ~/.ssh/id_ed25519 -p "${{ secrets.SSH_PORT }}" \
+            "${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}" \
+            "rsync -a --checksum --delay-updates --delete-delay \
+              --exclude 'cgi-bin/' \
+              --exclude '.well-known/' \
+              --exclude 'error_log' \
+              '${STAGING_PATH}/' '${REMOTE_PATH}/'"
 
       - name: Verify deployment
         run: |
@@ -119,3 +132,11 @@ jobs:
           ssh -i ~/.ssh/id_ed25519 -p "${{ secrets.SSH_PORT }}" \
             "${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}" \
             "ls -la '${REMOTE_PATH}/' | head -20 && echo '---' && wc -c '${REMOTE_PATH}/index.html'"
+
+      - name: Cleanup staging directory after successful deploy
+        if: ${{ success() }}
+        run: |
+          set -eu
+          ssh -i ~/.ssh/id_ed25519 -p "${{ secrets.SSH_PORT }}" \
+            "${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}" \
+            "rm -rf '${STAGING_PATH}'"

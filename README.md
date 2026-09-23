@@ -74,6 +74,10 @@ Hosted on an sPanel VPS. Push to main, pull the changes on the server, rebuild,
 and restart the application. The frontend is served by Vite in development; in
 production the Express server serves the built frontend.
 
+## Operations
+- Outage triage runbook: `docs/operations/outage-runbook.md`
+- Change tracking: `CHANGELOG.md`
+
 License
 © 2026 Science and Soul Counseling & Wellness, PLLC. All rights reserved.
 This codebase is proprietary and not licensed for reuse.
