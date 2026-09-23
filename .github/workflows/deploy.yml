@@ -120,7 +120,7 @@ jobs:
           set -eu
           ssh -i ~/.ssh/id_ed25519 -p "${{ secrets.SSH_PORT }}" \
             "${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}" \
-            "rsync -a --delay-updates --delete-delay \
+            "rsync -a --checksum --delay-updates --delete-delay \
               --exclude 'cgi-bin/' \
               --exclude '.well-known/' \
               --exclude 'error_log' \
