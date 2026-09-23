@@ -142,6 +142,6 @@ jobs:
             "rm -rf '${STAGING_PATH}'"
 
       - name: Preserve staging path on failure for recovery
-        if: ${{ failure() }}
+        if: ${{ failure() || cancelled() }}
         run: |
-          echo "::warning::Deployment failed. Staged files retained at ${STAGING_PATH} for investigation/recovery."
+          echo "::warning::Deployment did not complete successfully. Staged files retained at ${STAGING_PATH} for investigation/recovery."
