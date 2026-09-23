@@ -6,11 +6,11 @@ on:
     branches: [main]
   workflow_dispatch:
 
-# Prevents two deploys from overlapping. A newer push cancels an older
-# in-progress deploy so the most recent commit always wins.
+# Prevent overlapping deploys. Queue newer runs instead of canceling an
+# in-progress rsync to avoid partial live-directory updates.
 concurrency:
   group: production-deploy
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build-and-deploy:
@@ -103,9 +103,10 @@ jobs:
           # -a  archive mode (recursive + preserve perms/timestamps)
           # -v  verbose (each file shown in the workflow log)
           # -z  compress in transit
-          # --delete  remove files on the server that no longer exist locally
+          # --delay-updates  apply changed files at end of transfer
+          # --delete-delay   delete stale files after transfers finish
           # --exclude  leave sPanel-owned entries in public_html alone
-          rsync -avz --delete \
+          rsync -avz --delay-updates --delete-delay --delete \
             --exclude 'cgi-bin/' \
             --exclude '.well-known/' \
             --exclude 'error_log' \
