@@ -30,7 +30,7 @@ Collect logs for the outage window (at least ±10 minutes):
 
 Signals that support deploy-related partial update issues:
 - 404s for hashed frontend assets immediately after deploy start
-- index/html requests succeeding while asset requests fail
+- `index.html` requests succeeding while asset requests fail
 - outage start/stop aligned with a deploy run duration
 
 ## 4) Verify current deployment state
