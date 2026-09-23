@@ -11,7 +11,8 @@
   - An in-progress deploy may have been canceled or updated mid-transfer, briefly leaving a partially updated `public_html` (for example `index.html` and hashed assets out of sync), causing temporary site unavailability.
 - Remediation implemented:
   - Changed deploy concurrency to queue runs instead of canceling active deploys.
-  - Updated `rsync` flags to use delayed update/delete behavior to reduce mixed old/new asset windows during deployment.
+  - Updated deploy flow to upload into a per-run non-live staging directory first, then promote from staging into `public_html`.
+  - Promotion uses delayed update/delete behavior to reduce mixed old/new asset windows during deployment.
 - Validation performed:
   - `pnpm run typecheck`
   - `pnpm --filter @workspace/science-and-soul run lint`
