@@ -133,10 +133,15 @@ jobs:
             "${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}" \
             "ls -la '${REMOTE_PATH}/' | head -20 && echo '---' && wc -c '${REMOTE_PATH}/index.html'"
 
-      - name: Cleanup staging directory
-        if: ${{ always() }}
+      - name: Cleanup staging directory after successful deploy
+        if: ${{ success() }}
         run: |
           set -eu
           ssh -i ~/.ssh/id_ed25519 -p "${{ secrets.SSH_PORT }}" \
             "${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}" \
             "rm -rf '${STAGING_PATH}'"
+
+      - name: Preserve staging path on failure for recovery
+        if: ${{ failure() }}
+        run: |
+          echo "::warning::Deployment failed. Staged files retained at ${STAGING_PATH} for investigation/recovery."
