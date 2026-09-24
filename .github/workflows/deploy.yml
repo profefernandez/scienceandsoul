@@ -24,6 +24,10 @@ jobs:
       # Any value; only required so vite.config.ts starts. The dev server
       # port is not used during `vite build`.
       PORT: "8080"
+      # Public URL used for the post-deploy smoke test. Override with a repo
+      # variable (Settings → Secrets and variables → Actions → Variables) if
+      # the production domain ever changes.
+      SITE_URL: ${{ vars.SITE_URL || 'https://scienceandsoulcounseling.com' }}
 
     steps:
       - name: Check out repository
@@ -119,3 +123,70 @@ jobs:
           ssh -i ~/.ssh/id_ed25519 -p "${{ secrets.SSH_PORT }}" \
             "${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}" \
             "ls -la '${REMOTE_PATH}/' | head -20 && echo '---' && wc -c '${REMOTE_PATH}/index.html'"
+
+      # -----------------------------------------------------------------
+      # Post-deploy smoke test / outage detection.
+      #
+      # Files are uploaded successfully but that doesn't guarantee the
+      # public site is actually serving traffic (DNS, TLS, Apache/.htaccess,
+      # or reverse-proxy issues can all still cause an outage). This step
+      # polls the live homepage over HTTPS and fails the workflow — with a
+      # clear, actionable log message — if the site isn't responding with a
+      # real page within a reasonable time.
+      #
+      # This step is read-only (no writes to the server) and does not
+      # affect the files already deployed above, so it cannot break or
+      # roll back a deployment. It only reports success/failure.
+      # -----------------------------------------------------------------
+      - name: Smoke test — homepage responds
+        run: |
+          set -eu
+          url="${SITE_URL}"
+          attempts=5
+          delay=6
+          echo "Checking that $url responds after deploy..."
+
+          for i in $(seq 1 "$attempts"); do
+            http_code=$(curl -sS -o /tmp/homepage.html -w "%{http_code}" \
+              --max-time 15 --location "$url" || echo "000")
+
+            if [ "$http_code" = "200" ]; then
+              echo "Attempt $i/$attempts: got HTTP $http_code"
+              if grep -qi "<html" /tmp/homepage.html; then
+                echo "Homepage responded with HTTP 200 and looks like HTML. Smoke test passed."
+                exit 0
+              else
+                echo "::warning::HTTP 200 but response body doesn't look like HTML yet. Retrying..."
+              fi
+            else
+              echo "Attempt $i/$attempts: got HTTP $http_code"
+            fi
+
+            if [ "$i" -lt "$attempts" ]; then
+              sleep "$delay"
+            fi
+          done
+
+          echo "::error::Post-deploy smoke test failed — $url did not return a valid homepage after $attempts attempts."
+          echo "This likely indicates an outage (DNS, TLS, Apache/.htaccess, or reverse-proxy issue), not a bad build,"
+          echo "since files were already confirmed present on the server in the previous step."
+          echo "Last response body (truncated):"
+          head -c 500 /tmp/homepage.html || true
+          exit 1
+
+      - name: Smoke test — API health check (optional)
+        # Only meaningful if the api-server is deployed/reachable at /api/healthz
+        # on the same host. Non-fatal: a missing API endpoint on a static-only
+        # deployment should not fail the whole workflow.
+        continue-on-error: true
+        run: |
+          set -eu
+          url="${SITE_URL%/}/api/healthz"
+          echo "Checking API health endpoint at $url..."
+          http_code=$(curl -sS -o /tmp/healthz.json -w "%{http_code}" \
+            --max-time 10 --location "$url" || echo "000")
+          echo "API health check returned HTTP $http_code"
+          cat /tmp/healthz.json 2>/dev/null || true
+          if [ "$http_code" != "200" ]; then
+            echo "::warning::API health endpoint did not return HTTP 200 (got $http_code). If the API is not deployed on this host, this is expected and can be ignored."
+          fi
